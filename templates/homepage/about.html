@@ -1,0 +1,444 @@
+{% extends 'BASE/base.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+  .card {
+    border: none;
+  }
+
+  .card-img {
+    border-radius: 0;
+  }
+
+  .vgr-cards .card {
+    display: flex;
+    flex-flow: wrap;
+    flex: 100%;
+    margin-bottom: 40px;
+  }
+
+  .vgr-cards .card:nth-child(even) .card-img-body {
+    order: 2;
+  }
+
+  .vgr-cards .card:nth-child(even) .card-body {
+    padding-left: 0;
+    padding-right: 1.25rem;
+  }
+
+  @media (max-width: 576px) {
+    .vgr-cards .card {
+      display: block;
+    }
+  }
+
+  .vgr-cards .card-img-body {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+  }
+
+  @media (max-width: 576px) {
+    .vgr-cards .card-img-body {
+      width: 100%;
+      height: 200px;
+      margin-bottom: 20px;
+    }
+  }
+
+  .vgr-cards .card-img {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+
+  @media (max-width: 1140px) {
+    .vgr-cards .card-img {
+      margin: 0;
+      transform: none;
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .vgr-cards .card-body {
+    flex: 2;
+    padding: 0 0 0 1.25rem;
+  }
+
+  @media (max-width: 576px) {
+    .vgr-cards .card-body {
+      padding: 0;
+    }
+  }
+
+  .testimonial-padding {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  .testimonial-area .testimonial-caption .testimonial-top-cap p {
+    font-size: 15px !important;
+    font-style: bold !important;
+  }
+
+  .support-caption p {
+    margin-bottom: 20px !important;
+  }
+
+  .blog-h-padding {
+    padding-top: 100px !important;
+    padding-bottom: 50px !important;
+  }
+
+  h4 {
+    font-weight: 700 !important;
+  }
+
+  .section-padding2 {
+    padding-top: 50px !important;
+    padding-bottom: 50px !important;
+  }
+
+  .team {
+    width: 200px;
+    height: 200px;
+    border-radius: 50% !important;
+  }
+</style>
+
+<main>
+  <!-- Hero Area Start-->
+  <div class="slider-area">
+    <div class="single-slider section-overly slider-height2 d-flex align-items-center"
+      data-background="{% static 'assets/img/about/bg.jpg' %}">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-12">
+            <div class="hero-cap text-center">
+              <h2>“Leadership is the ability to guide others without force into a direction or decision that leaves them
+                still feeling empowered and accomplished.”</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Hero Area End -->
+  <!-- Support Company Start-->
+  <div class="support-company-area fix section-padding2">
+    <div class="container">
+
+      <div class="container">
+        <div class="card-group vgr-cards">
+          <div class="card" style="min-height:300px">
+            <div class="card-img-body">
+              <img class="card-img" src="{% static 'assets/img/about/5.jpg' %}" alt="Card image cap"
+                style="height:100%">
+            </div>
+            <div class="card-body">
+              <h4 class="card-title text-center mt-4" style="font-size:30px;">MISSION</h4>
+              <p class="card-text text-center" style="font-size:20px;">To impart specific quality employability skills
+                amongst individuals as per international
+                standards and promote a self sustainable “Atmanirbhar Bharat & supporting the GIG
+                workers digitally for business a dream of the honourable Priminister of India”
+              </p>
+            </div>
+          </div>
+          <div class="card" style="min-height:300px">
+            <div class="card-img-body">
+              <img class="card-img" src="{% static 'assets/img/about/6.jpg' %}" alt="Card image cap"
+                style="height:100%">
+            </div>
+            <div class="card-body">
+              <h4 class="card-title text-center mt-4" style="font-size:30px;">VISION</h4>
+              <p class="card-text fs-4 text-center" style="font-size:20px;">“To be known across the consumer world as an
+                Organization which makes any
+                Service, buying / purchase affordable for a
+                customer, backed with core values like Integrity, Ethics and Reliability”
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="row align-items-center justify-content-between">
+        <div class="col-xl-6 col-lg-6">
+          <div class="right-caption">
+            <!-- Section Tittle -->
+            <div class="section-tittle section-tittle2">
+              <span>What we are doing</span>
+              <h4>“Affordable deals” has been founded by a group of people with over 24 years of
+                cross functional and cross industry work experience
+              </h4>
+            </div>
+            <div class="support-caption">
+              <p class="pera-top">
+                All the members have been associated with various top brands and market
+                leaders in industries like Telecommunication, Home Appliance and White Goods,
+                Mobile Handset, Consumer Electronics, E- Commerce, Fashion and 3PL
+                operation
+              </p>
+              <p>
+                Every member of the team is recognized and has created their unique industry
+                identity by handling business P&L through integrity, hard-work and operational
+                excellence
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-6">
+          <div class="support-location-img">
+            <img src="{% static 'assets/img/service/support-img_7.png' %}" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Support Company End-->
+  <!-- How  Apply Process Start-->
+  <!-- <div
+      class="apply-process-area apply-bg pt-150 pb-150"
+      data-background="assets/img/gallery/how-applybg.png"
+    >
+      <div class="container"> -->
+  <!-- Section Tittle -->
+  <!-- <div class="row">
+          <div class="col-lg-12">
+            <div class="section-tittle white-text text-center">
+              <span>Apply process</span>
+              <h2>How it works</h2>
+            </div>
+          </div>
+        </div> -->
+  <!-- Apply Process Caption -->
+  <!-- <div class="row">
+          <div class="col-lg-4 col-md-6">
+            <div class="single-process text-center mb-30">
+              <div class="process-ion">
+                <span class="flaticon-search"></span>
+              </div>
+              <div class="process-cap">
+                <h5>1. Search a job</h5>
+                <p>
+                  Sorem spsum dolor sit amsectetur adipisclit, seddo eiusmod
+                  tempor incididunt ut laborea.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="single-process text-center mb-30">
+              <div class="process-ion">
+                <span class="flaticon-curriculum-vitae"></span>
+              </div>
+              <div class="process-cap">
+                <h5>2. Apply for job</h5>
+                <p>
+                  Sorem spsum dolor sit amsectetur adipisclit, seddo eiusmod
+                  tempor incididunt ut laborea.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="single-process text-center mb-30">
+              <div class="process-ion">
+                <span class="flaticon-tour"></span>
+              </div>
+              <div class="process-cap">
+                <h5>3. Get your job</h5>
+                <p>
+                  Sorem spsum dolor sit amsectetur adipisclit, seddo eiusmod
+                  tempor incididunt ut laborea.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+  <!-- How  Apply Process End -->
+  <!-- Testimonial Start -->
+  <div class="testimonial-area testimonial-padding">
+    <div class="container">
+      <!-- Testimonial contents -->
+      <div class="row d-flex justify-content-center">
+        <div class="col-xl-8 col-lg-8 col-md-10">
+          <div class="h1-testimonial-active dot-style">
+            <!-- Single Testimonial -->
+            <div class="single-testimonial text-center">
+              <!-- Testimonial Content -->
+              <div class="testimonial-caption">
+                <!-- founder -->
+                <div class="testimonial-founder">
+                  <div class="founder-img mb-30">
+                    <img src="{% static 'assets/img/about/pic1.jpg' %}" alt="" class="team" />
+                    <span>Dr.Suman Mandal</span>
+                    <p>Executive Director & Founder</p>
+                  </div>
+                </div>
+                <div class="testimonial-top-cap">
+                  <p>
+                    “An MBA (Marketing) from Indian Institute of Social Welfare and Business
+                    Management and M Sc.- International Business from Coventry University, UK is our guiding light in
+                    Business Planning & Development,
+                    Project Management, CRM and After Sales Service. Mr. Suman has 23+ years of experience in handling
+                    country level Business Development and
+                    customer service for industries as varied as Mobile & Telecom, Consumer Durable, Consumer
+                    electronics and International Public Sector.”
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- Single Testimonial -->
+            <div class="single-testimonial text-center">
+              <!-- Testimonial Content -->
+              <div class="testimonial-caption">
+                <!-- founder -->
+                <div class="testimonial-founder">
+                  <div class="founder-img mb-30">
+                    <img src="{% static 'assets/img/about/pic2.jpg' %}" alt="" class="team" />
+                    <span>Ashutosh Agrawal</span>
+                    <p>Director-B2C and Training </p>
+                  </div>
+                </div>
+                <div class="testimonial-top-cap">
+                  <p>
+                    “BE (Mech, MMMEC, Gorakhpur), ME (Thermal, DCE, Delhi), PGDBA (Operations,
+                    Symbiosis, Pune) having over 25 Years of Training and Service Logistics Experience in Appliance and
+                    E-Commerce platforms. Has set up training
+                    for leading appliance brands like Whirlpool, Samsung, LG, Flipkart and Urban Company and worked in
+                    field service operations for Delhi, Orissa,
+                    Madhya Pradesh, Rajasthan, Haryana etc. Ashutosh is having good understanding of customer
+                    expectations and technician behavior and leading
+                    the b2c business and skilling for employability and quality”
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- Single Testimonial -->
+            <div class="single-testimonial text-center">
+              <!-- Testimonial Content -->
+              <div class="testimonial-caption">
+                <!-- founder -->
+                <div class="testimonial-founder">
+                  <div class="founder-img mb-30">
+                    <img src="{% static 'assets/img/about/pic3.jpg' %}" alt="" class="team" />
+                    <span>Mr.Prosenjit Sen</span>
+                    <p>Director and Chief Advisor</p>
+                  </div>
+                </div>
+                <div class="testimonial-top-cap">
+                  <p>
+                    “Mr. Prosenjit is a consumer durable & telecom industry veteran of over 30 years of experience
+                    and has had a remarkable career. He became the Director for Samsung Mobiles and during his tenure in
+                    Samsung the brand moved from no 6 to
+                    no 1 in terms of sales. He then moved as Director of Blackberry India and later on as Head of
+                    Micromax Mobile. Again during his tenure in
+                    Micromax , the brand was the no 1 selling brand in the country.
+                    ”
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- Single Testimonial -->
+            <div class="single-testimonial text-center">
+              <!-- Testimonial Content -->
+              <div class="testimonial-caption">
+                <!-- founder -->
+                <div class="testimonial-founder">
+                  <div class="founder-img mb-30">
+                    <img src="{% static 'assets/img/about/pic4.jpg' %}" alt="" class="team" />
+                    <span>Amit Sikka</span>
+                    <p>Co Founder & Director Operations</p>
+                  </div>
+                </div>
+                <div class="testimonial-top-cap">
+                  <p>
+                    “Bachelor of Science from Punjab Technical University and has over 15 years of experience in
+                    Technical services with brands like Samsung India Ltd, KGL Impex limited, Oxygen India Limited. He
+                    has successfully and single handedly
+                    managed large sized technical teams and executed world class technical projects adding on to the
+                    profitability and sustainability of various large
+                    sized organizations. Mr. Amit leads the operations and technical services for Affordable Deals
+                    Private limited
+                    ”
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Testimonial End -->
+
+  <!-- Blog Area Start -->
+  <div class="home-blog-area blog-h-padding">
+    <div class="container">
+      <!-- Section Tittle -->
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="section-tittle text-center">
+            <span>Our latest blog</span>
+            <h2>Our recent Activities</h2>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-6">
+          <div class="home-blog-single mb-30">
+            <div class="blog-img-cap">
+              <div class="blog-img">
+                <img src="{% static 'assets/img/about/2.jpg' %}" alt="" style="height:320px;" />
+                <!-- Blog date -->
+                <div class="blog-date text-center">
+                  <span>24</span>
+                  <p>Now</p>
+                </div>
+              </div>
+              <div class="blog-cap">
+                <p>| Properties</p>
+                <h3>
+                  <a href="single-blog.html">PM Swanidhi se Samridhi</a>
+                </h3>
+                <a href="#" class="more-btn">Read more »</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-6">
+          <div class="home-blog-single mb-30">
+            <div class="blog-img-cap">
+              <div class="blog-img">
+                <img src="{% static 'assets/img/about/3.jpg' %}" alt="" style="height:320px;" />
+                <!-- Blog date -->
+                <div class="blog-date text-center">
+                  <span>24</span>
+                  <p>Now</p>
+                </div>
+              </div>
+              <div class="blog-cap">
+                <p>| Properties</p>
+                <h3>
+                  <a href="single-blog.html">Board Distribution by Dy CM</a>
+                </h3>
+                <a href="#" class="more-btn">Read more »</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Blog Area End -->
+</main>
+
+{% endblock content %}

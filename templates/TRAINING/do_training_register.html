@@ -1,0 +1,96 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <style>
+      .card-registration .select-input.form-control[readonly]:not([disabled]) {
+        font-size: 1rem;
+        line-height: 2.15;
+        padding-left: .75em;
+        padding-right: .75em;
+      }
+      .card-registration .select-arrow {
+        top: 13px;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="h-100 bg-dark">
+      <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col">
+            <div class="card card-registration my-4">
+              <div class="row g-0">
+                <div class="col-xl-6 d-none d-xl-block p-5">
+                  <img src="{% static 'assets/img/register/p1.webp' %}"
+                    alt="Sample photo" class="img-fluid"
+                    style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem; width: 100%; height: 70%;margin-top: 10%;" />
+                </div>
+                <div class="col-xl-6">
+                  <div class="card-body p-md-5 text-black">
+                    {% comment %} <h5 class="text-uppercase text-center fs-4">Sign up</h5> {% endcomment %}
+                    <h3 class="mb-3 text-center fs-2">Registration Fees 200</h3>
+                    <hr>
+                    
+                    <div class="form-outline mb-2">
+                      <label class="form-label fs-4" for="form3Example1n">First name : {{fname}}</label>
+                    </div>
+                    <div class="form-outline mb-2">
+                      <label class="form-label fs-4" for="form3Example1n">Last name : {{lname}}</label>
+                    </div>
+                    <div class="form-outline mb-2">
+                      <label class="form-label fs-4" for="form3Example1n">user name : {{username}}</label>
+                    </div>
+                    <div class="form-outline mb-2">
+                      <label class="form-label fs-4" for="form3Example1n">Email : {{email}}  </label>
+                    </div>
+      
+    
+                    <div class="d-flex justify-content-center pt-3">
+                        {% comment %} {% if payment %}     {% endcomment %}
+                        <a><button type="submit" class="btn btn-warning btn-lg">Register Now</button></a>
+                        {% comment %} {% endif %}  {% endcomment %}
+                      {% comment %} <button type="button" class="btn btn-warning btn-lg">Register</button> {% endcomment %}
+                    </div>
+    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+    <form action='{% url 'trainingsuccess' %}' method="POST">
+        <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+        <script>
+           var options = {
+               "key": "rzp_test_czVP739sBN5blU", // Enter the Key ID generated from the Dashboard
+               "amount": "{{payment.amount}}", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+               "currency": "INR",
+               "name": "Ayodhya",
+               "description": "Transaction",
+               "order_id": "{{payment.id}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+               "callback_url": "http://127.0.0.1:8000/Training/success/",
+               "notes": {
+                   "address": "Razorpay Corporate Office"
+               },
+               "theme": {
+                   "color": "#3399cc"
+               }
+           };
+           var rzp1 = new Razorpay(options);
+           document.getElementById('rzp-button1').onclick = function(e){
+               rzp1.open();
+               e.preventDefault();
+           }
+        </script>
+     </form>
+  </body>
+</html>

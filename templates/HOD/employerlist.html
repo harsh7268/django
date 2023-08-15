@@ -1,0 +1,28 @@
+{% for i in employer %}
+<tr id="i-{{ i.pk }}" class="border_color movie-row">
+    <td class="border_color">{{i.work_start_Date}}</td>
+    <td class="border_color">{{i.services}}</td>
+    <td class="border_color">{{i.no_of_worker}}</td>
+    <td class="border_color">{{i.department}}</td>
+    <td class="border_color">{{i.employer_id.admin.username}}</td>
+    <td class="border_color">{{i.employer_id.mob_no}}</td>
+    <td class="border_color">{{i.pin_code}}</td>
+    <td class="border_color">{{i.city}}</td>
+    <td class="border_color">
+        <!-- Button trigger modal -->
+        <button hx-get="{% url 'worlker_list'%}" hx-target="#dialog" class="btn btn-warning badge rounded-pill text-dark">
+            workers list
+        </button>
+        {% comment %} <button class="btn btn-warning badge rounded-pill text-dark" hx-get="{% url 'worlker_list' i.services.id %}" hx-target="#dialog">workers list</button> {% endcomment %}
+        {% comment %} <button type="button" class="btn btn-warning badge rounded-pill text-dark" data-bs-toggle="modal"
+            data-bs-target="#staticBackdrop" style="width: 7rem">
+            workers list
+        </button> {% endcomment %}
+
+        <!-- Modal -->
+
+       
+    </td>
+    <td>open</td>
+</tr>
+{% endfor %}

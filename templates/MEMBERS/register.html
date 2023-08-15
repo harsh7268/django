@@ -1,0 +1,362 @@
+{% extends 'BASE/base.html' %}
+{% load static %}
+{% block content %}
+{% block linkcss %}
+<link rel="stylesheet" href="{% static 'datepicker/jquery-ui.min.css' %}">
+{% endblock linkcss %}
+<!-- HK Wrapper -->
+<div class="hk-wrapper mt-5 mb-5">
+  <div class="hk-pg-wrapper hk-auth-wrapper">
+    <div class="container shadow-lg pt-3 pb-3 course" style=" border-radius: 5px !important;">
+      
+      <div class="row text ">
+        <div class="col pa-0">
+
+          <form action="" method="POST">
+            {% csrf_token %}
+            <div class="row">
+              <div class="col">
+                <select id="select1" class="form-select form-control" name="city_search">
+                  <option selected disabled="true">----City----</option>
+                  {% for i in city %}
+                  {% if i.active %}
+                  <option value="{{i.id}}">{{i.city}}</option>
+                  {% endif %}
+                  {% endfor %}
+                </select>
+
+              </div>
+              <select  class="form-select form-control my-2" id="select2" name="testing" hidden>
+                <option selected disabled="true">Role</option>
+                {% for role in role %}
+                {% if role.is_worker %}
+                <option value="{{role.city_id}}">{{role.role_name}} ({{role.min_sal}})</option>
+                {% comment %} <option value="{{role.city_id}}">{{role.role_name}} ({{role.min_sal}})</option> {% endcomment %}
+                {% endif %}
+                {% endfor %}
+                
+              </select>
+              
+            </div>
+            <div class="row justify-content-center mt-2">
+              <div class="col-3">
+                <button type="submit" class="bg-success w-100 border-0 p-2" value="Search" style="border-radius: .25rem">
+                  Submit
+                </button>
+              </div>
+            </div>
+            
+
+          {% comment %} <div>
+            <select  class="form-select form-control my-2" id="select2" name="testing" hidden>
+              <option selected disabled="true">Role</option>
+              {% for role in role %}
+              {% if role.is_worker %}
+              <option value="{{role.city_id}}">{{role.role_name}} ({{role.min_sal}})</option>
+              <option value="{{role.city_id}}">{{role.role_name}} ({{role.min_sal}})</option>
+              {% endif %}
+              {% endfor %}
+              
+            </select>
+
+            <button type="submit" class="btn head-btn1 bg-success" value="Search">
+              Submit
+            </button>
+          </div> {% endcomment %}
+        </form>
+        <hr class="mb-3 mt-2">
+
+          <form method="POST" action="{% url 'douserregister' %}" enctype="multipart/form-data"
+            onsubmit="return validation()">
+            {% csrf_token %}
+            <input type="text" value="200" name="amount" hidden>
+            
+            <div class="auth-form-wrap py-xl-0 py-50">
+              <div class="auth-form w-xxl-55 w-xl-75 w-sm-90 w-100">
+                <div class="row justify-content-center mb-1">
+                  <h4>MEMBERS REGISTRATION FORM</h4>
+                </div>
+                
+                  
+                <div class="form-row">
+
+                  <div class="col-6 col-md-6 form-group">
+                    <input class="form-control" placeholder="Name" type="text" name="username" id="uname" required />
+                    <span id="unameerror" class="text-danger font-weight-bold"></span>
+                  </div>
+                  
+                  <div class="col-6 col-md-6 form-group">
+                    <input class="form-control" placeholder="Father's name" type="text" name="father_name"
+                      id="fathername" required/>
+                      <span id="fnameerror" class="text-danger font-weight-bold"></span>
+                  </div>
+
+                  <div class="col-6 col-md-3 form-group">
+                    <input class="form-control" placeholder="Mobile number" type="text" name="mobile_no"
+                      id="mobileNumber" required/>
+                      <span id="mnameerror" class="text-danger font-weight-bold"></span>
+                  </div>
+
+                  <div class="col-6 col-md-3 form-group">
+                    <select class="form-select form-control" aria-label="Default select example" name="gender" required>
+                      <option selected>Male/Female</option>
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                    </select>
+                  </div>
+                  <div class="col-6 col-md-3 form-group">
+                    <input class="form-control" type="text" id="datepicker" placeholder="DOB" name="dob" required/>
+                  </div>
+
+                  <div class="col-6 col-md-3 form-group">
+                    <input type="text" name="city" class="form-control" value="{{city_name}}" placeholder="City" readonly>
+                    {% comment %} <select class="form-select form-control" aria-label="Default select example" name="city" id="select1" required>
+                      <option value="">selected</option>
+                      {% for i in city %}
+                      <option value="{{i.id}}">{{i.city}}</option>
+                      {% endfor %}
+                    </select>  {% endcomment %}
+                    {% comment %} <input class="form-control" type="text" name="role_id" value="{% for  venues in venues  %}{{venues.id}}{% endfor %}" placeholder="Role" hidden> {% endcomment %}
+                    {% comment %} <input class="form-control" type="text" name="" value="{% for  venues in venues  %}{{venues.role_name}}{% endfor %}" placeholder="Role" readonly> {% endcomment %}
+                    
+                    {% comment %} <input type="text" value="{{city_name}}"> {% endcomment %}
+                  </div>
+
+                  <div class="col-6 col-md-6 form-group">
+                    {% comment %} <input class="form-control" placeholder="City" value="" type="text" name="city" /> {%endcomment %}
+                    {% comment %} <input class="form-control" type="text" value="{% for  venues in venues  %}{{venues.city}}{% endfor %}" placeholder="city" readonly> {% endcomment %}
+                    {% comment %} <select class="form-select form-control" aria-label="Default select example" name="role_id" id="select2"  required>
+                      <option selected>Role</option>
+                      {% for i in role %}
+                      <option value="{{i.id}}">{{i.role_name}}</option>
+                      {% endfor %}
+                    </select>  {% endcomment %}
+                    {% comment %} <select  class="form-select form-control" id="select2" name="testing">
+                      <option value="">Role</option>
+                      {% for role in role %}
+                      {% if role.is_worker %}
+                     
+                      <option value="{{role.city_id}}">{{role.role_name}} ({{role.min_sal}})</option>
+                      {% endif %}
+                      {% endfor %}
+                      
+                    </select>
+                     {% endcomment %}
+                    
+                     <select class="form-select form-control" name="role_id">
+                      
+                      <option selected disabled="true"> ---------   Role   ---------</option>
+                      {% for i in demo %}
+                      {% if i.is_worker %}
+                      <option value="{{i.id}}">{{i}}</option>
+                      {% endif %}
+                      {% endfor %}
+                     </select>
+                    
+                  </div>
+                  <div class="col-6 col-md-3 form-group">
+                    <input class="form-control" placeholder="State" type="text" name="state" required/>
+                  </div>
+                  <div class="col-6 col-md-3 form-group">
+                    <input class="form-control" placeholder="Pin Code" type="text" name="pin" id="pinCode" required/>
+                    <span id="pnameerror" class="text-danger font-weight-bold"></span>
+                  </div>
+
+                  <div class="col-6 col-md-5 form-group">
+                    <input class="form-control" placeholder="Adhaar No" type="text" name="adhaar" id="txtPanNo" required/>
+                    <span id="anameerror" class="text-danger font-weight-bold"></span>
+                  </div>
+                  <div class="col-6 col-md-4 form-group">
+                    <input class="form-control" placeholder="PAN No" type="text" name="pan_no" id="panNumber"/>
+                    <span id="panameerror" class="text-danger font-weight-bold"></span>
+                  </div>
+
+                  <div class="col-6 col-md-3 form-group">
+                    <select class="form-select form-control" aria-label="Default select example" name="caste" required>
+                      <option selected>Caste</option>
+                      <option value="General">General</option>
+                      <option value="OBC">OBC</option>
+                      <option value="SC">SC</option>
+                      <option value="ST">ST</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </div>
+
+                  <div class="col-12 form-group">
+                    <textarea name="address" cols="3" rows="" class="form-control form-control-lg address-fs"
+                      style="font-size:1rem !important;" placeholder="Address" required></textarea>
+                  </div>
+
+                  <div class="col-6 form-group">
+                    <select class="form-select form-control" aria-label="Default select example" name="marital_status" required>
+                      <option selected>Marital Status</option>
+                      <option value="Married">Married</option>
+                      <option value="UnMarried">UnMarried</option>
+                    </select>
+                  </div>
+                  <div class="col-6 form-group">
+                    <select class="form-select form-control" aria-label="Default select example" name="job_seeker" required>
+                      <option selected>Interested In</option>
+                      <option value="Goverment">Goverment</option>
+                      <option value="Private">Private</option>
+                      <option value="both">Any</option>
+                    </select>
+                  </div>
+
+                  <div class="col-12 col-md-6  form-group">
+                    Aadhar Card Front:
+                    <input type="file" name="adhar_front" id="formFileMultiple" multiple
+                      accept="image/jpeg,image/gif,image/png,application/pdf,image/x-eps"
+                      style="line-height:2rem !important" required/>
+                  </div>
+
+                  <div class="col-12 col-md-6 form-group">
+                    Aadhar Card Back:
+                    <input type="file" name="adhar_back" id="formFileMultiple" multiple
+                      accept="image/jpeg,image/gif,image/png,application/pdf,image/x-eps"
+                      style="line-height:2rem !important" required/>
+                  </div>
+                  
+                  <div class="col-12 col-md-6 form-group">
+                    Upload a photo of yourself:
+                    <input type="file" name="photo"
+                    accept="image/*" style="line-height:2rem !important" required/>
+                  </div>
+                  <div>
+                    {% comment %} <input type="text" placeholder="Salary" class="form-control" name="salary" value="{% for  venues in venues  %}{{venues.min_sal}}{% endfor %}" placeholder="Role" readonly> {% endcomment %}
+		                {% comment %} <input type="text" id="text"> {% endcomment %}
+                  </div>
+
+
+                  <div class="col-12 form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck"
+                      style="margin-left: 0.2rem !important" required>
+                    <label class="form-check-label" for="invalidCheck" style="margin-left: 1.4rem !important">
+                      I agree all the information given above are true to the best of my knowledge I understand any
+                      misuninformation will lead to cancelation of my candinature and no refunds in such cases.
+
+                    </label>
+                  </div>
+
+                </div>
+
+                
+
+                <div class="row justify-content-end border-top">
+                  <div class="modal-footer border-top-0">
+                    <button type="submit" class="btn head-btn bg-success">
+                      Register
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% block linkjs %}
+<script src="{% static 'datepicker/jquery-3.6.0.min.js' %}"></script>
+<script src="{% static 'datepicker/jquery-ui.min.js' %}"></script>
+{% endblock linkjs %}
+
+<script>
+  $(document).ready(function () {
+    $('#datepicker').datepicker({
+      yearRange: "-100:-18",
+      dateFormat: "yy-mm-dd",
+      changeMonth: true,
+      changeYear: true
+    });
+  });
+
+
+  function validation() {
+    let userNameValue = document.getElementById("uname").value;
+    let fatherNameValue = document.getElementById("fathername").value;
+    let mobileNumberValue = document.getElementById("mobileNumber").value;
+    let pinCodeValue = document.getElementById("pinCode").value;
+    let aadharNumberValue = document.getElementById("txtPanNo").value;
+
+
+    let nameCheck = /^[A-Za-z. ]{3,30}$/ ;
+    let numberCheck = /^[6789][0-9]{9}$/ ;
+    let pnumberCheck = /^[0-9]{6}$/ ;
+    let anumberCheck = /^[23456789]{1}[0-9]{11}$/ ;
+
+
+    if (nameCheck.test(userNameValue)) {
+      //document.getElementById("uname").style.border = "2px solid green";
+      document.getElementById("unameerror").innerHTML = "";
+    }
+    else {
+      //document.getElementById("uname").style.border = "2px solid rgb(234 27 27 / 71%)";
+      document.getElementById("unameerror").innerHTML = "**User name is invalid";
+      return false;
+    }
+
+    if (nameCheck.test(fatherNameValue)) {
+      document.getElementById("fnameerror").innerHTML = "";
+    }
+    else {
+      //document.getElementById("fathername").style.border = "2px solid rgb(234 27 27 / 71%)";
+      document.getElementById("fnameerror").innerHTML = "**User name is invalid";
+      return false;
+    }
+
+    if (numberCheck.test(mobileNumberValue)) {
+      //document.getElementById("mobileNumber").style.border = "2px solid green";
+      document.getElementById("mnameerror").innerHTML = "";
+    }
+    else {
+      //document.getElementById("mobileNumber").style.border = "2px solid rgb(234 27 27 / 71%)";
+      document.getElementById("mnameerror").innerHTML = "**Mobile No should be 10 Digits and should not start with '0'. ";
+      return false;
+    }
+
+    if (pnumberCheck.test(pinCodeValue)) {
+      //document.getElementById("pinCode").style.border = "2px solid green";
+      document.getElementById("pnameerror").innerHTML = "";
+    }
+    else {
+      //document.getElementById("pinCode").style.border = "2px solid rgb(234 27 27 / 71%)";
+      document.getElementById("pnameerror").innerHTML = "**Pin code is invalid";
+      return false;
+    }
+
+    if (anumberCheck.test(aadharNumberValue)) {
+      //document.getElementById("txtPanNo").style.border = "2px solid green";
+      document.getElementById("anameerror").innerHTML = " ";
+    }
+    else {
+      //document.getElementById("txtPanNo").style.border = "2px solid rgb(234 27 27 / 71%)";
+      document.getElementById("anameerror").innerHTML = "**Aadhar No is invalid";
+      return false;
+    }
+  }
+
+
+</script>
+
+<script type="text/javascript">
+  function update() {
+    var select = document.getElementById('language');
+    var option = select.options[select.selectedIndex];
+
+ 
+    document.getElementById('value').value = option.value;
+    document.getElementById('text').value = option.text;
+  }
+
+  update();
+</script>
+<script>
+  function myFunction(){
+    var x = document.getElementById("mySelect").value;
+    document.getElementById("demo").innerHTML = "You selected: " + x;
+  }
+</script>
+
+{% endblock content %}

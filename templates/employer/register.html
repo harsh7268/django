@@ -1,0 +1,187 @@
+{% extends 'BASE/base.html' %}
+{% load static %}
+{% block content %}
+<div class="hk-wrapper mt-5 mb-5">
+  <div class="hk-pg-wrapper hk-auth-wrapper">
+    <div class="container shadow-lg pt-3 pb-3 course"
+      style=" border-radius: 5px !important;">
+      <div class="row text ">
+        <div class="col pa-0">
+         <form method="POST" enctype="multipart/form-data" onsubmit="return validation()"> 
+          {% csrf_token %}
+          <input type="text" value="200" name="amount" hidden>
+  
+          <div class="auth-form-wrap py-xl-0 py-50" id="form-2">
+            <div class="auth-form w-xxl-55 w-xl-75 w-sm-90 w-100">
+
+              <div class="row justify-content-center mb-1">
+                <h4>EMPLOYER REGISTRATION FORM</h4>
+                
+              </div>
+              <p>{% include 'BASE/messages.html' %}</p>
+              <div class="form-row">
+
+                <div class="col-6 col-md-6 form-group">
+                  <input class="form-control" placeholder="Name"  type="text" name="username" id="uname" required/>
+                  <span id="unameerror" class="text-danger font-weight-bold"></span>
+                </div>
+
+                <div class="col-6 col-md-6 form-group">
+                  <input class="form-control" placeholder="Mobile Number" type="number" name="mobile_no" id="mobileNumber" required/>
+                  <span id="mnameerror" class="text-danger font-weight-bold"></span>
+                </div>
+                <div class="col-6 col-md-6 form-group">
+                  <input class="form-control" placeholder="City" type="text" name="emp_city" required/>
+                </div>
+                <div class="col-6 col-md-6 form-group">
+                  <input class="form-control" placeholder="State" type="text" name="emp_state" required/>
+                </div>
+                <div class="col-6 col-md-6 form-group">
+                  <input class="form-control" placeholder="Pin Code"  type="text" name="emp_pin" id="pinCode" required/>
+                  <span id="pnameerror" class="text-danger font-weight-bold"></span>
+                </div>
+                <div class="col-6 col-md-6 form-group">
+                  <input class="form-control panNo" placeholder="Pan No"  type="text" name="emp_pan" id="panNumber" />
+                  <span id="panameerror" class="text-danger font-weight-bold"></span>
+                </div>
+                <div class="col-12 form-group">
+                  <textarea  id="location" cols="3" rows="" class="form-control form-control-lg address-fs"
+                    style="font-size:1rem !important;" name="address" placeholder="Address" required></textarea>
+                </div>
+                <div class="col-6  form-group">
+                  Upload your pan card:
+                  <input  placeholder="PAN No"  type="file" name="pan_no"
+                    accept="image/jpeg,image/gif,image/png,application/pdf,image/x-eps"
+                    style="line-height:2rem !important" required/>
+                </div>
+
+                <div class="col-8 col-md-6 form-group" required>
+                  <div class="form-check form-check-inline">
+                    <label class="form-check-label" for="inlineRadio1">Requirement for goverment department?</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="goverment" id="inlineRadio1"
+                      value="Goverment" checked>
+                    <label class="form-check-label" for="inlineRadio1">Yes</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="goverment" id="inlineRadio2"
+                      value="Private" required>
+                    <label class="form-check-label" for="inlineRadio2">No</label>
+                  </div>
+                </div>
+
+                
+
+                {% comment %} <div class="col-8 col-md-6 form-group">
+                  <div class="form-check form-check-inline">
+                    <label class="form-check-label" for="inlineRadio1">Requirement for goverment department?</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="goverment" id="inlineRadio1"
+                      value="Goverment" required>
+                    <label class="form-check-label" for="inlineRadio1">Yes</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="goverment" id="inlineRadio2"
+                      value="Private">
+                    <label class="form-check-label" for="inlineRadio2">No</label>
+                  </div>
+                </div>
+                 {% endcomment %}
+                <div class="col-12 form-check">
+                  <input class="form-check-input" type="checkbox"  id="invalidCheck"
+                    style="margin-left: 0.2rem !important">
+                  <label class="form-check-label" for="invalidCheck" style="margin-left: 1.4rem !important">
+                    I understand and agree for the terms and conditions for employer through CLC
+                  </label>
+                </div>
+              </div>
+                <div class="modal-footer border-top-0">
+                  <button type="submit" class="btn bg-success head-btn" id="sub" onclick="subhide()">
+                    Register
+                  </button>
+                </div>
+            </div>
+          </div>
+        </form> 
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+  function validation() {
+    let userNameValue = document.getElementById("uname").value;
+    let mobileNumberValue = document.getElementById("mobileNumber").value;
+    let pinCodeValue = document.getElementById("pinCode").value;
+    let panNumberValue = document.getElementById("panNumber").value;
+
+
+
+
+    let nameCheck = /^[A-Za-z. ]{3,30}$/ ;
+    let numberCheck = /^[6789][0-9]{9}$/ ;
+    let pnumberCheck = /^[0-9]{6}$/ ;
+    let panCheck = /^[A-Za-z0-9]{10}$/ ;
+
+
+    if (nameCheck.test(userNameValue)) {
+      //document.getElementById("uname").style.border = "2px solid green";
+      document.getElementById("unameerror").innerHTML = "";
+    }
+    else {
+      //document.getElementById("uname").style.border = "2px solid rgb(234 27 27 / 71%)";
+      document.getElementById("unameerror").innerHTML = "**User name is invalid";
+      return false;
+    }
+
+
+    if (numberCheck.test(mobileNumberValue)) {
+      //document.getElementById("mobileNumber").style.border = "2px solid green";
+      document.getElementById("mnameerror").innerHTML = " ";
+    }
+    else {
+      //document.getElementById("mobileNumber").style.border = "2px solid rgb(234 27 27 / 71%)";
+      document.getElementById("mnameerror").innerHTML = "**Mobile No is invalid";
+      return false;
+    }
+
+    if (pnumberCheck.test(pinCodeValue)) {
+      //document.getElementById("pinCode").style.border = "2px solid green";
+      document.getElementById("pnameerror").innerHTML = " ";
+    }
+    else {
+      //document.getElementById("pinCode").style.border = "2px solid rgb(234 27 27 / 71%)";
+      document.getElementById("pnameerror").innerHTML = "**Pin code is invalid";
+      return false;
+    }
+
+    if (panCheck.test(panNumberValue)) {
+      //document.getElementById("panNumber").style.border = "2px solid green";
+      document.getElementById("panameerror").innerHTML = " ";
+    }
+    else {
+      //document.getElementById("panNumber").style.border = "2px solid rgb(234 27 27 / 71%)";
+      document.getElementById("panameerror").innerHTML = "**Pan No is invalid";
+      return false;
+    }
+  }
+
+  {% comment %} goverment code {% endcomment %}
+  let Radio1 = document.getElementById("inlineRadio1")
+  let Radio2 = document.getElementById("inlineRadio2")
+  let panNumber = document.getElementById("panNumber")
+
+  Radio1.addEventListener("click", ()=>{
+    panNumber.setAttribute('readonly', true);
+  })
+  Radio2.addEventListener("click", ()=>{
+    panNumber.removeAttribute('readonly', false);
+  })
+
+</script>
+
+{% endblock content %}

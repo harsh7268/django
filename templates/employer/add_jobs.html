@@ -1,0 +1,228 @@
+{% extends 'employer/includes/base.html' %}
+{% block content %}
+<div class="hk-wrapper hk-vertical-nav">
+<div class="hk-pg-wrapper bgcolor">
+    <nav class="hk-breadcrumb" aria-label="breadcrumb">
+        <ol class="breadcrumb breadcrumb-light bg-transparent p-4">
+            <li class="breadcrumb-item"><a class="text-white" href="#">Jobs</a></li>
+            <li class="breadcrumb-item active text-white" aria-current="page">Add Jobs</li>
+        </ol>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+               
+              
+                
+                <section class="hk-sec-wrapper">
+                    <h5 class="hk-sec-title">ADD JOBS</h5>
+                    <hr>
+                    {% include 'HOD/includes/messages.html' %}
+                    <div class="row">
+                        <div class="col-sm">
+                            <form class="needs-validation" novalidate method="POST" action=""  enctype="multipart/form-data">
+                                {% csrf_token %}
+                                
+                                <div class="form-row">
+                                   
+                                  
+                                    <div class="col-md-4 mb-15">
+                                        <label for="validationTooltipUsername">Job logo</label>
+                                        <div class="input-group">
+                                            {% comment %} <div class="input-group-prepend">
+                                                <span class="input-group-text" id="validationTooltipUsernamePrepend">@</span>
+                                            </div> {% endcomment %}
+                                            <input type="file" class="form-control" id="validationTooltipUsername" placeholder="" aria-describedby="validationTooltipUsernamePrepend" name="job_pic" required>
+                                            <div class="invalid-tooltip">
+                                                required
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-4 mb-15">
+                                        <label for="validationTooltipUsername">Job's Name</label>
+                                        <div class="input-group">
+                                            {% comment %} <div class="input-group-prepend">
+                                                <span class="input-group-text" id="validationTooltipUsernamePrepend">@</span>
+                                            </div> {% endcomment %}
+                                            <input type="text" class="form-control" id="validationTooltipUsername" placeholder="Jobs name" aria-describedby="validationTooltipUsernamePrepend" name="jobs_name" required>
+                                            <div class="invalid-tooltip">
+                                                Please provie a unique and valid job name.
+                                            </div>
+                                        </div>
+                                    </div>
+                                 
+                                    
+                                </div>
+                                <div class="form-row">
+                                    {% comment %} <div class="col-md-4 mb-15">
+                                        <label for="validationTooltipUsername">Company Name</label>
+                                        <div class="input-group">
+                                          
+                                            <input type="text" class="form-control" id="validationTooltipUsername" placeholder="Username" aria-describedby="validationTooltipUsernamePrepend" name="username" required>
+                                            <div class="invalid-tooltip">
+                                                Please provie a unique and valid username.
+                                            </div>
+                                        </div>
+                                    </div> {% endcomment %}
+                                 
+                                    
+                                </div>
+
+
+
+                                <div class="form-row">
+                                    <div class="col-md-4 mb-15">
+                                        <label for="validationTooltipUsername">Job Loaction</label>
+                                        <div class="input-group">
+                                            {% comment %} <div class="input-group-prepend">
+                                                <span class="input-group-text" id="validationTooltipUsernamePrepend">@</span>
+                                            </div> {% endcomment %}
+                                            <input type="text" class="form-control" id="validationTooltipUsername" placeholder="Jobs Loaction" aria-describedby="validationTooltipUsernamePrepend" name="job_location" required>
+                                            <div class="invalid-tooltip">
+                                                Please provie a Job Location.
+                                            </div>
+                                        </div>
+                                    </div>
+                                 
+                                    
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-4 mb-15">
+                                        <label for="validationTooltipUsername">Minumum Salary</label>
+                                        <div class="input-group">
+                                            {% comment %} <div class="input-group-prepend">
+                                                <span class="input-group-text" id="validationTooltipUsernamePrepend">@</span>
+                                            </div> {% endcomment %}
+                                            <input type="number" class="form-control" id="validationTooltipUsername" placeholder="Min Sallery" aria-describedby="validationTooltipUsernamePrepend" name="min_sallery"  required>
+                                            <div class="invalid-tooltip">
+                                                Please provide a Minimum Salary.
+                                            </div>
+                                        </div>
+                                    </div>
+                                 
+                                    
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-4 mb-15">
+                                        <label for="validationTooltipUsername">Maximum Salary</label>
+                                        <div class="input-group">
+                                            {% comment %} <div class="input-group-prepend">
+                                                <span class="input-group-text" id="validationTooltipUsernamePrepend">@</span>
+                                            </div> {% endcomment %}
+                                            <input type="number" class="form-control" id="validationTooltipUsername" placeholder="Max Sallery" aria-describedby="validationTooltipUsernamePrepend" name="max_sallery" required>
+                                            <div class="invalid-tooltip">
+                                                Please provide a Max. Salary.
+                                            </div>
+                                        </div>
+                                    </div>
+                                 
+                                    
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-4 mb-15">
+                                        <label for="validationTooltipUsername"> Salary</label>
+                                        <div class="input-group">
+                                            {% comment %} <div class="input-group-prepend">
+                                                <span class="input-group-text" id="validationTooltipUsernamePrepend">@</span>
+                                            </div> {% endcomment %}
+                                            <input type="number" class="form-control" id="validationTooltipUsername" placeholder="Salary" aria-describedby="validationTooltipUsernamePrepend" name="sallery" required>
+                                            <div class="invalid-tooltip">
+                                                Please provide a Salary.
+                                            </div>
+                                        </div>
+                                    </div>
+                                 
+                                    
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="col-md-4 mb-15">
+                                        <label for="validationTooltipUsername">Vacancy</label>
+                                        <div class="input-group">
+                                            {% comment %} <div class="input-group-prepend">
+                                                <span class="input-group-text" id="validationTooltipUsernamePrepend">@</span>
+                                            </div> {% endcomment %}
+                                            <input type="text" class="form-control" id="validationTooltipUsername" placeholder="Vacancy" aria-describedby="validationTooltipUsernamePrepend" name="Vacancy" required>
+                                            <div class="invalid-tooltip">
+                                                Please provie a Vacancy.
+                                            </div>
+                                        </div>
+                                    </div>
+                                 
+                                    
+                                </div>
+                              
+                                <div class="form-row">
+                                    <div class="col-md-4 mb-15">
+                                        <label for="validationTooltipUsername">Job Description</label>
+                                        <div class="input-group">
+                                            {% comment %} <div class="input-group-prepend">
+                                                <span class="input-group-text" id="validationTooltipUsernamePrepend">@</span>
+                                            </div> {% endcomment %}
+                                            {% comment %} <input type="text" class="form-control" id="validationTooltipUsername" placeholder="Username" aria-describedby="validationTooltipUsernamePrepend" name="username" required> {% endcomment %}
+                                            {% comment %} <textarea name="learn"></textarea> {% endcomment %}
+                                            <div class="invalid-tooltip">
+                                                Please provie a Job Description.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <textarea name="desc"></textarea>
+                                 
+                                    
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-4 mb-15">
+                                        <label for="validationTooltipUsername">Required Knowledge, Skills, and Abilities</label>
+                                        <div class="input-group">
+                                            {% comment %} <div class="input-group-prepend">
+                                                <span class="input-group-text" id="validationTooltipUsernamePrepend">@</span>
+                                            </div> {% endcomment %}
+                                            {% comment %} <input type="text" class="form-control" id="validationTooltipUsername" placeholder="Username" aria-describedby="validationTooltipUsernamePrepend" name="username" required> {% endcomment %}
+                                            {% comment %} <textarea name="learn"></textarea> {% endcomment %}
+                                            <div class="invalid-tooltip">
+                                                Please provie a unique and valid username.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <textarea name="Skills"></textarea>
+                                 
+                                    
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-4 mb-15">
+                                        <label for="validationTooltipUsername">Education + Experience</label>
+                                        <div class="input-group">
+                                            {% comment %} <div class="input-group-prepend">
+                                                <span class="input-group-text" id="validationTooltipUsernamePrepend">@</span>
+                                            </div> {% endcomment %}
+                                            {% comment %} <input type="text" class="form-control" id="validationTooltipUsername" placeholder="Username" aria-describedby="validationTooltipUsernamePrepend" name="username" required> {% endcomment %}
+                                            {% comment %} <textarea name="learn"></textarea> {% endcomment %}
+                                            <div class="invalid-tooltip">
+                                                Please provie a unique and valid username.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <textarea name="Experience"></textarea>
+                                 
+                                    
+                                </div>
+                                <button class="btn btn-primary" type="submit">Add Jobs</button>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script>
+    CKEDITOR.replace( 'desc' );
+    CKEDITOR.replace( 'Skills' );
+    CKEDITOR.replace( 'Experience' );
+ </script>
+
+
+{% endblock content %}

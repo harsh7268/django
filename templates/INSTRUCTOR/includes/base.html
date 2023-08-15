@@ -1,0 +1,146 @@
+{% load static %}
+<!DOCTYPE html>
+<!-- 
+   Template Name: Marvin - Responsive Bootstrap 4 Admin Dashboard Template
+   Author: Hencework
+   Contact: https://hencework.ticksy.com/
+   
+   License: You must have a valid license purchased only from templatemonster to legally use the template for your project.
+   -->
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+      <title>admin | Dashboard</title>
+      <meta name="description" content="A responsive bootstrap 4 admin dashboard template by hencework" />
+      <!-- Favicon -->
+      <link rel="shortcut icon" href="favicon.ico">
+      <link rel="icon" href="favicon.ico" type="image/x-icon">
+      <!-- vector map CSS -->
+      <link href="{% static 'admin/vendors/vectormap/jquery-jvectormap-2.0.3.css' %}" rel="stylesheet" type="text/css" />
+      <link href="{% static 'admin/vendors/apexcharts/dist/apexcharts.css' %}" rel="stylesheet" type="text/css" />
+      <!-- Toggles CSS -->
+      <link href="{% static 'admin/vendors/jquery-toggles/css/toggles.css' %}" rel="stylesheet" type="text/css">
+      <link href="{% static 'admin/vendors/jquery-toggles/css/themes/toggles-light.css' %}" rel="stylesheet" type="text/css">
+      <!-- Toastr CSS -->
+      <link href="{% static 'admin/vendors/jquery-toast-plugin/dist/jquery.toast.min.css' %}" rel="stylesheet" type="text/css">
+      <!-- Custom CSS -->
+      <link href="{% static 'admin/dist/css/style.css' %}" rel="stylesheet" type="text/css">
+
+      <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      {% comment %} <link rel="stylesheet" href="{% static "plugins/fontawesome-free/css/all.min.css" %}"> {% endcomment %}
+      {% comment %} <script src="https://cdn.ckeditor.com/ckeditor5/34.1.0/classic/ckeditor.js"></script> {% endcomment %}
+      <script src="https://cdn.ckeditor.com/4.19.0/full/ckeditor.js"></script>
+   </head>
+   <body>
+      <!-- Preloader 
+         <div class="preloader-it">
+             <div class="loader-pendulums"></div>
+         </div>
+         --><!-- /Preloader -->
+      <!-- HK Wrapper -->
+      <div class="hk-wrapper hk-vertical-nav">
+         <!-- Top Navbar -->
+         {% include 'INSTRUCTOR/includes/header.html' %}
+         <!-- /Top Navbar -->
+         <!-- Vertical Nav -->
+         {% include 'INSTRUCTOR/includes/sidebar.html' %}
+         <div id="hk_nav_backdrop" class="hk-nav-backdrop"></div>
+         <!-- /Vertical Nav -->
+         <!-- Setting Panel -->
+         {% comment %} 
+         <div class="hk-settings-panel">
+            <div class="nicescroll-bar position-relative">
+               <div class="settings-panel-wrap">
+                  <div class="settings-panel-head">
+                     <a href="javascript:void(0);" id="settings_panel_close" class="settings-panel-close"><span class="feather-icon"><i data-feather="x"></i></span></a>
+                  </div>
+                  <hr>
+                  <h6 class="mb-5">Navigation</h6>
+                  <p class="font-14">Menu comes in two modes: dark & light</p>
+                  <div class="button-list hk-nav-select mb-10">
+                     <button type="button" id="nav_light_select" class="btn btn-outline-light btn-sm btn-wth-icon icon-wthot-bg"><span class="icon-label"><i class="fa fa-sun-o"></i> </span><span class="btn-text">Light Mode</span></button>
+                     <button type="button" id="nav_dark_select" class="btn btn-outline-primary btn-sm btn-wth-icon icon-wthot-bg"><span class="icon-label"><i class="fa fa-moon-o"></i> </span><span class="btn-text">Dark Mode</span></button>
+                  </div>
+                  <hr>
+                  <h6 class="mb-5">Top Nav</h6>
+                  <p class="font-14">Choose your liked color mode</p>
+                  <div class="button-list hk-navbar-select mb-10">
+                     <button type="button" id="navtop_light_select" class="btn btn-outline-light btn-sm btn-wth-icon icon-wthot-bg"><span class="icon-label"><i class="fa fa-sun-o"></i> </span><span class="btn-text">Light Mode</span></button>
+                     <button type="button" id="navtop_dark_select" class="btn btn-outline-primary btn-sm btn-wth-icon icon-wthot-bg"><span class="icon-label"><i class="fa fa-moon-o"></i> </span><span class="btn-text">Dark Mode</span></button>
+                  </div>
+                  <hr>
+                  <div class="d-flex justify-content-between align-items-center">
+                     <h6>Scrollable Header</h6>
+                     <div class="toggle toggle-sm toggle-simple toggle-light toggle-bg-primary scroll-nav-switch"></div>
+                  </div>
+                  <button id="reset_settings" class="btn btn-primary btn-block btn-reset mt-30">Reset</button>
+               </div>
+            </div>
+            <img class="d-none" src="{% static 'admin/dist/img/logo-light.png' %}" alt="brand" />
+            <img class="d-none" src="{% static 'admin/dist/img/logo-dark.png' %}" alt="brand" />
+         </div>
+         {% endcomment %}
+         <!-- /Setting Panel -->
+         <!-- Main Content -->
+        {% block content %}
+        
+        {% endblock content %}
+         <!-- /Main Content -->
+      </div>
+      <!-- /HK Wrapper -->
+      <!-- jQuery -->
+      <script src="{% static 'admin/vendors/jquery/dist/jquery.min.js' %}"></script>
+      <!-- Bootstrap Core JavaScript -->
+      <script src="{% static 'admin/vendors/popper.js/dist/umd/popper.min.js' %}"></script>
+      <script src="{% static 'admin/vendors/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+      <!-- Slimscroll JavaScript -->
+      <script src="{% static 'admin/dist/js/jquery.slimscroll.js' %}"></script>
+      <!-- Fancy Dropdown JS -->
+      <script src="{% static 'admin/dist/js/dropdown-bootstrap-extended.js' %}"></script>
+      <!-- FeatherIcons JavaScript -->
+      <script src="{% static 'admin/dist/js/feather.min.js' %}"></script>
+      <!-- Toggles JavaScript -->
+      <script src="{% static 'admin/vendors/jquery-toggles/toggles.min.js' %}"></script>
+      <script src="{% static 'admin/dist/js/toggle-data.js' %}"></script>
+      <!-- Counter Animation JavaScript -->
+      <script src="{% static 'admin/vendors/waypoints/lib/jquery.waypoints.min.js' %}"></script>
+      <script src="{% static 'admin/vendors/jquery.counterup/jquery.counterup.min.js' %}"></script>
+      <!-- Morris Charts JavaScript -->
+      <script src="{% static 'admin/vendors/raphael/raphael.min.js' %}"></script>
+      <script src="{% static 'admin/vendors/morris.js/morris.min.js' %}"></script>
+      <!-- EChartJS JavaScript -->
+      <script src="{% static 'admin/vendors/echarts/dist/echarts-en.min.js' %}"></script>
+      <!-- Sparkline JavaScript -->
+      <script src="{% static 'admin/vendors/jquery.sparkline/dist/jquery.sparkline.min.js' %}"></script>
+      <!-- Vector Maps JavaScript -->
+      <script src="{% static 'admin/vendors/vectormap/jquery-jvectormap-2.0.3.min.js' %}"></script>
+      <script src="{% static 'admin/vendors/vectormap/jquery-jvectormap-world-mill-en.js' %}"></script>
+      <script src="{% static 'admin/dist/js/vectormap-data.js' %}"></script>
+      <!-- Owl JavaScript -->
+      <script src="{% static 'admin/vendors/owl.carousel/dist/owl.carousel.min.js' %}"></script>
+      <!-- Toastr JS -->
+      <script src="{% static 'admin/vendors/jquery-toast-plugin/dist/jquery.toast.min.js' %}"></script>
+      <!-- Init JavaScript -->
+      <script src="{% static 'admin/dist/js/init.js' %}"></script>
+      <script src="{% static 'admin/dist/js/dashboard-data.js' %}"></script>
+      <script src="{% static 'admin/dist/js/validation-data.js' %}"></script>
+
+       <!-- Data Table JavaScript -->
+    <script src="{% static 'admin/vendors/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'admin/vendors/datatables.net-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'admin/vendors/datatables.net-dt/js/dataTables.dataTables.min.js' %}"></script>
+    <script src="{% static 'admin/vendors/datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
+    <script src="{% static 'admin/vendors/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'admin/vendors/datatables.net-buttons/js/buttons.flash.min.js' %}"></script>
+    <script src="{% static 'admin/vendors/jszip/dist/jszip.min.js' %}"></script>
+    <script src="{% static 'admin/vendors/pdfmake/build/pdfmake.min.js' %}"></script>
+    <script src="{% static 'admin/vendors/pdfmake/build/vfs_fonts.js' %}"></script>
+    <script src="{% static 'admin/vendors/datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
+    <script src="{% static 'admin/vendors/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
+    <script src="{% static 'admin/vendors/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
+    <script src="{% static 'admin/dist/js/dataTables-data.js' %}"></script>
+
+   </body>
+</html>

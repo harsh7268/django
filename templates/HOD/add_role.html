@@ -1,0 +1,141 @@
+{% extends 'HOD/includes/base.html' %}
+{% block content %}
+<div class="hk-wrapper hk-vertical-nav">
+<div class="hk-pg-wrapper ">
+    <nav class="hk-breadcrumb" aria-label="breadcrumb">
+        <ol class="breadcrumb breadcrumb-light bg-transparent p-2 border-0">
+            <li class="breadcrumb-item d-none"><a  href="#">Role</a></li>
+            <li class="breadcrumb-item active d-none" aria-current="page">Add Role</li>
+        </ol>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                
+                <section class="hk-sec-wrapper rounded-20">
+                    <div class="row justify-content-between">
+                        <a href="{% url 'add_role' %}" class="ml-3"><h5 class="hk-sec-title" style="border-bottom: 3px solid #ab26aa; font-weight: 700;">ADD ROLE</h5></a>
+                        <a href="{% url 'manage_role' %}" class="btn btn-primary mr-3"><h6 class="hk-sec-title fw-bolder mb-0 text-white">MANAGE ROLL</h6></a>
+                    </div>
+                    <hr>
+                    {% include 'HOD/includes/messages.html' %}
+                    <div class="row">
+                        <div class="col-sm">
+                            <form class="needs-validation" novalidate method="POST" action="">
+                                {% csrf_token %}
+                                <div class="form-row">
+                               
+                                    
+                                    <div class="col-sm-6 mb-15">
+                                        <label for="validationTooltipUsername">Role Name</label>
+                                        <div class="input-group">
+                                            {% comment %} <div class="input-group-prepend">
+                                                <span class="input-group-text" id="validationTooltipUsernamePrepend">@</span>
+                                            </div> {% endcomment %}
+                                            <input type="text" class="form-control" id="validationTooltipUsername" placeholder="Role" aria-describedby="validationTooltipUsernamePrepend" name="role" required>
+                                            <div class="invalid-tooltip">
+                                                Please provie a unique and valid Role Name.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6 mb-15">
+                                        <label for="validationTooltipUsername">city</label>
+                                        <div class="input-group">
+                                            {% comment %} <div class="input-group-prepend">
+                                                <span class="input-group-text" id="validationTooltipUsernamePrepend">@</span>
+                                            </div> {% endcomment %}
+                                            <select name="city" id="" class="form-control">
+                                                <option value="">-------Select--------</option>
+                                               {% for i in city %}
+                                               <option value="{{i.id}}">{{i.city}}</option>
+                                               {% endfor %}
+                                            </select>
+                                            {% comment %} <input type="text" class="form-control" id="validationTooltipUsername" placeholder="City" aria-describedby="validationTooltipUsernamePrepend" name="city" required> {% endcomment %}
+                                            <div class="invalid-tooltip">
+                                                Please provie a unique and valid Role Name.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                
+                                <div class="form-row">
+                               
+                                    <div class="col-sm-6 mb-15">
+                                        <label for="validationTooltipUsername">Minimum Salary</label>
+                                        <div class="input-group">
+                                            {% comment %} <div class="input-group-prepend">
+                                                <span class="input-group-text" id="validationTooltipUsernamePrepend">@</span>
+                                            </div> {% endcomment %}
+                                            <input type="number" class="form-control" id="validationTooltipUsername" placeholder="Minimum Salary" aria-describedby="validationTooltipUsernamePrepend" name="min_salary" required>
+                                            <div class="invalid-tooltip">
+                                                Please provie a unique and valid Role Name.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-sm-6 mb-15">
+                                        <label for="validationTooltipUsername">Maximum Salary</label>
+                                        <div class="input-group">
+                                            {% comment %} <div class="input-group-prepend">
+                                                <span class="input-group-text" id="validationTooltipUsernamePrepend">@</span>
+                                            </div> {% endcomment %}
+                                            <input type="number" class="form-control" id="validationTooltipUsername" placeholder="Maximum Salary" aria-describedby="validationTooltipUsernamePrepend" name="max_salary" required>
+                                            <div class="invalid-tooltip">
+                                                Please provie a unique and valid Role Name.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+
+
+                                <div class="form-row">
+
+                                    <div class="col-sm-6 mb-15">
+                                        <label for="validationTooltipUsername">Goverment Approved</label>
+                                        <div class="input-group">
+                                            {% comment %} <div class="input-group-prepend">
+                                                <span class="input-group-text" id="validationTooltipUsernamePrepend">@</span>
+                                            </div> {% endcomment %}
+                                            <input type="number" class="form-control" id="validationTooltipUsername" placeholder="Goverment Approved" aria-describedby="validationTooltipUsernamePrepend" name="gov_approved" required>
+                                            <div class="invalid-tooltip">
+                                                Please provie a unique and valid Role Name.
+                                            </div>
+                                        </div>
+                                    </div>
+                               
+                                    
+                                    <div class="col-sm-6 mb-15">
+                                        <label for="validationTooltipUsername">Margin</label>
+                                        <div class="input-group">
+                                            {% comment %} <div class="input-group-prepend">
+                                                <span class="input-group-text" id="validationTooltipUsernamePrepend">@</span>
+                                            </div> {% endcomment %}
+                                            <input type="text" class="form-control" id="validationTooltipUsername" placeholder="Margin" aria-describedby="validationTooltipUsernamePrepend" name="margin" required>
+                                            <div class="invalid-tooltip">
+                                                Please provie a unique and valid Role Name.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                
+                                
+                               
+                                
+                                <button class="btn btn-primary" type="submit">Add Role</button>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+{% endblock content %}

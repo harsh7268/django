@@ -1,0 +1,27 @@
+{% extends 'BASE/base.html' %}
+{% block content %}
+<center class="my-5">
+    
+<div style="width:100%; height:70vh; justify-content:center; align-items:center" id="form-3">
+    <div class="card text-center shadow-lg border-0"  style="max-width: 23rem">
+      <div class="card-header bg-success text-white fs-2 fw-bolder">
+        CLCUP
+      </div>
+      <div class="card-body">
+        <i class="fa-solid fa-circle-check fa-4x text-success mt-3"></i>
+        <h5 class="card-title text-success fw-bolder mb-3 mt-1">
+          Registration Success!
+        </h5>
+        <p class="card-text">
+          Your submission is received and we will contact you soon
+        </p>
+        {% if goverment == 'Goverment' %}
+        <a href="#" class="btn btn-primary d-grid gap-2 col-6 mx-auto fs-5 rounded-pill">close</a>
+        {% else %}
+        <a href="#" class="btn btn-primary d-grid gap-2 col-6 mx-auto fs-5 rounded-pill">Pay Now</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</center>
+{% endblock content %}

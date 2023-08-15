@@ -1,0 +1,55 @@
+{% extends 'HOD/includes/base.html' %}
+{% block content %}
+<div class="hk-wrapper hk-vertical-nav">
+<div class="hk-pg-wrapper ">
+    <nav class="hk-breadcrumb" aria-label="breadcrumb">
+        <ol class="breadcrumb breadcrumb-light bg-transparent p-2 border-0">
+            <li class="breadcrumb-item d-none"><a  href="#">Training</a></li>
+            <li class="breadcrumb-item active d-none" aria-current="page">Center</li>
+        </ol>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <section class="hk-sec-wrapper rounded-20">
+                    <div class="row justify-content-between">
+                        <a href="{% url 'training_center' %}" class="ml-3"><h5 class="hk-sec-title" style="border-bottom: 3px solid #ab26aa; font-weight: 700;">ADD CENTER</h5></a>
+                        <a href="{% url 'manage_center' %}" class="btn btn-primary mr-3"><h6 class="hk-sec-title fw-bolder mb-0 text-white">MANAGE CENTER</h6></a>
+                    </div>
+                    <hr>
+                    {% include 'HOD/includes/messages.html' %}
+                    <div class="row">
+                        <div class="col-sm">
+                            <form class="needs-validation" novalidate method="POST" action="">
+                                {% csrf_token %}
+                                <div class="form-row">
+                               
+                                    
+                                    <div class="col-md-4 mb-15">
+                                        <label for="validationTooltipUsername">Center Name</label>
+                                        <div class="input-group">
+                                            {% comment %} <div class="input-group-prepend">
+                                                <span class="input-group-text" id="validationTooltipUsernamePrepend">@</span>
+                                            </div> {% endcomment %}
+                                            <input type="text" class="form-control" id="validationTooltipUsername" placeholder="Center" aria-describedby="validationTooltipUsernamePrepend" name="training" required>
+                                            <div class="invalid-tooltip">
+                                                Please provide a unique and valid Center Name.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <button class="btn btn-primary" type="submit">Add Center</button>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+{% endblock content %}

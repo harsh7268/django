@@ -1,0 +1,69 @@
+{% extends 'HOD/includes/base.html' %}
+{% block content %}
+{% block linkcss %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+{% endblock linkcss %}
+
+<div class="hk-pg-wrapper">
+    <nav class="hk-breadcrumb" aria-label="breadcrumb">
+        <ol class="breadcrumb breadcrumb-light bg-transparent">
+            <li class="breadcrumb-item"><a href="#"></a></li>
+            <li class="breadcrumb-item active" aria-current="page"></li>
+        </ol>
+    </nav>
+        <div style="text-align:center; font-size:30px; margin-bottom:10px;">Manage Details</div>
+        <form method="POST" action="{% url 'hod_managedetails' %}">
+            {% csrf_token %}
+        <table class="table table-hover">
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Attendance Month</td>
+                <td>
+                    <select class="form-select form-control" aria-label="Default select example" name="month" required>
+                        <option selected>Month</option>
+                        <option value="January">January</option>
+                        <option value="February">February</option>
+                        <option value="March">March</option>
+                        <option value="April">April</option>
+                        <option value="May">May</option>
+                        <option value="June">June</option>
+                        <option value="July">July</option>
+                        <option value="August">August</option>
+                        <option value="September">September</option>
+                        <option value="October">October</option>
+                        <option value="November">November</option>
+                        <option value="December">December</option>
+                      </select>
+                   </td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                  <td>Employees Visibility</td>
+                  <td>
+                    <select class="form-select form-control" aria-label="Default select example" name="emp_visibility" required>
+                        <option selected>Options</option>
+                        <option value="Show">Show</option>
+                        <option value="Hide">Hide</option>
+                      </select>
+                  </td>
+                  
+              </tr>
+                
+
+           
+            </tbody>
+          </table>
+          <div style="text-align:center;">
+          <button type="submit" class="btn btn-success">Update</button>
+          </div>
+        </form>
+</div>
+
+{% block linkjs %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+{% endblock linkjs %}
+{% endblock content %}

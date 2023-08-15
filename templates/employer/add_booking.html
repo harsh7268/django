@@ -1,0 +1,380 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+      <title>Add Booking</title>
+      <meta name="description" content="A responsive bootstrap 4 admin dashboard template by hencework" />
+      <!-- Favicon -->
+      <link rel="shortcut icon" href="favicon.ico">
+      <link rel="icon" href="favicon.ico" type="image/x-icon">
+      <!-- vector map CSS -->
+      <link href="{% static 'admin/vendors/vectormap/jquery-jvectormap-2.0.3.css' %}" rel="stylesheet" type="text/css" />
+      <link href="{% static 'admin/vendors/apexcharts/dist/apexcharts.css' %}" rel="stylesheet" type="text/css" />
+      <!-- Toggles CSS -->
+      <link href="{% static 'admin/vendors/jquery-toggles/css/toggles.css' %}" rel="stylesheet" type="text/css">
+      <link href="{% static 'admin/vendors/jquery-toggles/css/themes/toggles-light.css' %}" rel="stylesheet" type="text/css">
+      <!-- Toastr CSS -->
+      <link href="{% static 'admin/vendors/jquery-toast-plugin/dist/jquery.toast.min.css' %}" rel="stylesheet" type="text/css">
+      <!-- Custom CSS -->
+      <link href="{% static 'admin/dist/css/style.css' %}" rel="stylesheet" type="text/css">
+
+      <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <link rel="stylesheet" href="{% static 'datepicker/jquery-ui.min.css' %}">
+      {% comment %} <link rel="stylesheet" href="{% static "plugins/fontawesome-free/css/all.min.css" %}"> {% endcomment %}
+      {% comment %} <script src="https://cdn.ckeditor.com/ckeditor5/34.1.0/classic/ckeditor.js"></script> {% endcomment %}
+      <script src="https://cdn.ckeditor.com/4.19.0/full/ckeditor.js"></script>
+      <style>
+        ::placeholder {
+            color: black !important;
+            opacity: 1;
+          }
+          
+          :-ms-input-placeholder { 
+           color: black !important;
+          }
+          
+          ::-ms-input-placeholder { 
+           color: black !important;
+          }
+    </style>
+
+   </head>
+   <body>
+      <!-- Preloader 
+         <div class="preloader-it">
+             <div class="loader-pendulums"></div>
+         </div>
+         --><!-- /Preloader -->
+      <!-- HK Wrapper -->
+      <div class="hk-wrapper hk-vertical-nav">
+         <!-- Top Navbar -->
+         {% include 'employer/includes/header.html' %}
+         <!-- /Top Navbar -->
+         <!-- Vertical Nav -->
+         {% include 'employer/includes/sidebar.html' %}
+         <div id="hk_nav_backdrop" class="hk-nav-backdrop"></div>
+         <!-- Main Content -->
+         <div class="hk-wrapper hk-vertical-nav">
+          <div class="hk-pg-wrapper bgcolor">
+              <nav class="hk-breadcrumb" aria-label="breadcrumb">
+                  <ol class="breadcrumb breadcrumb-light bg-transparent p-4">
+                      <li class="breadcrumb-item"><a class="text-white" href="#"></a></li>
+                      <li class="breadcrumb-item active text-white" aria-current="page"></li>
+                  </ol>
+              </nav>
+              <div class="container">
+                  <div class="row">
+                      <div class="col-xl-12">
+                          <section class="hk-sec-wrapper" style="padding: 2.5rem;border-radius: 2rem;">
+                              <h5 class="hk-sec-title" style="color:black !important;">EMPLOYER BOOKING FORM</h5>
+                              <hr>
+                              <form action="" method="POST">
+                                {%csrf_token%}
+                                <div class="row">
+                                  <div class="col">
+                                    <select id="select1" class="form-select form-control" name="city_search">
+                                      <option selected disabled="true">----City----</option>
+                                      {% for i in city %}
+                                      {% if i.active %}
+                                      <option value="{{i.id}}">{{i.city}}</option>
+                                      {% endif %}
+                                      {% endfor %}
+                                    </select>
+                                  </div>
+                                </div>
+                                <div class="row justify-content-center mt-2">
+                                  <div class="col-3">
+                                    <button type="submit" class="bg-success w-100 border-0 p-2" style="margin-bottom:20px; border-radius:8pxpx;" value="Search" style="border-radius: .25rem">
+                                      Submit
+                                    </button>
+                                  </div>
+                                </div>
+                               </form>
+                               <center>
+                                <h1>{% include 'BASE/messages.html' %}</h1>
+                              </center>
+                              <div class="row text ">
+                                  <div class="col pa-0">
+                                    <form method="POST" action="{% url 'employer_doAddBooking' %}" onsubmit="return validation()">
+                                      {% csrf_token %}
+                                      <input type="text" value="200" name="amount" hidden>
+                                      
+                                      <div class="auth-form-wrap py-xl-0 py-50" id="form-1">
+                                        <div class="auth-form w-100">
+                                          <div class="form-row">
+                          
+                                            <div class="col-6 col-md-6 form-group">
+                                              <select class="form-select form-control" aria-label="Default select example" name="service" required>
+                                                <option value="" id="select2">Services</option>
+                                                {% for i in role_final %}
+                                                {% if i.is_employer %}
+                                                <option value="{{i.id}}" data-customvalue="{{i.max_sal}}">{{i}}({{i.max_sal}})</option>
+                                                {% endif %}
+                                                {% endfor %}
+                                                
+                                              </select>
+                                            </div>
+                          
+                                            <div class="col-6 col-md-6 form-group">
+                                              <input class="form-control" placeholder="Number of Workers"  type="number" name="no_of_worker" id="workersCount" required/>
+                                              <span id="wnameerror" class="text-danger font-weight-bold"></span>
+                                            </div>
+                                            <div class="col-6 form-group">
+                                              <select class="form-select form-control" aria-label="Default select example" name="gender" required>
+                                                <option selected style="color:black !important;">Gender Preference</option>
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
+                                                <option value="both">Any</option>
+                                              </select>
+                                            </div>
+                          
+                                            <div class="col-6 col-md-6 form-group">
+                                              <input type="text"  class="form-control" id="datepicker" placeholder="Work start date"
+                                                name="start_Date" required>
+                                            </div>
+                                            <div class="col-6 col-md-6 form-group">
+                                              <input class="form-control" placeholder="Work location (landmark)"  type="text"
+                                                name="landmark" required/>
+                                            </div>
+                          
+                                            <div class="col-6 col-md-6 form-group">
+                                              <input class="form-control" placeholder="City"  type="text" name="city" value="{{city_name}}" readonly/>
+                                            </div>
+                                            <div class="col-6 form-group">
+                                              <input class="form-control" placeholder="State" type="text" name="state" required />
+                                            </div>
+                                            <div class="col-6 form-group">
+                                              <input class="form-control" placeholder="Pin Code" type="text" name="pin" id="pinCode" required />
+                                              <span id="pnameerror" class="text-danger font-weight-bold"></span>
+                                            </div>
+                          
+                                            <div class="col-12 form-group">
+                                              <textarea  id="info" cols="3"  class="form-control form-control-lg address-fs"
+                                                style="font-size:1rem !important;" name="anyother"
+                                                placeholder="Specific Require "></textarea>
+                                            </div>
+                          
+                                            <div class="col-12 form-group">
+                                              <input class="form-control" placeholder="Monthly payout"  type="text" name="salary" id="monthlyPayout"/>
+                                            </div>
+                          
+                                            <input type="text" name="goverment2" value="{{sectn}}" hidden>
+                                            <div class="col-8 col-md-6 form-group">
+                                              <div class="form-check form-check-inline">
+                                                <label class="form-check-label" for="inlineRadio1" style="color:black !important;">Requirement for goverment department?</label>
+                                              </div>
+                                              <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="goverment" id="inlineRadio1"
+                                                  value="Goverment">
+                                                <label class="form-check-label" for="inlineRadio1" style="color:black !important;">Yes</label>
+                                              </div>
+                                              <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="goverment" id="inlineRadio2"
+                                                  value="Private">
+                                                <label class="form-check-label" for="inlineRadio2" style="color:black !important;">No</label>
+                                              </div>
+                                            </div>
+                          
+                                            <div class="col-4 col-md-6 form-group">
+                                              <input class="form-control" placeholder="Department Name"  type="text"
+                                                name="dep_name" />
+                                            </div>
+                          
+                                            <div class="col-12 form-check">
+                                              <input class="form-check-input" type="checkbox"  style="margin-left: 0.2rem !important" name="demoo" required>
+                                              <label class="form-check-label" for="invalidCheck" style="margin-left: 1.4rem !important; color:black !important;">
+                                                I agree all the information above is accurate to the best of my knowledge I understand any
+                                                misinformation will lead to the cancelation of my request and no refunds in such cases.
+                                              </label>
+                                            </div>
+                                          </div>
+                          
+                                          <div class="row justify-content-end border-top">
+                                            <div class="modal-footer border-top-0">
+                                              <button type="submit" class="btn head-btn1 bg-success" id="next" onclick="display()">
+                                                submit
+                                              </button>
+                                            </div>
+                                          </div>
+          
+                                        </div>
+                                      </div>
+                                    </form>
+                                  </div>
+                                </div>
+                          </section>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          </div>
+         <!-- /Main Content -->
+      </div>
+      <!-- /HK Wrapper -->
+      <!-- jQuery -->
+      <script src="{% static 'admin/vendors/jquery/dist/jquery.min.js' %}"></script>
+      <!-- Bootstrap Core JavaScript -->
+      <script src="{% static 'admin/vendors/popper.js/dist/umd/popper.min.js' %}"></script>
+      <script src="{% static 'admin/vendors/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+      <!-- Slimscroll JavaScript -->
+      <script src="{% static 'admin/dist/js/jquery.slimscroll.js' %}"></script>
+      <!-- Fancy Dropdown JS -->
+      <script src="{% static 'admin/dist/js/dropdown-bootstrap-extended.js' %}"></script>
+      <!-- FeatherIcons JavaScript -->
+      <script src="{% static 'admin/dist/js/feather.min.js' %}"></script>
+      <!-- Toggles JavaScript -->
+      <script src="{% static 'admin/vendors/jquery-toggles/toggles.min.js' %}"></script>
+      <script src="{% static 'admin/dist/js/toggle-data.js' %}"></script>
+      <!-- Counter Animation JavaScript -->
+      <script src="{% static 'admin/vendors/waypoints/lib/jquery.waypoints.min.js' %}"></script>
+      <script src="{% static 'admin/vendors/jquery.counterup/jquery.counterup.min.js' %}"></script>
+      <!-- Morris Charts JavaScript -->
+      <script src="{% static 'admin/vendors/raphael/raphael.min.js' %}"></script>
+      <script src="{% static 'admin/vendors/morris.js/morris.min.js' %}"></script>
+      <!-- EChartJS JavaScript -->
+      <script src="{% static 'admin/vendors/echarts/dist/echarts-en.min.js' %}"></script>
+      <!-- Sparkline JavaScript -->
+      <script src="{% static 'admin/vendors/jquery.sparkline/dist/jquery.sparkline.min.js' %}"></script>
+      <!-- Vector Maps JavaScript -->
+      <script src="{% static 'admin/vendors/vectormap/jquery-jvectormap-2.0.3.min.js' %}"></script>
+      <script src="{% static 'admin/vendors/vectormap/jquery-jvectormap-world-mill-en.js' %}"></script>
+      <script src="{% static 'admin/dist/js/vectormap-data.js' %}"></script>
+      <!-- Owl JavaScript -->
+      <script src="{% static 'admin/vendors/owl.carousel/dist/owl.carousel.min.js' %}"></script>
+      <!-- Toastr JS -->
+      <script src="{% static 'admin/vendors/jquery-toast-plugin/dist/jquery.toast.min.js' %}"></script>
+      <!-- Init JavaScript -->
+      <script src="{% static 'admin/dist/js/init.js' %}"></script>
+      <script src="{% static 'admin/dist/js/dashboard-data.js' %}"></script>
+      <script src="{% static 'admin/dist/js/validation-data.js' %}"></script>
+
+       <!-- Data Table JavaScript -->
+    <script src="{% static 'admin/vendors/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'admin/vendors/datatables.net-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'admin/vendors/datatables.net-dt/js/dataTables.dataTables.min.js' %}"></script>
+    <script src="{% static 'admin/vendors/datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
+    <script src="{% static 'admin/vendors/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'admin/vendors/datatables.net-buttons/js/buttons.flash.min.js' %}"></script>
+    <script src="{% static 'admin/vendors/jszip/dist/jszip.min.js' %}"></script>
+    <script src="{% static 'admin/vendors/pdfmake/build/pdfmake.min.js' %}"></script>
+    <script src="{% static 'admin/vendors/pdfmake/build/vfs_fonts.js' %}"></script>
+    <script src="{% static 'admin/vendors/datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
+    <script src="{% static 'admin/vendors/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
+    <script src="{% static 'admin/vendors/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
+    <script src="{% static 'admin/dist/js/dataTables-data.js' %}"></script>
+    <script src="https://unpkg.com/htmx.org@1.6.1/dist/htmx.min.js"></script>
+    <script src="{% static "dialog.js" %}"></script>
+    <script src="{% static "toast.js" %}"></script>
+    <script src="{% static 'datepicker/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'datepicker/jquery-ui.min.js' %}"></script>
+    <script>
+
+      //monthlyPayout js code start
+      const workersCount = document.getElementById("workersCount");
+      const monthlyPayout = document.getElementById("monthlyPayout"); 
+      
+      
+      workersCount.addEventListener("keyup", (event)=>{
+        if(parseInt(workersCount.value) > 0){
+          monthlyPayout.value = parseInt(workersCount.value) * 9000
+      
+        }else{
+          monthlyPayout.value = 0;
+        }
+      });
+      
+        {% comment %} date JavaScript {% endcomment %}
+        $(document).ready(function () {
+          $('#datepicker').datepicker({
+            yearRange: ":+10",
+            dateFormat: "yy-mm-dd",
+            changeMonth: true,
+            changeYear: true
+          });
+        })
+      
+        $(document).ready(function () {
+          $('#datepickertwo').datepicker({
+            yearRange: ":+10",
+            dateFormat: "yy-mm-dd",
+            changeMonth: true,
+            changeYear: true
+          });
+        });
+        function validation() {
+          let workersCountValue = document.getElementById("workersCount").value;
+          let pinCodeValue = document.getElementById("pinCode").value;
+          let mobileNumberValue = document.getElementById("mobileNumber").value;
+      
+      
+          let workersCheck = /^[1-9]{1,}$/
+          let pnumberCheck = /^[0-9]{6}$/ ;
+          let numberCheck = /^[6789][0-9]{9}$/ ;
+      
+      
+          
+          if (workersCheck.test(workersCountValue)) {
+            //document.getElementById("workersCount").style.border = "2px solid green";
+            document.getElementById("wnameerror").innerHTML = "";
+          }
+          else {
+            //document.getElementById("workersCount").style.border = "2px solid rgb(234 27 27 / 71%)";
+            document.getElementById("wnameerror").innerHTML = "**min one worker";
+            return false;
+          }
+      
+          if (pnumberCheck.test(pinCodeValue)) {
+            //document.getElementById("pinCode").style.border = "2px solid green";
+            document.getElementById("pnameerror").innerHTML = " ";
+          }
+          else {
+            //document.getElementById("pinCode").style.border = "2px solid rgb(234 27 27 / 71%)";
+            document.getElementById("pnameerror").innerHTML = "**Pin code is invalid";
+            return false;
+          }
+      
+          if (numberCheck.test(mobileNumberValue)) {
+            //document.getElementById("mobileNumber").style.border = "2px solif green";
+            document.getElementById("mnameerror").innerHTML = "";
+          }
+          else {
+            //document.getElementById("mobileNumber").style.border = "2px solid rgb(234 27 27 / 71%)";
+            document.getElementById("mnameerror").innerHTML = "**Mobile No is invalid";
+            return false;
+          }
+      
+        }
+      
+        {% comment %} department start {% endcomment %}
+      
+        document.getElementById("inlineRadio1").addEventListener("click", read_add);
+        document.getElementById("inlineRadio2").addEventListener("click", read_remove);
+       
+         function read_add(){
+           document.getElementById('department').hidden = false;
+         }
+       
+         function read_remove() {
+           document.getElementById('department').hidden = true ;
+         }
+      
+        {% comment %} department end {% endcomment %}
+      
+      
+      
+      </script>
+      
+      <script>
+        function demo(){
+          
+          let x = document.getElementById("select2").value= "{% for i in role %}{{i.min_sal}}{% endfor %}"
+          document.getElementById("demo").innerHTML = "You selected: " + x;
+      
+        }
+      </script>
+
+   </body>
+</html>

@@ -1,0 +1,124 @@
+{% extends 'HOD/includes/base.html' %}
+
+{% block content %}
+<div class="hk-pg-wrapper">
+    <nav class="hk-breadcrumb" aria-label="breadcrumb">
+        <ol class="breadcrumb breadcrumb-light bg-transparent p-2 border-0">
+            <li class="breadcrumb-item d-none"><a href="#">Manage</a></li>
+            <li class="breadcrumb-item active d-none" aria-current="page">City</li>
+        </ol>
+    </nav>
+    <div class="container">
+
+        <!-- Title -->
+        {% comment %} <div class="hk-pg-header">
+            <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="database"></i></span></span>MANAGE CITY</h4>
+        </div> {% endcomment %}
+        <!-- /Title -->
+
+        <!-- Row -->
+        <div class="row">
+            <div class="col-xl-12">
+                <section class="hk-sec-wrapper rounded-20">
+                    <div class="row justify-content-between">
+                        <a href="{% url 'manage_city' %}" class="ml-3"><h5 class="hk-sec-title" style="border-bottom: 3px solid #ab26aa; font-weight: 700;">MANAGE CITY</h5></a>
+                        <a href="{% url 'add_city' %}" class="btn btn-primary mr-3"><h6 class="hk-sec-title mb-0 fw-bolder text-white">ADD CITY</h6></a>
+                    </div>
+                    {% include 'HOD/includes/messages.html' %}
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm">
+                            <div class="table-responsive">
+                                <form action="" method="POST">
+                                    {% csrf_token %}
+                                <table id="datable_1" class="table table-hover w-100 display pb-30">
+                                    <thead>
+                                        <tr style="background-color: #e8ded4">
+                                            <th>#No</th>
+                                            <th>City Name</th>
+                                            <th>Active</th>
+                                            {% comment %} <th>Created At</th> {% endcomment %}
+                                            {% comment %} <th>Updated At</th> {% endcomment %}
+                                            
+                                            {% comment %} <th>Last Login</th>
+                                            <th>Date Joined</th> {% endcomment %}
+                                            {% comment %} <th style="width:120px !important">Action</th> {% endcomment %}
+                                            {% comment %} <th>Employer</th>
+                                            <th>Worker</th> {% endcomment %}
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for i in city %}
+                                        <tr>
+                                            
+                                            <th scope="row">{{forloop.counter}}</th>
+                                            <td>{{i.city}}</td>
+                                            <td>{% if i.active %}
+                                                <div class="form-check">
+                                                    <input type="checkbox" checked="checked" value={{i.id}} name="active">
+                                                </div>
+                                                {% else %}
+                                                <div class="form-check">
+                                                    <input type="checkbox"  value={{i.id}} name="active">
+                                                </div>
+                                                
+                                                {% endif %}</td>
+                                            {% comment %} <td>{{i.created_at}}</td>
+                                            <td>{{i.updated_at}}</td> {% endcomment %}
+                                            {% comment %} <td>{{ i.admin.last_login }}</td>
+                                            <td>{{ i.admin.date_joined }}</td> {% endcomment %}
+                                            {% comment %} <td class="d-flex">
+                                               <a href="{% url 'edit_city' i.id %}"> <button class="btn btn-icon btn-icon-circle btn-secondary btn-icon-style-2"> 
+                                                <span class="btn-icon-wrap" ><i class="fa fa-pencil"></i ></span> 
+                                            </button></a> 
+
+                                            <a href=""> <button class="btn btn-icon btn-icon-circle btn-info btn-icon-style-2"> 
+                                                <span class="btn-icon-wrap" ><i class="icon-trash"></i ></span> 
+                                            </button></a>  
+                                            </td> {% endcomment %}
+                                            {% comment %} <td class="text-center">
+                                                <div class="form-check d-flex justify-content-center align-items-center">
+                                                    <input class="form-check-input" type="checkbox" id="flexCheckDefault" style="width:25px !important; height:25px !important">
+                                                  </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="form-check d-flex justify-content-center align-items-center">
+                                                    <input class="form-check-input" type="checkbox" id="flexCheckDefault" style="width:25px !important; height:25px !important">
+                                                </div>
+                                            </td> {% endcomment %}
+                                        </tr>
+                                        {% endfor %}
+                                       
+                                       
+                                       
+                                       
+                                       
+                                        
+                                       
+                                     
+                                        
+                                      
+                                      
+                                       
+                                       
+                                       
+                                        
+                                    </tbody>
+                                    
+                                </table>
+                                <input type="submit" value="Update" class="btn btn-primary">
+                            </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            
+            </div>
+        </div>
+        <!-- /Row -->
+
+    </div>
+
+</div>
+{% endblock content %}
+

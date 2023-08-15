@@ -1,0 +1,37 @@
+{% extends 'homepage/includes/base.html' %}
+{% load static %}
+{% block title %}Success{% endblock %}
+
+{% block content %}
+<div class="text-center  pt-5">
+<img src="{% static 'assets/img/img.png'  %}" alt="" class="img-fluid img-responsive" style="width: 200px;height: 200px;">
+{% if status == 'True' %}
+<h2 class="alert  bg-success mt-5">Thank you! You have been employed with {{member.emp_name}}. Here are the further Details for the same.</h2>
+<table class="table">
+    <thead>
+        <tr>    
+          <th scope="col">Name</th>
+          <th scope="col">Phone No.</th>
+          <th scope="col">City</th>
+          <th scope="col">State</th>
+          <th scope="col">Address</th>
+        </tr>
+      </thead>
+    <tbody>
+      <tr>
+    <th scope="row">{{employer.admin.username}}</th>
+        <td>{{employer.mob_no}}</td>
+        <td>{{employer.emp_city}}</td>
+        <td>{{employer.emp_state}}</td>
+        <td>{{employer.address}}</td>
+      </tr>
+    </tbody>
+  </table>
+{% endif %}
+{% if status == 'False' %}
+<h2 class="alert  bg-danger mt-5">Thank you! You have rejected your employment with {{member.emp_name}}.</h2>
+{% endif %}
+
+<a href="{% url 'member_notify' %}" class="btn btn-info">Go to your Dashboard</a>
+</div>
+{% endblock %}

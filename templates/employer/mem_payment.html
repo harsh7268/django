@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Registration</title>
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<!-- Google Fonts -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+<!-- Bootstrap core CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+  </head>
+  <body class="bg-light">
+    <div class="container">
+        <div class="container contact">
+            <div class="container">
+              <div class="text-center font-weight-bold h2" style="margin-top:10px; margin-bottom:40px">Payment Details</div>
+              <div class="card">
+              <div >
+                  <table class="table">
+                    <tr>
+                      <td class="col-6 font-weight-bold">Month: </td>
+                      <td class="col-6 font-weight-normal">{{month}}</td>
+                    </tr>
+                    <tr>
+                      <td class="col-6 font-weight-bold">Employer's id: </td>
+                      <td class="col-6 font-weight-normal">{{emp_id}}</td>
+                    </tr>
+                    <tr>
+                      <td class="col-6 font-weight-bold">Total Payable Amount: </td>
+                      <td class="col-6 font-weight-normal">{{amount}}</td>
+                    </tr>
+                    {% comment %} <tr>
+                      <td class="col-6 font-weight-bold">Salary per Employee: </td>
+                      <td class="col-6 font-weight-normal">{{monthly_offered}}</td>
+                    </tr>
+                    <tr>
+                      <td class="col-6 font-weight-bold">Total Payable Amount: </td>
+                      <td class="col-6 font-weight-normal">{{monthly_offered}}*{{no_of_emp}}={{amount}}</td>
+                    </tr> {% endcomment %}
+                  </table>
+                  <div class="text-center" >
+                   {% comment %} <button class="btn btn-primary" id="rzp-button1" style="border-radius:20px; margin-bottom:20px">Pay Now</button>  {% endcomment %}
+                  <a href="{%url 'salary_payment' amount month %}"><button class="btn btn-primary"  style="border-radius:20px; margin-bottom:20px">Pay Now</button></a> 
+                  </div>
+                </div>
+            </div>
+              </div>
+            </div>
+          </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+      <form action='{% url 'mem_paymentsuccess' month emp_id %}' method="POST"> 
+        {% csrf_token %}
+        <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+        <script>
+           var options = {
+               "key": "rzp_test_c9U71b8iZvSlxi", // Enter the Key ID generated from the Dashboard
+               "amount": "100000",
+              // "amount": "{{payment.amount}}", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+               "currency": "INR",
+               "name": "Ayodhya",
+               "description": "Transaction",
+               "order_id": "{{payment.id}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+               "callback_url": "http://127.0.0.1:8000/EMPLOYER/MEMBERSPAYMENTSuccess/{{month}}/{{emp_id}}",
+               "notes": {
+                   "address": "Razorpay Corporate Office"
+               },
+               "theme": {
+                   "color": "#3399cc"
+               }
+           };
+           var rzp1 = new Razorpay(options);
+           document.getElementById('rzp-button1').onclick = function(e){
+               rzp1.open();
+               e.preventDefault();
+           }
+        </script> 
+      </form>
+  </body>
+</html>
+
+
+

@@ -1,0 +1,113 @@
+{% extends 'BASE/base.html' %}
+
+{% load static %}
+{% block content %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+  /* Google Poppins Font CDN Link */
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  /* Variables */
+  :root {
+    --primary-font-family: 'Poppins', sans-serif;
+    --light-white: #f5f8fa;
+    --gray: #5e6278;
+    --gray-1: #e3e3e3;
+  }
+
+  body {
+    font-family: var(--primary-font-family);
+    font-size: 14px;
+  }
+
+  /* Main CSS */
+  .wrapper {
+    padding: 0 0 100px;
+    background-image: url('images/bg.png');
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-attachment: fixed;
+    background-size: contain;
+    min-height: 100%;
+  }
+
+  .wrapper .logo img {
+    max-width: 40%;
+  }
+
+  .wrapper input {
+    background-color: var(--light-white);
+    border-color: var(--light-white);
+    color: var(--gray);
+  }
+
+  .wrapper input:focus {
+    box-shadow: none;
+  }
+
+  .wrapper .submit_btn {
+    padding: 15px;
+    font-weight: 500;
+  }
+
+  .wrapper .login_with {
+    padding: 15px;
+    font-size: 15px;
+    font-weight: 500;
+    transition: 0.3s ease-in-out;
+  }
+
+  .wrapper .submit_btn:focus,
+  .wrapper .login_with:focus {
+    box-shadow: none;
+  }
+
+  .wrapper .login_with:hover {
+    background-color: var(--gray-1);
+    border-color: var(--gray-1);
+  }
+
+  .wrapper .login_with img {
+    max-width: 8%;
+  }
+  a{
+    text-decoration: none !important;
+  }
+</style>
+<!--================Blog Area =================-->
+<section class="wrapper mt-5">
+  <div class="container pt-5">
+    <div class="col-sm-8 offset-sm-2 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4 text-center">
+      <form method="post" action="{% url 'dologin2' %}" class="rounded bg-white shadow py-3 px-4">
+        {% csrf_token %}
+        <div class="logo">
+          <img src="{% static 'assets/img/logo/fotter.jpg' %}" class="img-fluid" alt="Logo">
+        </div>
+        <h3 class="text-dark fw-bolder fs-4 mb-4">Sign In to CLCUP</h3>
+        <h4>{% include 'BASE/messages.html' %}</h4>
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control"  name="pan_no" placeholder="Pan No">
+          <label for="floatingInput">Pan No</label>
+        </div>
+        <div class="form-floating">
+          <input type="number" class="form-control" id="floatingPassword" name="password" placeholder="Mobile No">
+          <label for="floatingPassword">Mobile No</label>
+        </div>
+        <button type="submit" class="btn btn-success submit_btn w-100 mt-4">Login</button>
+        <div class="text-center text-muted text-uppercase mb-1 "></div>
+        <hr style="margin-bottom: 0rem !important; margin-top: 1rem !important; ">
+        <div class="text-end mb-1 ">
+            Not a member yet? <a href="{% url 'employer_register' %}"> Register</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+<!--================Blog Area =================-->
+{% endblock content %}

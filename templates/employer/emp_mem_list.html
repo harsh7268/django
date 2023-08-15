@@ -1,0 +1,125 @@
+{% extends 'employer/includes/base.html' %}
+{% block content %}
+{% block linkcss %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+{% endblock linkcss %}
+<style>
+    .border_color {
+        border: 2px solid #B6ADAD;
+    }
+
+    .col_width {
+        min-width: 8.5rem !important;
+    }
+</style>
+<div class="hk-pg-wrapper">
+    <nav class="hk-breadcrumb" aria-label="breadcrumb">
+        <ol class="breadcrumb breadcrumb-light bg-transparent">
+            <li class="breadcrumb-item"><a href="#"></a></li>
+            <li class="breadcrumb-item active" aria-current="page"></li>
+        </ol>
+    </nav>
+   
+    <div class="container">
+        <div class="table-responsive">
+            <div style="margin-bottom: 20px; font-size: 35px; text-align: center; font-weight: 400;">Accepted Employees List</div>
+            <div style="text-align:center;"><strong>The format for the Salary Receipt can be Download from here. </strong> <a href="{% url 'down-pdf' %}" download>
+                <i class="fa fa-download"></i> Download Pdf
+            </a></div>
+            {% if messages %}
+            {% for message in messages %}
+                <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}" role="alert">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+            <table class="table" style="margin-top:25px;">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">No. Of Days</th>
+                    <th scope="col">Month</th>
+                    <th scope="col">Upload Pdf</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Upload Doc</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for i in data  %}
+                    <tr>
+                        <th scope="row">{{forloop.counter}}</th>
+                        <td><strong>{{i.name}}</strong></td>
+                        <form action="{% url 'emp_mem_list' %}" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                       <td>
+                            <input class="form-control" placeholder="Days Present" id="days_present_{{i.mem_id}}" type="integer" name="no_of_days" required/>
+                       </td>
+                       <td>
+                       <input class="form-control" value="{{month}}" type="integer" name="month" disabled/>
+                       </td>
+                       <td >
+                        Upload your Salary Receipt 
+                        {% comment %} <br> {% endcomment %}
+                        (The format should be "<strong>MONTHYEAR_ID</strong>"):
+                        <input  placeholder="Pdf Receipt" id="salary"  type="file" name="salary"
+                          accept="pdf/*"
+                          style="line-height:2rem !important" required/>
+                   </td>
+                   <td id="result_{{i.mem_id}}"></td>
+                   <input type="hidden" name="amount" id="amount" value="0">
+                   <input hidden name="id" value="{{i.mem_id}}"></input>
+                   <input hidden name="name" value="{{i.name}}"></input>
+                       <td> 
+                        <button type="submit" class="btn btn-primary">Upload</button>
+                      </td>
+                </form>
+                </tr>
+                {% endfor %}
+
+                </tbody>
+              </table>
+              <div style="text-align:center;margin-bottom:20px;font-weight:bold;">Your Total Payable Amount is: {{amount}}</div>
+              <div style="text-align:center;">
+              <a href="{% url 'mem_payment' amount month  %}"><button class="btn btn-primary" ><strong>Pay</strong></button></a>
+              </div>
+          </div>
+</div>
+
+{% block linkjs %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+    <script>
+        // Get the salaries from the Django view
+        {% comment %} const salaries = {% raw %}{{ salaries|safe }}{% endraw %}; {% endcomment %}
+      
+        // Loop over all input fields and add an event listener to each one
+        document.querySelectorAll('[id^="days_present_"]').forEach((daysInput) => {
+            // Get the person's ID from the ID of the input field
+            const id = daysInput.id.split('_')[2];
+    
+            // Get the result element for this person
+            const resultElement = document.getElementById(`result_${id}`);
+    
+            // Get the salary for this person
+            const salary = 300;
+    
+            // Add an event listener to the input field
+            daysInput.addEventListener('input', () => {
+                // Get the value of the input field
+                const daysPresent = parseInt(daysInput.value);
+    
+                // Calculate the result
+                const result = isNaN(daysPresent) ? 0 : salary * daysPresent;
+               
+    
+                // Update the result element with the calculated result
+                resultElement.textContent = `${result}`;
+                amountInput.value = result;
+            });
+        });
+    </script>
+     
+{% endblock linkjs %}
+{% endblock content %}

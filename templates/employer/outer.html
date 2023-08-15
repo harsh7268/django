@@ -1,0 +1,325 @@
+{% extends 'BASE/base.html' %}
+{% load static %}
+
+<script>
+  function onChange(event) {
+      console.log(event.target.value)
+  }
+</script>
+
+{% block content %}
+{% block linkcss %}
+<link rel="stylesheet" href="{% static 'datepicker/jquery-ui.min.css' %}">
+{% endblock linkcss %}
+<!-- HK Wrapper -->
+<div class="hk-wrapper mt-5 mb-5">
+  <div class="hk-pg-wrapper hk-auth-wrapper">
+    <div class="container shadow-lg pt-3 pb-3 course" style=" border-radius: 5px !important;">
+      <div class="row text ">
+        <div class="col pa-0">
+
+          <form action="" method="POST">
+            {% csrf_token %}
+            <div class="row">
+              <div class="col">
+                <select id="select1" class="form-select form-control" name="city_search">
+                  <option selected disabled="true">----City----</option>
+                  {% for i in city %}
+                  {% if i.active %}
+                  <option value="{{i.id}}">{{i.city}}</option>
+                  {% endif %}
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+          <div  class="row">
+            <div class="col">
+              <select  class="form-select form-control my-2" id="select2" name="testing" hidden>
+                <option selected disabled="true">Role</option>
+                {% for role in role %}
+                {% if role.is_worker %}
+                <option value="{{role.city_id}}">{{role.role_name}} ({{role.min_sal}})</option>
+                {% comment %} <option value="{{role.city_id}}">{{role.role_name}} ({{role.min_sal}})</option> {% endcomment %}
+                {% endif %}
+                {% endfor %}
+                
+              </select>
+            </div>
+          </div>
+
+            <div class="row justify-content-center mt-2">
+              <div class="col-3">
+                <button type="submit" class="bg-success w-100 border-0 p-2" value="Search" style="border-radius: .25rem">
+                  Submit
+                </button>
+              </div>
+            </div>
+        </form>
+        <hr class="mb-3 mt-2">
+
+          <form method="POST" action="{% url 'do_emp_outer' %}" onsubmit="return validation()">
+            {% csrf_token %}
+            <input type="text" value="200" name="amount" hidden>
+            
+            <div class="auth-form-wrap py-xl-0 py-50" id="form-1">
+              <div class="auth-form w-xxl-55 w-xl-75 w-sm-90 w-100">
+                <div class="row justify-content-center  mb-1">
+                  <h4>EMPLOYER BOOKING FORM</h4>
+                 
+                </div>
+                <center>
+                  <h1>{% include 'BASE/messages.html' %}</h1>
+                </center>
+                <div class="form-row">
+
+                  <div class="col-6 col-md-6 form-group">
+                    <input type="text" name="city" class="form-control" value="{{city_name}}" placeholder="City" readonly>
+                    {% comment %} <select  id="select1" class="form-select form-control" name="city" >
+                      <option selected disabled="true">----City----</option>
+                      {% for i in role %}
+                      {% if i.active %}
+                      <option value="{{i.city_id}}">{{i.city.city}}</option>
+                      {% endif %}
+                      {% endfor %}
+                    </select> {% endcomment %}
+                  </div>
+
+                  <div class="col-6 col-md-6 form-group">
+                    <input class="form-control numberWorkers" placeholder="Number of Workers"  type="number" name="no_of_worker" id="workersCount" required/>
+                    <span id="wnameerror" class="text-danger font-weight-bold"></span>
+                  </div>
+                  <div class="col-6 form-group">
+                    <select class="form-select form-control" aria-label="Default select example" name="gender" required>
+                      <option selected>Gender Preference</option>
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                      <option value="both">Any</option>
+                    </select>
+                  </div>
+
+                  <div class="col-6 col-md-6 form-group">
+                    <input type="text" size="30" class="form-control" id="datepicker" placeholder="Work start date"
+                      name="start_Date" required>
+                  </div>
+
+                  <div class="col-6 col-md-6 form-group">
+                    <input class="form-control" placeholder="Work location (landmark)"  type="text"
+                      name="landmark" required/>
+                  </div>
+
+                  <div class="col-6 col-md-6 form-group">
+                    <select class="form-select form-control" aria-label="Default select example" name="service" id="select2" oninput="demo()" required>
+                      <option value="">Services</option>
+                      {% for i in demo %}
+                      {% if i.is_employer %}
+                      <option value="{{i.id}}" id="salary">{{i}}({{i.max_sal}})</option>
+
+                      {% endif %}
+                      {% endfor %}
+                      
+                    </select>
+                 </div>
+                  
+                  <div class="col-6 form-group">
+                    <input class="form-control" placeholder="State" type="text" name="state" required/>
+                  </div>
+                  <div class="col-6 form-group">
+                    <input class="form-control" placeholder="Pin Code" type="text" name="pin" id="pinCode" required />
+                    <span id="pnameerror" class="text-danger font-weight-bold"></span>
+                  </div>
+
+                  <div class="col-12 form-group">
+                    <textarea  id="info" cols="3"  class="form-control form-control-lg address-fs"
+                      style="font-size:1rem !important;" name="anyother"
+                      placeholder="Specific Require " ></textarea>
+                  </div>
+
+                  <div class="col-6 form-group">
+                    <input class="form-control" placeholder="Monthly payout"  type="text" name="salary" id="monthlyPayout"  readonly/>
+                  </div>
+ 
+                  {% comment %} <div class="col-6 col-md-6 form-group">
+                    <input type="text" class="form-control" placeholder="Name"
+                      name="name" required>
+                  </div> {% endcomment %}
+
+                  {% comment %} <div class="col-6 col-md-6 form-group">
+                    <input class="form-control" placeholder="Mobile No"  type="text"
+                      name="mobile_no" id="mobileNumber" required/>
+                      <span id="mnameerror" class="text-danger font-weight-bold"></span>
+                  </div>  {% endcomment %}
+                  {% comment %} <div class="col-8 col-md-6 form-group" required>
+                    <div class="form-check form-check-inline">
+                      <label class="form-check-label" for="inlineRadio1">Requirement for goverment department?</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="goverment" id="inlineRadio1"
+                        value="Goverment">
+                      <label class="form-check-label" for="inlineRadio1">Yes</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="goverment" id="inlineRadio2"
+                        value="Private" required>
+                      <label class="form-check-label" for="inlineRadio2">No</label>
+                    </div>
+                  </div> {% endcomment %}
+                  <input type="text" name="goverment2" value="{{sectn}}" hidden>
+                  
+                  {% if employer_obj.section == "Goverment" %}
+                  <div class="col-6 col-md-6 form-group">
+                    <input class="form-control" placeholder="Department Name"  type="text"
+                      name="dep_name" id="department" />
+                  </div>
+                  {% endif %}
+
+                  <div class="col-12 form-check">
+                    <input class="form-check-input" type="checkbox"  style="margin-left: 0.2rem !important" name="demoo" required>
+                    <label class="form-check-label" for="invalidCheck" style="margin-left: 1.4rem !important">
+                      I agree all the information above is accurate to the best of my knowledge I understand any
+                      misinformation will lead to the cancelation of my request and no refunds in such cases.
+                    </label>
+                  </div>
+                </div>
+
+                <div class="row justify-content-between border-top">
+                  {% comment %} <div class="modal-footer border-top-0">
+                    <span>Take Membership <a href="{% url 'employer_register' %}" class='text-primary'>Registar</a></span>
+                  </div> {% endcomment %}
+                  <div class="modal-footer border-top-0">
+                    <button type="submit" class="btn head-btn bg-success" id="next" onclick="display()">
+                      submit
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+{% comment %} second form start {% endcomment %}
+
+
+
+{% block linkjs %}
+<script src="{% static 'datepicker/jquery-3.6.0.min.js' %}"></script>
+<script src="{% static 'datepicker/jquery-ui.min.js' %}"></script>
+{% endblock linkjs %}
+<script>
+
+//monthlyPayout js code start
+
+const workersCount = document.getElementById("workersCount");
+const monthlyPayout = document.getElementById("monthlyPayout"); 
+
+
+workersCount.addEventListener("keyup", (event)=>{
+  if(parseInt(workersCount.value) > 0){
+    monthlyPayout.value = parseInt(workersCount.value) * 9000
+
+  }else{
+    monthlyPayout.value = 0;
+  }
+});
+
+
+  {% comment %} date JavaScript {% endcomment %}
+  $(document).ready(function () {
+    $('#datepicker').datepicker({
+      yearRange: ":+10",
+      dateFormat: "yy-mm-dd",
+      changeMonth: true,
+      changeYear: true
+    });
+  })
+
+  $(document).ready(function () {
+    $('#datepickertwo').datepicker({
+      yearRange: ":+10",
+      dateFormat: "yy-mm-dd",
+      changeMonth: true,
+      changeYear: true
+    });
+  });
+
+
+  function validation() {
+    let workersCountValue = document.getElementById("workersCount").value;
+    let pinCodeValue = document.getElementById("pinCode").value;
+    let mobileNumberValue = document.getElementById("mobileNumber").value;
+
+
+    let workersCheck = /^[1-9]{1,}$/
+    let pnumberCheck = /^[0-9]{6}$/ ;
+    let numberCheck = /^[6789][0-9]{9}$/ ;
+
+
+    
+    if (workersCheck.test(workersCountValue)) {
+      //document.getElementById("workersCount").style.border = "2px solid green";
+      document.getElementById("wnameerror").innerHTML = "";
+    }
+    else {
+      //document.getElementById("workersCount").style.border = "2px solid rgb(234 27 27 / 71%)";
+      document.getElementById("wnameerror").innerHTML = "**min one worker";
+      return false;
+    }
+
+    if (pnumberCheck.test(pinCodeValue)) {
+      //document.getElementById("pinCode").style.border = "2px solid green";
+      document.getElementById("pnameerror").innerHTML = " ";
+    }
+    else {
+      //document.getElementById("pinCode").style.border = "2px solid rgb(234 27 27 / 71%)";
+      document.getElementById("pnameerror").innerHTML = "**Pin code is invalid";
+      return false;
+    }
+
+    if (numberCheck.test(mobileNumberValue)) {
+      //document.getElementById("mobileNumber").style.border = "2px solif green";
+      document.getElementById("mnameerror").innerHTML = "";
+    }
+    else {
+      //document.getElementById("mobileNumber").style.border = "2px solid rgb(234 27 27 / 71%)";
+      document.getElementById("mnameerror").innerHTML = "**Mobile No is invalid";
+      return false;
+    }
+
+  }
+
+  {% comment %} department start {% endcomment %}
+
+  document.getElementById("inlineRadio1").addEventListener("click", read_add);
+  document.getElementById("inlineRadio2").addEventListener("click", read_remove);
+ 
+   function read_add(){
+     document.getElementById('department').hidden = false;
+   }
+ 
+   function read_remove() {
+     document.getElementById('department').hidden = true ;
+   }
+
+  {% comment %} department end {% endcomment %}
+
+
+
+</script>
+
+<script>
+  function demo(){
+    
+    let x = document.getElementById("select2").value= "{% for i in role %}{{i.min_sal}}{% endfor %}"
+    document.getElementById("demo").innerHTML = "You selected: " + x;
+
+  }
+</script>
+
+
+{% endblock content %}

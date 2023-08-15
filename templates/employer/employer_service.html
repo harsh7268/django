@@ -1,0 +1,297 @@
+{% extends 'BASE/base.html' %}
+{% load static %}
+{% block content %}
+{% block linkcss %}
+<link rel="stylesheet" href="{% static 'datepicker/jquery-ui.min.css' %}">
+<link rel="stylesheet" href="{% static 'nextpage/style.css' %}">
+{% endblock linkcss %}
+<style>
+    h3 {
+        font-size: 1.17rem !important;
+    }
+
+    h2 {
+        font-size: 1.5rem !important;
+    }
+
+    .nice-select {
+        display: none !important;
+    }
+
+    #gender1 {
+        display: block !important;
+    }
+</style>
+<div class="container-fluid">
+
+    <div class="card">
+        <form action="{% url 'emp_success' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form">
+
+                <div class="left-side">
+                    <div class="left-heading">
+                        <h3 class="text-white">CLCUP</h3>
+                    </div>
+                    <div class="steps-content">
+                        <h3 class="text-white">Step <span class="step-number">1</span></h3>
+                        <p class="step-number-content text-white active">Enter your need to get closer to companies.</p>
+                        <p class="step-number-content text-white d-none">Enter your personal information to get closer
+                            to companies.</p>
+                        <p class="step-number-content text-white d-none">Help companies get to know you better by
+                            telling then about your past experiences.</p>
+                        <p class="step-number-content text-white d-none">Add your profile piccture and let companies
+                            find youy fast.</p>
+                    </div>
+                    <ul class="setps-bar">
+                        <li class="active">EMPLOYER BOOKING FORM</li>
+                        <li>EMPLOYER REGISTRATION FORM</li>
+                        <li>User Photo</li>
+                    </ul>
+
+
+
+                </div>
+
+                <div class="right-side">
+                    <div class="main active">
+                        <div class="text">
+                            <h2>EMPLOYER BOOKING FORM</h2>
+                        </div>
+
+
+                        <div class="input-text">
+
+                            <div class="input-div mb-1">
+                                <select name="service" id="gender1">
+                                    <option value="">Services you need</option>
+                                    {% for i in role %}
+                                    <option value="{{i.role_name}}">{{i.role_name}}</option>
+                                    {% endfor %}
+                                </select>
+
+                            </div>
+
+                            <div class="input-div">
+
+                                <select name="gender" id="gender1">
+                                    <option selected>Gender Preference</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="both">Both</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="input-text">
+                            <div class="input-div">
+                                <input type="text" name="start_Date" id="datepicker" required require>
+                                <span>Work start date</span>
+                            </div>
+                            <div class="input-div">
+                                <input type="text" name="landmark" required require>
+                                <span>Landmark</span>
+                            </div>
+                        </div>
+                        <div class="input-text">
+                            <div class="input-div">
+                                <input type="text" name="city" required require>
+                                <span>city</span>
+                            </div>
+                            <div class="input-div">
+                                <input type="text" name="state" required require>
+                                <span>state</span>
+                            </div>
+                        </div>
+                        <div class="input-text">
+                            <div class="input-div">
+                                <input type="text" name="pin" maxlength="6" class="height_line" required require>
+                                <span>Pin code</span>
+                            </div>
+                            <div class="input-div">
+                                <input type="text" name="salary" required require>
+                                <span>Salary offered</span>
+                            </div>
+                        </div>
+                        <div class="input-text">
+                            <div class="input-div">
+                                <input type="text" name="anyother" required require>
+                                <span>Specific Requirement</span>
+                            </div>
+                            <div class="input-div">
+                                <input type="number" name="no_of_worker" class="height_line" required require>
+                                <span>Number of Workers</span>
+                            </div>
+                        </div>
+
+                        <div class="buttons">
+                            <button class="next_button">Next Step</button>
+                        </div>
+                    </div>
+                    <div class="main">
+                        <div class="text">
+                            <h2>EMPLOYER REGISTRATION FORM</h2>
+                        </div>
+
+                        <div class="input-text">
+                            <div class="input-div">
+                                <input type="text" name="username" id="user_name" required require>
+                                <span>Name</span>
+                            </div>
+                            <div class="input-div">
+                                <input type="text" name="father_name" required require>
+                                <span>Father Name</span>
+                            </div>
+                        </div>
+                        <div class="input-text">
+                            <div class="input-div">
+                                <input type="number" name="mobile_no" class="height_line" required require>
+                                <span>Mobile number</span>
+                            </div>
+                            <div class="input-div">
+                                <select name="emp_gender" id="gender1">
+                                    <option>Gender</option>
+                                    <option value="Male">male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="input-text">
+                            <div class="input-div">
+                                <input type="text" name="emp_city" required require>
+                                <span>City</span>
+                            </div>
+                            <div class="input-div">
+                                <input type="text" name="emp_state" required require>
+                                <span>State</span>
+                            </div>
+                        </div>
+
+                        <div class="input-text">
+                            <div class="input-div">
+                                <input type="text" name="emp_pin" maxlength="6" size="6" required require>
+                                <span>Pin Code</span>
+                            </div>
+                            <div class="input-div">
+                                <input type="text" name="emp_location" required require>
+                                <span>Location</span>
+                            </div>
+                        </div>
+
+                        <div class="input-text">
+                            <div class="input-div">
+                                <input type="number" name="emp_aadhar" class="height_line" required require>
+                                <span>Aadhar Number</span>
+                            </div>
+                            <div class="input-div">
+                                <input type="text" name="emp_pan" required require>
+                                <span>Pan Number</span>
+                            </div>
+                        </div>
+
+                        <div class="input-text">
+                            <div class="div-input input-div">
+                                <label>Aadhar Card :</label>
+                                <input type="file" name="emp_aadhar_photo" class="line" style="border:none" required
+                                    require>
+                            </div>
+                            <div class="div-input input-div">
+                                <label>Pan Card:</label>
+                                <input type="file" name="emp_pan_photo" class="line" style="border:none" required
+                                    require>
+                            </div>
+                        </div>
+
+                        <div class="input-text">
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label" for="inlineRadio1">Are you from Goverment?</label>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="goverment" id="inlineRadio1"
+                                    value="Goverment">
+                                <label class="form-check-label" for="inlineRadio1">Yes</label>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="goverment" id="inlineRadio2"
+                                    value="Private">
+                                <label class="form-check-label" for="inlineRadio2">No</label>
+                            </div>
+                        </div>
+
+                        <div class="buttons button_space">
+                            <button class="back_button">Back</button>
+                            <button class="next_button">Next Step</button>
+                        </div>
+                    </div>
+
+                    <div class="main">
+                        <div class="text">
+                            <h2>User Photo</h2>
+                        </div>
+                        <div class="user_card">
+                            <span></span>
+                            <div class="circle">
+                                <span><img src="https://i.imgur.com/hnwphgM.jpg"></span>
+                            </div>
+                            <div class="social">
+                                <span><i class="fa fa-share-alt"></i></span>
+                                <span><i class="fa fa-heart"></i></span>
+                            </div>
+
+                            <div class="user_name">
+                                <h3>Peter Hawkins</h3>
+                                <div class="detail">
+                                    <p><a href="#">Izmar,Turkey</a>Hiring</p>
+                                    <p>17 last day . 94Apply</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="buttons button_space">
+                            <button class="back_button">Back</button>
+                            <button class="submit_button">Submit</button>
+                        </div>
+                    </div>
+                    <div class="main">
+                        <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                            <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
+                            <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+                        </svg>
+
+                        <div class="text congrats">
+                            <h2>Congratulations!</h2>
+                            <p>Thanks Mr./Mrs. <span class="shown_name"></span> your information have been submitted
+                                successfully for the future reference we will contact you soon.</p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </form>
+
+
+    </div>
+
+</div>
+
+{% block linkjs %}
+<script src="{% static 'datepicker/jquery-3.6.0.min.js' %}"></script>
+<script src="{% static 'datepicker/jquery-ui.min.js' %}"></script>
+<script src="{% static 'nextpage/main.js' %}"></script>
+{% endblock linkjs %}
+
+<script>
+    $(document).ready(function () {
+        $('#datepicker').datepicker({
+            yearRange: ":+10",
+            dateFormat: "yy-mm-dd",
+            changeMonth: true,
+            changeYear: true
+        });
+    });
+</script>
+
+{% endblock content %}

@@ -1,0 +1,24 @@
+.headerview{
+    margin-top: 20px;
+    margin-bottom: 20px;  
+    
+}
+.cardview{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    
+}
+.btn{
+    background-color: #17366c;
+    color: #ffff;
+    display: grid;
+    align-items: center;
+    width:100%;
+    height: auto;
+    padding: 20px;
+    
+}
+
+.anchor_txt{
+    width:100%;
+}

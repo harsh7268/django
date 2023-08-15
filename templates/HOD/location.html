@@ -1,0 +1,86 @@
+{% extends 'HOD/includes/base.html' %}
+{% block content %}
+<div class="hk-wrapper hk-vertical-nav">
+    <div class="hk-pg-wrapper ">
+        <nav class="hk-breadcrumb" aria-label="breadcrumb">
+            <ol class="breadcrumb breadcrumb-light bg-transparent p-4">
+                <li class="breadcrumb-item"><a href="#">Add</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Location</li>
+            </ol>
+        </nav>
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+
+
+
+                    <section class="hk-sec-wrapper">
+                        <h5 class="hk-sec-title">ADD LOCATION</h5>
+                        <hr>
+                        {% include 'HOD/includes/messages.html' %}
+                        <div class="row">
+                            <div class="col-sm">
+                                <form class="needs-validation" novalidate method="POST" action="{% url 'doLocation' %}">
+                                    {% csrf_token %}
+                                    <div class="form-row">
+
+
+                                        <div class="col-md-4 mb-15">
+                                            <label for="validationTooltipUsername">Select Center</label>
+                                            <div class="input-group">
+                                                {% comment %} <div class="input-group-prepend">
+                                                    <span class="input-group-text"
+                                                        id="validationTooltipUsernamePrepend">@</span>
+                                                </div> {% endcomment %}
+                                                <select name="center_id" class="form-control">
+                                                    <option value="">---Select---</option>
+                                                    {% for i in center %}
+                                                    <option value="{{i.id}}">{{i.center_name}}</option>
+                                                    {% endfor %}
+                                                </select>
+                                                {% comment %} <input type="text" class="form-control"
+                                                    id="validationTooltipUsername" placeholder="Location"
+                                                    aria-describedby="validationTooltipUsernamePrepend" name="location"
+                                                    required> {% endcomment %}
+                                                <div class="invalid-tooltip">
+                                                    Please provide a unique and valid Center Name.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row">
+
+
+                                        <div class="col-md-4 mb-15">
+                                            <label for="validationTooltipUsername">Location Name</label>
+                                            <div class="input-group">
+                                                {% comment %} <div class="input-group-prepend">
+                                                    <span class="input-group-text"
+                                                        id="validationTooltipUsernamePrepend">@</span>
+                                                </div> {% endcomment %}
+                                                <input type="text" class="form-control" id="validationTooltipUsername"
+                                                    placeholder="Location"
+                                                    aria-describedby="validationTooltipUsernamePrepend" name="location"
+                                                    required>
+                                                <div class="invalid-tooltip">
+                                                    Please provide a unique and valid Center Name.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <button class="btn btn-primary" type="submit">Add Location</button>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock content %}

@@ -1,0 +1,98 @@
+{% extends 'HOD/includes/base.html' %}
+{% block content %}
+<div class="hk-wrapper hk-vertical-nav">
+<div class="hk-pg-wrapper bgcolor">
+    <nav class="hk-breadcrumb" aria-label="breadcrumb">
+        <ol class="breadcrumb breadcrumb-light bg-transparent p-4">
+            <li class="breadcrumb-item"><a class="text-white" href="#">Employee</a></li>
+            
+        </ol>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+               
+              
+                
+                <section class="hk-sec-wrapper">
+                    
+                    <h5 class="hk-sec-title">Edit Employee  | Username : {{ employee.admin.username }} |  #ID : {{ employee.admin.id }}</h5>
+                    {% include 'HOD/includes/messages.html' %}
+                    <hr>
+                    
+                    <div class="row">
+                        <div class="col-sm">
+                            <form class="needs-validation" novalidate method="POST" action="{% url 'edit_employee_save' %}">
+                                {% csrf_token %}
+                                <div class="form-row">
+                                    <div class="col-md-4 mb-15">
+                                        <label for="validationTooltip01">First name</label>
+                                        <input type="text" class="form-control" id="validationTooltip01" placeholder="First name" name="fname" value="{{employee.admin.first_name}}" required>
+                                        <input type="text"  name="employee_id" value="{{ employee.admin.id }}" hidden>
+                                        <div class="valid-tooltip">
+                                            Looks good!
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-15">
+                                        <label for="validationTooltip02">Last name</label>
+                                        <input type="text" class="form-control" id="validationTooltip02" placeholder="Last name" name="lname" value="{{employee.admin.last_name}}" required>
+                                        <div class="valid-tooltip">
+                                            Looks good!
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-15">
+                                        <label for="validationTooltipUsername">Username</label>
+                                        <div class="input-group">
+                                            {% comment %} <div class="input-group-prepend">
+                                                <span class="input-group-text" id="validationTooltipUsernamePrepend">@</span>
+                                            </div> {% endcomment %}
+                                            <input type="text" class="form-control" id="validationTooltipUsername" placeholder="Username" aria-describedby="validationTooltipUsernamePrepend" name="username" value="{{employee.admin.username}}" required>
+                                            <div class="invalid-tooltip">
+                                                Please provie a unique and valid username.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-15">
+                                        <label for="validationTooltipUsername">Address</label>
+                                        <div class="input-group">
+                                            {% comment %} <div class="input-group-prepend">
+                                                <span class="input-group-text" id="validationTooltipUsernamePrepend">@</span>
+                                            </div> {% endcomment %}
+                                            <input type="text" class="form-control" id="validationTooltipUsername" placeholder="Address" aria-describedby="validationTooltipUsernamePrepend" name="address" value="{{employee.address}}" required>
+                                            <div class="invalid-tooltip">
+                                               Fill is required
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-6 mb-15">
+                                        <label for="validationTooltipUsername">Email</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="validationTooltipUsernamePrepend">@</span>
+                                            </div>
+                                            <input type="email" class="form-control" id="validationTooltipUsername" placeholder="Email" aria-describedby="validationTooltipUsernamePrepend" name="email" value="{{employee.admin.email}}" required>
+                                            <div class="invalid-tooltip">
+                                                Please provide a unique and valid email Id.
+                                            </div>
+                                        </div>
+                                    </div>
+                                   
+                                    
+                                </div>
+                                <button class="btn btn-primary" type="submit">Update</button>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+{% endblock content %}

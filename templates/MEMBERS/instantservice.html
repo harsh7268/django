@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+{%extends 'BASE/base.html'%}
+{% load static %}
+ {% load tagger %}
+ {% block linkcss %}
+{% endblock linkcss %}
+ {% block content %}
+<div class="container">
+  <div class="text-center font-weight-bold h2" style="margin-top:10px; margin-bottom:20px">Instant Service</div>
+  {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+          <li{% if message.tags %} class="text-danger"{% endif %}>{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+  <form method="POST" action="{% url 'technician_list' %}">
+    {% csrf_token %}
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputState">Services You Required</label>
+        <select  class="form-control" name="services">
+          
+          <option selected>Choose...</option>
+            {% for item in data.data %}
+            {% underscoreTag item "_id" as id %}
+              <option value={{id}}>{{item.service_name}}</option>
+            {% endfor %}
+        </select>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputtext">Specific Requirments it Required</label>
+        <input type="text" class="form-control" name="specificReq" required>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputtext">Name(Contact Person)</label>
+        <input type="text" class="form-control"  name="name">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputtext">Phone Number</label>
+        <input type="text" class="form-control" name="phoneNumber" required minlength="10" maxlength="10">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputext">Alternative Phone Number</label>
+        <input type="text" class="form-control" name="alternativePhn" required minlength="10" maxlength="10">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="text">House Number/ Street</label>
+        <input type="text" class="form-control"  name="houseNumber">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="text">Locality</label>
+        <input type="text" class="form-control" name="locality" required>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="text">City</label>
+        <input type="text" class="form-control"  name="city">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputState">State</label>
+        <select  class="form-control" name="state">
+          <option selected>Choose...</option>
+          <option>Andaman and Nicobar Islands</option>
+          <option>Andhra Pradesh</option>
+          <option>Arunachal Pradesh</option>
+          <option>Assam</option>
+          <option>Bihar</option>
+          <option>Chandigarh</option>
+          <option>Chhattisgarh</option>
+          <option>Dadra and Nagar Haveli</option>
+          <option>Daman and Diu</option>
+          <option>Delhi</option>
+          <option>Goa</option>
+          <option>Gujarat</option>
+          <option>Delhi</option>
+          <option>Goa</option>
+          <option>Gujarat</option>
+          <option>Haryana</option>
+          <option>Himachal Pradesh</option>
+          <option>Jammu and Kashmir</option>
+          <option>Jharkhand</option>
+          <option>Karnataka</option>
+          <option>Kerala</option>
+          <option>Ladakh</option>
+          <option>Lakshadweep</option>
+          <option>Madhya Pradesh</option>
+          <option>Maharashtra</option>
+          <option>Manipur</option>
+          <option>Meghalaya</option>
+          <option>Mizoram</option>
+          <option>Nagaland</option>
+          <option>Odisha</option>
+          <option>Puducherry</option>
+          <option>Punjab</option>
+          <option>Rajasthan</option>
+          <option>Sikkim</option>
+          <option>Tamil Nadu</option>
+          <option>Telangana</option>
+          <option>Tripura</option>
+          <option>Uttar Pradesh</option>
+          <option>Uttarakhand</option>
+          <option>West Bengal</option>
+        </select>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="text">Country</label>
+        <input type="text" class="form-control" name="country" >
+      </div>
+      <div class="form-group col-md-6">
+        <label for="text">Pincode</label>
+        <input type="text" class="form-control" name="pincode">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputState">Time Preferences</label>
+        <select  class="form-control" name="pref">
+          <option selected>Choose...</option>
+          <option>IMMEDIATELY</option>
+          <option>WITHIN_24_HOURS</option>
+        </select>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="text">Offer Code</label>
+        <input type="text" class="form-control" name="offerCode" value="Onit 2023">
+      </div>
+    </div>
+    </div>
+    <div class="text-center">
+      <button type="submit" class="btn" style="margin-bottom:10px; background:#010b1d ;height:40px; padding:20px">Submit</button>
+    </div>
+  </form>
+</div>
+{% endblock content %}
+ 

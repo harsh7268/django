@@ -1,0 +1,36 @@
+{% for message in messages %}
+    {% if message.tags == 'error' %}
+    
+    <div class="alert alert-inv alert-inv-warning alert-wth-icon alert-dismissible fade show" role="alert">
+        <span class="alert-icon-wrap"><i class="zmdi zmdi-help"></i></span> {{message}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    {% endif %}
+
+    {% if message.tags == 'warning' %}
+        
+    <div class="alert alert-inv alert-inv-danger alert-wth-icon alert-dismissible fade show" role="alert">
+        <span class="alert-icon-wrap"><i class="zmdi zmdi-bug"></i></span> {{message}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    {% endif %}
+{% endfor %}
+
+{% for message in messages %}
+    {% if message.tags == 'success' %}
+
+    <div class="alert alert-inv alert-inv-success alert-wth-icon alert-dismissible fade show" role="alert">
+        <span class="alert-icon-wrap"><i class="zmdi zmdi-check-circle"></i></span> {{message}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+
+
+    {% endif %}
+{% endfor %}
+ 

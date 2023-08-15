@@ -1,0 +1,84 @@
+{% extends 'HOD/includes/base.html' %}
+
+{% block content %}
+<div class="hk-pg-wrapper">
+    <nav class="hk-breadcrumb" aria-label="breadcrumb">
+        <ol class="breadcrumb breadcrumb-light bg-transparent">
+            <li class="breadcrumb-item"><a href="#">Manage</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Center</li>
+        </ol>
+    </nav>
+    <div class="container">
+
+        <!-- Title -->
+        <div class="hk-pg-header">
+            <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="database"></i></span></span>MANAGE CENTER</h4>
+        </div>
+        <!-- /Title -->
+
+        <!-- Row -->
+        <div class="row">
+            <div class="col-xl-12">
+                <section class="hk-sec-wrapper">
+                    <h5 class="hk-sec-title">MANAGE CENTER</h5>
+                    {% include 'HOD/includes/messages.html' %}
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm">
+                            <div class="table-wrap">
+                                <table id="datable_1" class="table table-hover w-100 display pb-30">
+                                    <thead>
+                                        <tr style="background-color: #e8ded4">
+                                            <th>#No</th>
+                                            <th>Center Name</th>
+                                            <th>Created At</th>
+                                            <th>Updated At</th>
+                                            
+                                            {% comment %} <th>Last Login</th>
+                                            <th>Date Joined</th> {% endcomment %}
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for i in center %}
+                                        <tr>
+                                            
+                                            <th scope="row">{{forloop.counter}}</th>
+                                            <td>{{i.center_name}}</td>
+                                            <td>{{i.created_at}}</td>
+                                            <td>{{i.updated_at}}</td>
+                                            {% comment %} <td>{{ i.admin.last_login }}</td>
+                                            <td>{{ i.admin.date_joined }}</td> {% endcomment %}
+                                            <td>
+                                               <a href=""> <button class="btn btn-icon btn-icon-circle btn-secondary btn-icon-style-2"> 
+                                                <span class="btn-icon-wrap" ><i class="fa fa-pencil"></i ></span> 
+                                            </button></a> 
+
+                                            <a href=""> <button class="btn btn-icon btn-icon-circle btn-info btn-icon-style-2"> 
+                                                <span class="btn-icon-wrap" ><i class="icon-trash"></i ></span> 
+                                            </button></a> 
+                                                
+                                                
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                       
+                                 
+                                        
+                                    </tbody>
+                                    
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            
+            </div>
+        </div>
+        <!-- /Row -->
+
+    </div>
+
+</div>
+{% endblock content %}
+

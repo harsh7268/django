@@ -1,0 +1,99 @@
+{% extends 'BASE/base.html' %}
+
+{% load static %}
+
+{% block content %} 
+<style> 
+.rc-anchor-normal {
+  height: 74px;
+  width: 100% !important;
+}
+.modal-header-1 {
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.modal-header {
+  justify-content: center !important;
+  padding: 0 !important;
+}
+.modal-footer {
+  justify-content: center;
+  padding: 0 !important;
+  border-top: px solid #e9ecef !important;
+
+}
+.modal-content {
+  width: 80% !important;
+  display: flex;
+  justify-content: center !important;
+
+}
+.modal-dialog {
+  display: flex;
+  justify-content: center !important;
+}
+
+</style>
+    <!-- Hero Area Start-->
+    <div class="slider-area">
+        <div
+          class="single-slider section-overly slider-height2 d-flex align-items-center"
+          data-background="{% static 'assets/img/hero/about.jpg' %}">
+          <div class="container">
+            <div class="row">
+              <div class="col-xl-12">
+                <div class="hero-cap text-center">
+                  <h2><strong>Login</strong></h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Hero Area End -->
+      <!--================Blog Area =================-->
+      <section class="blog_area section-padding">
+        <div class="container">
+           
+           <div class="modal-dialog" role="document">
+             <div class="modal-content">
+                {% include 'BASE/messages.html' %}
+               <div class="modal-header-1">
+                <img src="{% static 'assets/img/logo/fotter.jpg' %}" alt="" style="width: 150px; height:100px;">
+               </div>
+               <div class="modal-header">
+                 <h2 class="modal-title" id="ModalLabel">
+                   <strong>Login</strong>
+                 </h2>
+               </div>
+               <div class="modal-body">
+                 <form method="post" action="{% url 'training_doLogin' %}">
+                  {% csrf_token %}
+                   <div class="form-group">
+                     <input class="form-control" type="number" name="adhaar" placeholder="Adhaar No."/>
+                   </div>
+                   <div class="form-group input-group" id="show_hide_password">
+                     <input class="form-control" type="password" placeholder="Password" name="password" style="width:100% !important; border-radius: .25rem !important;"/>
+                     <div class="" style="display:flex; justify-content:space-between !important; my-5">
+                      <a href="{% url 'password_reset' %}" style='color:#5FB3CE !important;'>forget password?</a>
+                     </div>
+                   </div>
+
+                   <div style="display:flex; justify-content: center !important; margin-top: 50px;">
+                    <button type="submit" class="btn head-btn1" style="width: 100% !important; height: 15px !important; border-radius: 5px !important; padding: 20px 44px !important;">
+                      Login
+                    </button>
+                  </div>
+                    <div class="" style="display:flex; justify-content:center !important; padding-top:20px !important;">
+                      <p style='color: #000 !important;'>Not a memeber?<a href="{% url 'TRAINING_Register' %}" style="color:#5FB3CE !important;"> create account </a> </p>
+                  </div>
+
+                 </form>
+               </div>
+               
+             </div>
+           </div>
+      </section>
+      <!--================Blog Area =================-->
+{% endblock content %}

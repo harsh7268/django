@@ -1,0 +1,164 @@
+{% extends 'BASE/base.html' %}
+{% block content %}
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Marvin I Data Table</title>
+    <meta name="description" content="A responsive bootstrap 4 admin dashboard template by hencework" />
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="icon" href="{% static 'admin/favicon.ico' %}" type="image/x-icon">
+
+    <!-- Data Table CSS -->
+    <link href="{% static 'admin/vendors/datatables.net-dt/css/jquery.dataTables.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'admin/vendors/datatables.net-responsive-dt/css/responsive.dataTables.min.css' %}" rel="stylesheet" type="text/css" />
+
+    <!-- Toggles CSS -->
+    <link href="{% static 'admin/vendors/jquery-toggles/css/toggles.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'admin/vendors/jquery-toggles/css/themes/toggles-light.css' %}" rel="stylesheet" type="text/css">
+
+    <!-- Custom CSS -->
+    <link href="{% static 'admin/dist/css/style.css' %}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+<style>
+    a{
+        text-decoration: none !important;
+    }
+</style>
+
+</head>
+
+<body>
+    
+   
+	<!-- HK Wrapper -->
+	<div class="hk-wrapper hk-vertical-nav">
+        
+             
+
+        <!-- Main Content -->
+        <div class="hk-pg-wrapper" style="margin-left:0px !important;">
+
+
+            <!-- Container -->
+            <div class="container">
+
+                <!-- Title -->
+                <div class="hk-pg-header justify-content-center">
+                    <h4 class="hk-pg-title">Course List</h4>
+                </div>
+                <!-- /Title -->
+
+                <!-- Row -->
+                <div class="row">
+                    <div class="col-xl-12">
+                        <section class="hk-sec-wrapper">
+                            
+                            <div class="row">
+                                <div class="col-sm">
+                                    <div class="table-wrap">
+                                        <table id="datable_1" class="table table-hover w-100 display pb-30">
+                                            <thead>
+                                                <tr class="bg-info bg-opacity-25">
+                                                    <th class="text-center">Course Name</th>
+                                                    <th class="text-center">Duration</th>
+                                                    <th class="text-center">Eligibility</th>
+                                                    <th class="text-center">Reg Fees</th>
+                                                    <th class="text-center">More info</th>
+                                                    <th class="text-center">Register Now</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for i in course %}
+                                                <tr>
+                                                    <td class="bg-secondary bg-opacity-25">{{i.course_name}}</td>
+                                                    <td class="bg-warning bg-opacity-25 text-center">{{i.course_des}}</td>
+                                                    <td class="bg-danger bg-opacity-25 text-center">10th</td>
+                                                    <td class="bg-warning bg-opacity-25 text-center">{{i.course_amt}}</td>
+                                                    <td class="bg-danger bg-opacity-25 text-center">
+                                                 
+                                                            <a href="{% url 'jobdetails' i.id %}" id="courseinfo"><i class="fa-solid fa-angles-right"></i></a>
+                                               
+                                                    </td>
+                                                    <td class="bg-warning bg-opacity-25 text-center"><button class="btn btn-success btn-sm" type="button">Reg Now</button></td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                            <tfoot class="bg-dark">
+                                                <tr class="" >
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                        <div class="d-grid gap-2 d-sm-flex justify-content-center">
+                                            <button class="btn btn-primary" type="button">Go Home</button>
+                                            <button class="btn btn-success" type="button">Go to Course Purchase</button>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                <!-- /Row -->
+
+            </div>
+        </div>
+    </div>
+    <!-- /HK Wrapper -->
+
+    <!-- jQuery -->
+    <script src="{% static 'admin/vendors/jquery/dist/jquery.min.js' %}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{% static 'admin/vendors/popper.js/dist/umd/popper.min.js' %}"></script>
+    <script src="{% static 'admin/vendors/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+
+    <!-- Slimscroll JavaScript -->
+    <script src="{% static 'admin/dist/js/jquery.slimscroll.js' %}"></script>
+
+    <!-- Data Table JavaScript -->
+    <script src="{% static 'admin/vendors/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'admin/vendors/datatables.net-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'admin/vendors/datatables.net-dt/js/dataTables.dataTables.min.js' %}"></script>
+    <script src="{% static 'admin/vendors/datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
+    <script src="{% static 'admin/vendors/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'admin/vendors/datatables.net-buttons/js/buttons.flash.min.js' %}"></script>
+    <script src="{% static 'admin/vendors/jszip/dist/jszip.min.js' %}"></script>
+    <script src="{% static 'admin/vendors/pdfmake/build/pdfmake.min.js' %}"></script>
+    <script src="{% static 'admin/vendors/pdfmake/build/vfs_fonts.js' %}"></script>
+    <script src="{% static 'admin/vendors/datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
+    <script src="{% static 'admin/vendors/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
+    <script src="{% static 'admin/vendors/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
+    <script src="{% static 'admin/dist/js/dataTables-data.js' %}"></script>
+
+    <!-- FeatherIcons JavaScript -->
+    <script src="{% static 'admin/dist/js/feather.min.js' %}"></script>
+
+    <!-- Fancy Dropdown JS -->
+    <script src="{% static 'admin/dist/js/dropdown-bootstrap-extended.js' %}"></script>
+
+    <!-- Toggles JavaScript -->
+    <script src="{% static 'admin/vendors/jquery-toggles/toggles.min.js' %}"></script>
+    <script src="{% static 'admin/dist/js/toggle-data.js' %}"></script>
+
+    <!-- Init JavaScript -->
+    <script src="{% static 'admin/dist/js/init.js' %}"></script>
+
+</body>
+
+</html>
+{% endblock content %}

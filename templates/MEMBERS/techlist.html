@@ -1,0 +1,33 @@
+{%extends 'BASE/base.html'%}
+{% load static %}
+{% load tagger %}
+{% block linkcss %}
+<link rel="stylesheet" href="{% static 'instantservice/css/techlist.css' %}"> 
+{% endblock linkcss %}
+{% block content %}
+<div class="container">
+  <div class="headerview text-center font-weight-bold h2">List of Technicians</div>
+<div class="cardview">
+   {%for item in data.data%}
+     {% if item.address_details_permanent.pincode == pincode and item.services.primary_services == serviceOffered  %}
+     <div class="card cardview text-center" style=" justify-content: center;">
+        <div class="card-body">
+          <div class="row"> 
+            <div class=" col-6 col-md-4" style="margin-top:10px;">Email: <strong>{{item.personal_details.email}}</strong></div>
+            <div class=" col-6 col-md-4" style="margin-top:10px;">PhoneNumber: <strong>+91{{item.personal_details.phone.mobile_number}}</strong></div>
+            {% underscoreTag item "_id" as id %}
+            <div class=" col-6 col-md-4">
+               <button class='btn'>
+                    <a  href="/techniciandetail/{{id}}" role="button" class='anchor_txt'>Open to View</a>
+                </button>          
+            </div>
+          </div>
+          </div>
+        </div>
+     {% endif %}    
+   {% endfor %}  
+  </div>
+</div>
+{% endblock content %}
+
+

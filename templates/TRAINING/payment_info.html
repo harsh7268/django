@@ -1,0 +1,127 @@
+	
+{% extends 'MEMBERS/includes/base.html' %}
+
+{% block content %}
+<div class="hk-pg-wrapper">
+    <nav class="hk-breadcrumb" aria-label="breadcrumb">
+        <ol class="breadcrumb breadcrumb-light bg-transparent">
+            <li class="breadcrumb-item"><a href="#">Manage</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Member</li>
+        </ol>
+    </nav>
+    <div class="container">
+
+        <!-- Title -->
+        <div class="hk-pg-header">
+            <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="database"></i></span></span>MANAGE MEMBER</h4>
+        </div>
+        <!-- /Title -->
+
+        <!-- Row -->
+        <div class="row">
+            <div class="col-xl-12">
+                <section class="hk-sec-wrapper">
+                    <h5 class="hk-sec-title">MANAGE MEMBER</h5>
+                    
+                    {% include 'HOD/includes/messages.html' %}
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm">
+                            <div class="table-wrap" style="overflow-x:scroll;height: 400px;">
+                                <table id="datable_1" class="table table-hover w-100 display pb-30">
+                                    <thead>
+                                        <tr style="background-color: #e8ded4">
+                                            <th>#No</th>
+                                            <th>Username</th>
+                                            <th>Mobile No</th>
+                                            <th>City</th>
+                                            <th>State</th>
+                                            <th>Pin Code</th>
+                                            <th>Address</th>
+                                            <th>Adhaar No.</th>
+                                            <th>Pan No.</th>
+                                            <th>Payment Id</th>
+                                            <th>Amount</th>
+                                            <th>Role</th>
+                                            <th>Joining Date</th>
+                                            <th>Last Login</th>
+                                            {% comment %} <th>Registration Fee</th> {% endcomment %}
+
+                                            {% comment %} <th>Created At</th> {% endcomment %}
+                                           
+                                            
+                                            {% comment %} <th>Last Login</th>
+                                            <th>Date Joined</th> {% endcomment %}
+                                            {% comment %} <th>Action</th> {% endcomment %}
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for i in training %}
+                                        <tr>
+                                            
+                                            <th scope="row">{{forloop.counter}}</th>
+                                            <td>{{i.admin.username}}</td>
+                                            <td>{{i.mobile_no}}</td>
+                                            <td>{{i.city}}</td>
+                                            <td>{{i.state}}</td>
+                                            <td>{{i.pin}}</td>
+                                            <td>{{i.address}}</td>
+                                            <td>{{i.admin.adhaar}}</td>
+                                            <td>{{i.pan_no}}</td>
+                                            <td>{{i.payment_id}}</td>
+                                            <td>{{i.amount}}</td>
+                                            <td>{{i.role_id}}</td>
+                                            <td>{{i.created_at}}</td>
+                                            <td>{{ i.admin.last_login }}</td>
+                                           
+                                            {% comment %} <td>200</td> {% endcomment %}
+                                            {% comment %} <td>{{i.created_at}}</td> {% endcomment %}
+                                            
+                                            {% comment %} <td>{{ i.admin.last_login }}</td>
+                                            <td>{{ i.admin.date_joined }}</td> {% endcomment %}
+                                            {% comment %} <td>
+                                               <a href=""> <button class="btn btn-icon btn-icon-circle btn-secondary btn-icon-style-2"> 
+                                                <span class="btn-icon-wrap" ><i class="fa fa-pencil"></i ></span> 
+                                            </button></a> 
+
+                                            <a href=""> <button class="btn btn-icon btn-icon-circle btn-info btn-icon-style-2"> 
+                                                <span class="btn-icon-wrap" ><i class="icon-trash"></i ></span> 
+                                            </button></a> 
+                                                
+                                                
+                                            </td> {% endcomment %}
+                                        </tr>
+                                        {% endfor %}
+                                        
+                                       
+                                       
+                                       
+                                       
+                                       
+                                        
+                                       
+                                     
+                                        
+                                      
+                                      
+                                       
+                                       
+                                       
+                                        
+                                    </tbody>
+                                    
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            
+            </div>
+        </div>
+        <!-- /Row -->
+
+    </div>
+
+</div>
+{% endblock content %}
+

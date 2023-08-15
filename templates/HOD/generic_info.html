@@ -1,0 +1,191 @@
+{% extends 'HOD/includes/base.html' %}
+{% block content %}
+<style>
+    .grid-head-bottom {
+        border-bottom: 3px solid #000000;
+    }
+    .grid-bottom {
+        border-bottom: 2px solid #000000;
+    }
+    .grid-top {
+        border-top: 3px solid #000000;
+    }
+    .grid-left {
+        border-left: 2px solid #000000;
+    }
+    .grid-right {
+        border-right: 2px solid #000000;
+    }
+    .count-link {
+        cursor: pointer;
+        text-decoration: underline;
+        color: blue;
+    }
+
+    .segregation {
+        display: none;
+        margin-top: 10px;
+    }
+</style>
+
+<div class="hk-wrapper hk-vertical-nav">
+    <div class="hk-pg-wrapper">
+        <nav class="hk-breadcrumb" aria-label="breadcrumb">
+            <ol class="breadcrumb breadcrumb-light bg-transparent p-4">
+                <li class="breadcrumb-item"><a href="#">Generic Information</a></li>
+            </ol>
+        </nav>
+        <div class="container">
+            <div style="font-size: xx-large; font-weight: bolder;text-align: center;margin-bottom: 40px;">Generic Information</div>
+            <div style="font-size: xx-large; margin-bottom: 20px; font-style: italic;">Employees Section</div>
+            <h3 style="margin-top: 20px;">Present Employees Count</h3>
+            <div class="row">
+                <div class="col grid-head-bottom grid-left grid-right grid-top" style="background-color: yellow; font-weight: bold; border-bottom: 3px solid #000000;">Approved</div>
+                <div class="col grid-head-bottom grid-right grid-top" style="background-color: yellow; font-weight: bold;">Registered</div>
+            </div>
+            <div class="row">
+                <div class="col grid-left grid-bottom grid-right">100</div>
+                <div class="col grid-bottom  grid-right">50</div>
+            </div>
+
+            <div class="row " style="margin-top: 20px;">
+                <div class="col grid-head-bottom grid-left grid-right grid-top" style="font-weight: bold; border-left: 2px solid #000000; background-color: yellow;">First Offer Sent</div>
+                <div class="col grid-head-bottom grid-top grid-right" style="font-weight: bold; background-color: yellow;">Second Offer Sent</div>
+                <div class="col grid-head-bottom grid-right grid-top" style="font-weight: bold; background-color: yellow;">Third Offer Sent</div>
+                <div class="col grid-head-bottom grid-right grid-top" style="font-weight: bold; background-color: yellow;">Renewal Due</div>
+            </div>
+            <div class="row">
+                <div class="col grid-bottom grid-right" style="border-left:2px solid #000000;">90</div>
+                <div class="col grid-bottom grid-right">50</div>
+                <div class="col grid-bottom grid-right " >20</div>
+                <div class="col grid-bottom grid-right" >20</div>
+            </div>
+
+            <h3 style="margin-top: 20px;"> Employees who left</h3>
+            <div class="row ">
+                <div class="col grid-top grid-head-bottom grid-left grid-right" style="font-weight: bold; background-color: yellow;">First Month</div>
+                <div class="col grid-head-bottom grid-right grid-top" style="font-weight: bold; background-color: yellow;">Second Month</div>
+                <div class="col grid-right grid-head-bottom grid-top " style="font-weight: bold; background-color: yellow;">Third Month</div>
+            </div>
+
+            <div class="row">
+                <div class="col grid-bottom grid-left grid-right">9</div>
+                <div class="col grid-bottom grid-right  ">5</div>
+                <div class="col grid-bottom grid-right  ">2</div>
+            </div>
+
+            <h3 style="margin-top: 20px;">Present Employees Engaged</h3>
+            <div class="row">
+                <div class="col grid-head-bottom grid-left grid-right grid-top" style="background-color: yellow; font-weight: bold;">Private</div>
+                <div class="col grid-bottom grid-right grid-top">
+                    <div class="row " style="background-color: yellow">
+                        <div class="col grid-bottom">Total Count</div>
+                    </div>
+                    <div class="row">
+                        <div class="col  count-link" onclick="toggleSegregation('privateSegregation')">110</div>
+                    </div>
+                </div>
+            </div>
+            <div id="privateSegregation" class="segregation">
+                <div class="row">
+                    <div class="col ">Driver: 30</div>
+                    <div class="col ">Cook: 40</div>
+                    <div class="col ">Watchmen: 30</div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col grid-left grid-right grid-head-bottom" style="background-color: yellow; font-weight: bold;">Government</div>
+                <div class="col">
+                    <div class="row grid-head-bottom grid-right " style="background-color: yellow;">
+                        <div class="col">Total Count</div>
+                    </div>
+                    <div class="row grid-bottom grid-right">
+                        <div class="col  count-link" onclick="SecondtoggleSegregation('SecondprivateSegregation')">120</div>
+                    </div>
+                </div>
+            </div>
+            <div id="SecondprivateSegregation" class="segregation">
+                <div class="row">
+                    <div class="col ">Driver: 50</div>
+                    <div class="col ">Cook: 40</div>
+                    <div class="col ">Watchmen: 30</div>
+                </div>
+            </div>
+            <div style="font-size: xx-large; margin-bottom: 20px; margin-top: 20px; font-style: italic;">Employers Section</div>
+            <h3 style="margin-top: 20px;">Present Employers Collaborated</h3>
+            <div class="row">
+                <div class="col grid-left grid-right grid-top grid-head-bottom" style="background-color: yellow; font-weight: bold;">Private</div>
+                <div class="col">
+                    <div class="row grid-head-bottom grid-right grid-top " style="background-color: yellow">
+                        <div class="col">Total Count</div>
+                    </div>
+                    <div class="row grid-bottom grid-right">
+                        <div class="col  count-link" onclick="ThirdtoggleSegregation('ThirdprivateSegregation')">120</div>
+                    </div>
+                </div>
+            </div>
+            <div id="ThirdprivateSegregation" class="segregation">
+                <div class="row">
+                    <div class="col ">ONIT: 50</div>
+                    <div class="col ">Affordable Deals: 50</div>
+                    <div class="col ">Zomato: 30</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col grid-left grid-right grid-head-bottom" style="background-color: yellow; font-weight: bold;">Government</div>
+                <div class="col">
+                    <div class="row grid-head-bottom grid-right " style="background-color: yellow;">
+                        <div class="col">Total Count</div>
+                    </div>
+                    <div class="row grid-bottom grid-right">
+                        <div class="col  count-link" onclick="FourthtoggleSegregation('FourthprivateSegregation')">120</div>
+                    </div>
+                </div>
+            </div>
+            <div id="FourthprivateSegregation" class="segregation">
+                <div class="row">
+                    <div class="col ">ONIT: 50</div>
+                    <div class="col ">Affordable: 40</div>
+                    <div class="col ">ADA: 30</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function toggleSegregation(elementId) {
+        var segregationElement = document.getElementById(elementId);
+        if (segregationElement.style.display === "none") {
+            segregationElement.style.display = "block";
+        } else {
+            segregationElement.style.display = "none";
+        }
+    }
+    function SecondtoggleSegregation(elementId) {
+        var segregationElement = document.getElementById(elementId);
+        if (segregationElement.style.display === "none") {
+            segregationElement.style.display = "block";
+        } else {
+            segregationElement.style.display = "none";
+        }
+    }
+    function ThirdtoggleSegregation(elementId) {
+        var segregationElement = document.getElementById(elementId);
+        if (segregationElement.style.display === "none") {
+            segregationElement.style.display = "block";
+        } else {
+            segregationElement.style.display = "none";
+        }
+    }
+    function FourthtoggleSegregation(elementId) {
+        var segregationElement = document.getElementById(elementId);
+        if (segregationElement.style.display === "none") {
+            segregationElement.style.display = "block";
+        } else {
+            segregationElement.style.display = "none";
+        }
+    }
+</script>
+
+{% endblock content %}

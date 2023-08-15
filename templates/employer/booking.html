@@ -1,0 +1,177 @@
+{% extends 'BASE/base.html' %}
+{% load static %}
+{% block content %}
+{% block linkcss %}
+<link rel="stylesheet" href="{% static 'datepicker/jquery-ui.min.css' %}">
+{% endblock linkcss %}
+<!-- HK Wrapper -->
+<div class="hk-wrapper mt-5 mb-5">
+  <div class="hk-pg-wrapper hk-auth-wrapper">
+    <div class="container shadow-lg pt-3 pb-3 course" style=" border-radius: 5px !important;">
+      <div class="row text ">
+        <div class="col pa-0">
+          <form method="POST" action="{% url 'emp_success' %}">
+            {% csrf_token %}
+            <input type="text" value="200" name="amount" hidden>
+            
+            <div class="auth-form-wrap py-xl-0 py-50" id="form-1">
+              <div class="auth-form w-xxl-55 w-xl-75 w-sm-90 w-100">
+                <div class="row justify-content-center  mb-1">
+                  <h4>EMPLOYER BOOKING FORM</h4>
+                </div>
+                <div class="form-row">
+
+                  <div class="col-6 col-md-6 form-group">
+                    <select class="form-select form-control" aria-label="Default select example" name="service">
+                      <option value="">Services</option>
+                      {% for i in role %}
+                      <option value="{{i.id}}">{{i.role_name}}</option>
+                      {% endfor %}
+                      
+                    </select>
+                  </div>
+                  <div class="col-6 col-md-6 form-group">
+                    <select class="form-select form-control" aria-label="Default select example" name="service2">
+                      <option value="">Services</option>
+                      {% for i in role %}
+                      <option value="{{i.id}}">{{i.role_name}}</option>
+                      {% endfor %}
+                      
+                    </select>
+                  </div>
+
+                  <div class="col-6 col-md-6 form-group">
+                    <input class="form-control" placeholder="Number of Workers"  type="number" name="no_of_worker" />
+                  </div>
+                  <div class="col-6 form-group">
+                    <select class="form-select form-control" aria-label="Default select example" name="gender">
+                      <option selected>Gender Preference</option>
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                      <option value="both">Any</option>
+                    </select>
+                  </div>
+
+                  <div class="col-6 col-md-6 form-group">
+                    <input type="text" size="30" class="form-control" id="datepicker" placeholder="Work start date"
+                      name="start_Date">
+                  </div>
+
+                  <div class="col-6 col-md-6 form-group">
+                    <input class="form-control" placeholder="Work location (landmark)"  type="text"
+                      name="landmark" />
+                  </div>
+
+                  <div class="col-6 col-md-6 form-group">
+                    <input class="form-control" placeholder="City"  type="text" name="city" />
+                  </div>
+                  <div class="col-6 form-group">
+                    <input class="form-control" placeholder="State" type="text" name="state" />
+                  </div>
+                  <div class="col-6 form-group">
+                    <input class="form-control" placeholder="Pin Code" type="number" min="100000" max="999999" name="pin" required />
+                  </div>
+
+                  <div class="col-12 form-group">
+                    <textarea  id="info" cols="3"  class="form-control form-control-lg address-fs"
+                      style="font-size:1rem !important;" name="anyother"
+                      placeholder="Specific Require "></textarea>
+                  </div>
+
+                  <div class="col-12 form-group">
+                    <input class="form-control" placeholder="Monthly payout"  type="text" name="salary" />
+                  </div>
+{% comment %} 
+                  <div class="col-6 col-md-6 form-group">
+                    <input type="text" class="form-control" placeholder="Name"
+                      name="name">
+                  </div>
+
+                  <div class="col-6 col-md-6 form-group">
+                    <input class="form-control" placeholder="Mobile No"  type="number"
+                      name="mobile_no" />
+                  </div> {% endcomment %}
+
+
+
+                  <div class="col-8 col-md-6 form-group">
+                    <div class="form-check form-check-inline">
+                      <label class="form-check-label" for="inlineRadio1">Requirement for goverment department?</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="goverment" id="inlineRadio1"
+                        value="Goverment">
+                      <label class="form-check-label" for="inlineRadio1">Yes</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="goverment" id="inlineRadio2"
+                        value="Private">
+                      <label class="form-check-label" for="inlineRadio2">No</label>
+                    </div>
+                  </div>
+
+                  <div class="col-4 col-md-6 form-group">
+                    <input class="form-control" placeholder="Department Name"  type="text"
+                      name="dep_name" />
+                  </div>
+
+                  <div class="col-12 form-check">
+                    <input class="form-check-input" type="checkbox"  style="margin-left: 0.2rem !important" name="demoo" required>
+                    <label class="form-check-label" for="invalidCheck" style="margin-left: 1.4rem !important">
+                      I agree all the information above is accurate to the best of my knowledge I understand any
+                      misinformation will lead to the cancelation of my request and no refunds in such cases.
+                    </label>
+                  </div>
+                </div>
+
+                <div class="row justify-content-between border-top">
+                  <div class="modal-footer border-top-0">
+                    <span>Take Membership <a href="{% url 'employer_register' %}" class='text-primary'>Registar</a></span>
+                  </div>
+                  <div class="modal-footer border-top-0">
+                    <button type="submit" class="btn head-btn1 bg-success" id="next" onclick="display()">
+                      submit
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+{% comment %} second form start {% endcomment %}
+
+
+
+{% block linkjs %}
+<script src="{% static 'datepicker/jquery-3.6.0.min.js' %}"></script>
+<script src="{% static 'datepicker/jquery-ui.min.js' %}"></script>
+{% endblock linkjs %}
+<script>
+
+  {% comment %} date JavaScript {% endcomment %}
+  $(document).ready(function () {
+    $('#datepicker').datepicker({
+      yearRange: ":+10",
+      dateFormat: "yy-mm-dd",
+      changeMonth: true,
+      changeYear: true
+    });
+  })
+
+  $(document).ready(function () {
+    $('#datepickertwo').datepicker({
+      yearRange: ":+10",
+      dateFormat: "yy-mm-dd",
+      changeMonth: true,
+      changeYear: true
+    });
+  });
+</script>
+{% endblock content %}

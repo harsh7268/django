@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"
+      integrity="sha512-2ImtlRlf2VVmiGZsjm9bEyhjGW4dU7B6TNwh/hx/iSByxNENtj3WVE6o/9Lj4TJeVXPi4bnOIMXFIJJAeufa0A=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css"
+      integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+      integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+   <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/img/favicon.ico' %}" />
+   <!-- CSS here -->
+   <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}" />
+   <link rel="stylesheet" href="{% static 'assets/css/owl.carousel.min.css' %}" />
+   <link rel="stylesheet" href="{% static 'assets/css/flaticon.css' %}" />
+   <link rel="stylesheet" href="{% static 'assets/css/price_rangs.css' %}" />
+   <link rel="stylesheet" href="{% static 'assets/css/slicknav.css' %}" />
+   <link rel="stylesheet" href="{% static 'assets/css/animate.min.css' %}" />
+   <link rel="stylesheet" href="{% static 'assets/css/magnific-popup.css' %}" />
+   <link rel="stylesheet" href="{% static 'assets/css/fontawesome-all.min.css' %}" />
+   <link rel="stylesheet" href="{% static 'assets/css/themify-icons.css' %}" />
+   <link rel="stylesheet" href="{% static 'assets/css/slick.css' %}" />
+   <link rel="stylesheet" href="{% static 'assets/css/nice-select.css' %}" />
+   <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" />
+   <link rel="stylesheet" href="{% static 'assets/css/blog.css' %}" />
+   <link rel="stylesheet" href="{% static 'search_style.css' %}">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+      integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+   {% block linkcss %}{% endblock linkcss %}
+
+
+   <title>Document</title>
+   <script>
+      $(document).ready(function () {
+         var $select1 = $('#select1'),
+            $select2 = $('#select2'),
+            $options = $select2.find('option');
+         $select1.on('change', function () {
+            $select2.html($options.filter('[value="' + this.value + '"]'));
+         }).trigger('change');
+      });
+      
+   </script>
+</head>
+
+<body>
+ {% include 'BASE/header.html' %}
+   {% block content %}
+   <!-- Preloader Start -->
+   {% comment %}
+   <div id="preloader-active">
+      <div class="preloader d-flex align-items-center justify-content-center">
+         <div class="preloader-inner position-relative">
+            <div class="preloader-circle"></div>
+            <div class="preloader-img pere-text">
+               <img src="assets/img/logo/logo.png" alt="" />
+            </div>
+         </div>
+      </div>
+   </div>
+   {% endcomment %}
+   <!-- Preloader Start -->
+   <!-- start header -->
+
+  
+
+   <!-- end header -->
+
+
+   {% endblock content %}
+   
+
+   <!-- Footer Area start -->
+   {% include 'BASE/footer.html' %}
+   <!-- Footer Area End -->
+   <!-- JS here -->
+   <!-- All JS Custom Plugins Link Here here -->
+   <script src="{% static '/assets/js/vendor/modernizr-3.5.0.min.js' %}"></script>
+   <!-- Jquery, Popper, Bootstrap -->
+   <script src="{% static '/assets/js/vendor/jquery-1.12.4.min.js' %}"></script>
+   <script src="{% static '/assets/js/popper.min.js' %}"></script>
+   <script src="{% static '/assets/js/bootstrap.min.js' %}"></script>
+   <!-- Jquery Mobile Menu -->
+   <script src="{% static '/assets/js/jquery.slicknav.min.js' %}"></script>
+   <!-- Jquery Slick , Owl-Carousel Plugins -->
+   <script src="{% static '/assets/js/owl.carousel.min.js' %}"></script>
+   <script src="{% static '/assets/js/slick.min.js' %}"></script>
+   <script src="{% static '/assets/js/price_rangs.js' %}"></script>
+   <!-- One Page, Animated-HeadLin -->
+   <script src="{% static '/assets/js/wow.min.js' %}"></script>
+   <script src="{% static '/assets/js/animated.headline.js' %}"></script>
+   <script src="{% static '/assets/js/jquery.magnific-popup.js' %}"></script>
+   <!-- Scrollup, nice-select, sticky -->
+   <script src="{% static '/assets/js/jquery.scrollUp.min.js' %}"></script>
+   <script src="{% static '/assets/js/jquery.nice-select.min.js' %}"></script>
+   <script src="{% static '/assets/js/jquery.sticky.js' %}"></script>
+   <!-- contact js -->
+   <script src="{% static '/assets/js/contact.js' %}"></script>
+   <script src="{% static '/assets/js/jquery.form.js' %}"></script>
+   <script src="{% static '/assets/js/jquery.validate.min.js' %}"></script>
+   <script src="{% static '/assets/js/mail-script.js' %}"></script>
+   <script src="{% static '/assets/js/jquery.ajaxchimp.min.js' %}"></script>
+   <!-- Jquery Plugins, main Jquery -->
+   <script src="{% static '/assets/js/plugins.js' %}"></script>
+   <script src="{% static '/assets/js/main.js' %}"></script>
+   <script src="{% static '/assets/js/vendor/blog.js' %}"></script>
+   <script src="http://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
+   <script>
+      function loadGoogleTranslate() {
+         new google.translate.TranslateElement("google_element");
+      }
+   </script>
+   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+   {% block linkjs %}{% endblock linkjs %}
+
+</body>
+
+</html>

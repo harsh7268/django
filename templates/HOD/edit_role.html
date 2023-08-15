@@ -1,0 +1,53 @@
+{% extends 'HOD/includes/base.html' %}
+{% block content %}
+<div class="hk-wrapper hk-vertical-nav">
+<div class="hk-pg-wrapper">
+    <nav class="hk-breadcrumb" aria-label="breadcrumb">
+        <ol class="breadcrumb breadcrumb-light bg-transparent p-4">
+            <li class="breadcrumb-item"><a href="#">Role</a></li>
+            
+        </ol>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+               
+              
+                
+                <section class="hk-sec-wrapper">
+                    
+                    <h5 class="hk-sec-title">Edit Role  | Role Name : {{ role.role_name }} |  #ID : {{ role.id }}</h5>
+                    {% include 'HOD/includes/messages.html' %}
+                    <hr>
+                    
+                    <div class="row">
+                        <div class="col-sm">
+                            <form class="needs-validation" novalidate method="POST" action="{% url 'edit_rolee_save' %}">
+                                {% csrf_token %}
+                                <div class="form-row">
+                                    <div class="col-md-4 mb-15">
+                                        <label for="validationTooltip01">Role Name</label>
+                                        <input type="text" class="form-control" id="validationTooltip01" placeholder="Role name" name="role_name" value="{{role.role_name}}" required>
+                                        <input type="text"  name="role_id" value="{{ role.id }}"  hidden >
+                                        <div class="valid-tooltip">
+                                            Looks good!
+                                        </div>
+                                    </div>
+                                 
+                                 
+                                </div>
+                              
+                                <button class="btn btn-primary" type="submit">Update</button>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+{% endblock content %}

@@ -1,0 +1,220 @@
+{% extends 'INSTRUCTOR/includes/base.html' %}
+{% block content %}
+<div class="hk-wrapper hk-vertical-nav">
+<div class="hk-pg-wrapper bgcolor">
+    <nav class="hk-breadcrumb" aria-label="breadcrumb">
+        <ol class="breadcrumb breadcrumb-light bg-transparent p-4">
+            <li class="breadcrumb-item"><a class="text-white" href="#">Course</a></li>
+            <li class="breadcrumb-item active text-white" aria-current="page">Add Course</li>
+        </ol>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+               
+              
+                
+                <section class="hk-sec-wrapper">
+                    <h5 class="hk-sec-title" style="text-align:center; font-weight:800">ADD COURSE</h5>
+                    <hr>
+                    {% include 'HOD/includes/messages.html' %}
+                    <div class="row">
+                        <div class="col-sm">
+                            <form class="needs-validation" novalidate method="POST" action=""  enctype="multipart/form-data">
+                                {% csrf_token %}
+                                
+                                <div class="form-row">
+                                    <form method="POST">
+                                    <div class="col-md-4 mb-15">
+                                        <label for="validationTooltipUsername">Course Name</label>
+                                        <div class="input-group">
+                                            <select class="form-select" aria-label="Default select example" name="course_name">
+                                                <option selected>---Select Course---</option>
+                                                <option value="Watchmen">Watchmen</option>
+                                                <option value="Cook">Cook</option>
+                                                <option value="Driver">Driver</option>
+                                              </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-15">
+                                        <button class="btn btn-success" type="submit">Submit</button>
+                                    </div>
+                                </form>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-4 mb-15">
+                                        <label for="validationTooltipUsername">Course Description</label>
+                                        <div class="input-group">
+                                            <div class="invalid-tooltip">
+                                                Please provide a location.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <textarea name="course_desc"></textarea>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-4 mb-15">
+                                        <label for="validationTooltipUsername">Course Objective</label>
+                                        <div class="input-group">
+                                            <div class="invalid-tooltip">
+                                                Please provie the Course Objective
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <textarea name="objective"></textarea>   
+                                </div>
+                                    <div class="form-row">
+                                        <div class="col-md-4 mb-15">
+                                            <label for="validationTooltipUsername">Course Image</label>
+                                            <div class="input-group">
+                                                <input type="file" class="form-control" id="validationTooltipUsername" placeholder="" aria-describedby="validationTooltipUsernamePrepend" name="course_pic" required>
+                                                <div class="invalid-tooltip">
+                                                    required
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 mb-15">
+                                            <label for="validationTooltipUsername">Course Fee</label>
+                                            <div class="input-group">
+                                                <input type="number" class="form-control" id="validationTooltipUsername" placeholder="Course Amount" aria-describedby="validationTooltipUsernamePrepend" name="course_amt" required>
+                                                <div class="invalid-tooltip">
+                                                    Please provide a Course Fee.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 mb-15">
+                                            <label for="validationTooltipUsername">Course Batch Size</label>
+                                            <div class="input-group">
+                                                <input type="number" class="form-control" id="validationTooltipUsername" placeholder="Course Batch Size" aria-describedby="validationTooltipUsernamePrepend" name="batch_size" required>
+                                                <div class="invalid-tooltip">
+                                                    Please provide the Batch Size.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+
+                                        <div class="form-row">
+                                            <div class="col-md-4 mb-15">
+                                                <label for="validationTooltipUsername">Start Date</label>
+                                                <div class="input-group">
+                                                    <input type="date" class="form-control" id="validationTooltipUsername" placeholder="Start Date" aria-describedby="validationTooltipUsernamePrepend" name="start_date" required>
+                                                    <div class="invalid-tooltip">
+                                                        Please provide the Start Date.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 mb-15">
+                                                <label for="validationTooltipUsername">End Date</label>
+                                                <div class="input-group">
+                                                    <input type="date" class="form-control" id="validationTooltipUsername" placeholder="End Date" aria-describedby="validationTooltipUsernamePrepend" name="end_date" required>
+                                                    <div class="invalid-tooltip">
+                                                        Please provide the End Date.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 mb-15">
+                                                <label for="validationTooltipUsername">Company Name</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" id="validationTooltipUsername" placeholder="Company Name" aria-describedby="validationTooltipUsernamePrepend" name="company_name"  required>
+                                                    <div class="invalid-tooltip">
+                                                        Please provide a Company Name.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                         
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="col-md-4 mb-15">
+                                        <label for="validationTooltipUsername">Course Location</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="validationTooltipUsername" placeholder="Course Location" aria-describedby="validationTooltipUsernamePrepend" name="course_location" required>
+                                            <div class="invalid-tooltip">
+                                                Please provide a location.
+                                            </div>
+                                        </div>
+                                    </div> 
+                                     <div class="col-md-4 mb-15">
+                                        <label for="validationTooltipUsername">Instructor's Name</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="validationTooltipUsername" placeholder="Instructor's Name" aria-describedby="validationTooltipUsernamePrepend" name="Instructor_name" required>
+                                            <div class="invalid-tooltip">
+                                                Please provide the Instructor's Name.
+                                            </div>
+                                        </div>
+                                    </div> 
+                                </div>
+                                <label style="font-size:20px;"><strong>Course Content</strong></label>
+                                <div class="form-row">
+                                    <div class="col-md-4 mb-15">
+                                        <label for="validationTooltipUsername">Theory(in hrs)</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="validationTooltipUsername" placeholder="theory" aria-describedby="validationTooltipUsernamePrepend" name="theory" required>
+                                            <div class="invalid-tooltip">
+                                                Please provide Course THeory in Hrs.
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <div class="col-md-4 mb-15">
+                                        <label for="validationTooltipUsername">Practical(in hrs)</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="validationTooltipUsername" placeholder="practical" aria-describedby="validationTooltipUsernamePrepend" name="practical" required>
+                                            <div class="invalid-tooltip">
+                                                Please provide Course Practical in Hrs.
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <div class="col-md-4 mb-15">
+                                        <label for="validationTooltipUsername">Assessment(in hrs)</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="validationTooltipUsername" placeholder="assessment" aria-describedby="validationTooltipUsernamePrepend" name="assessment" required>
+                                            <div class="invalid-tooltip">
+                                                Please provide Course Assessment in Hrs.
+                                            </div>
+                                        </div>
+                                    </div> 
+                                </div>
+                                <label style="font-size:20px;"><strong>Course Selection Criteria</strong></label>
+                                <div class="form-row">
+                                    <div class="col-md-4 mb-15">
+                                        <label for="validationTooltipUsername">Required Knowledge, Skills, and Abilities</label>
+                                        <div class="input-group">
+                                            <div class="invalid-tooltip">
+                                                Please provie a unique and valid username.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <textarea name="course_skills"></textarea> 
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="col-md-4 mb-15">
+                                        <label for="validationTooltipUsername">Education + Experience</label>
+                                        <div class="input-group">
+                                            <div class="invalid-tooltip">
+                                                Please provie a unique and valid username.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <textarea name="course_Experience"></textarea>   
+                                </div>
+                                <button class="btn btn-primary" style="margin-top:20px;" type="submit">Add Course</button>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script>
+    CKEDITOR.replace( 'course_desc' );
+    CKEDITOR.replace( 'course_skills' );
+    CKEDITOR.replace( 'objective' );
+    CKEDITOR.replace( 'course_Experience' );
+ </script>
+
+
+{% endblock content %}

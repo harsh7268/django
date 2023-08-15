@@ -1,0 +1,11 @@
+{% extends 'homepage/includes/base.html' %}
+{% load static %}
+{% block title %}Success{% endblock %}
+
+{% block content %}
+<div class="text-center mt-5 pt-5">
+<img src="{% static 'assets/img/img.png'  %}" alt="" class="img-fluid img-responsive" style="width: 200px;height: 200px;">
+<h2 class="alert  bg-success mt-5">Thank you! Your payment has been received. We will notify you will all the details on your registered mobile number: {{user.mobile_no}}</h2>
+<a href="/" class="btn btn-info">Go to your Dashboard</a>
+</div>
+{% endblock %}

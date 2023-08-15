@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Registration</title>
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<!-- Google Fonts -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+<!-- Bootstrap core CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+  </head>
+  <body class="bg-light">
+    <div class="container">
+      <div class="row d-flex justify-content-center">
+        <div class="col-md-10 mt-5 pt-5">
+          <div class="row z-depth-3">
+            <div class="col-sm-4 bg-info rounded-left">
+              <div class="card-block text-center text-white">
+                <li class="fas fa-user-tie fa-7x mt-5"></li> 
+                <h2 class="font-weight-bold mt-4 text-uppercase text-break">{{username}}</h2>
+                <p>clcup</p>
+                <a href="{% url 'register' %}"><i class="far fa-edit fa-2x"></i></a> <br>
+                <p class="mb-4">Back</p>
+              </div>
+            </div>
+
+            <div class="col-sm-8 bg-white rounded-right">
+              <h3 class="mt-3 text-center">INFORMATION</h3>
+              <hr class="badge-primary mt-0 w-25">
+              
+              
+              <div class="row mb-4">
+
+                <div class="col-sm-4">
+                  <p class="font-weight-bold mb-1">USER-NAME:</p>
+                  <h6 class="text-muted text-uppercase text-break">{{username}}</h6>
+                </div>
+
+                <div class="col-sm-6">
+                  <p class="font-weight-bold mb-1">DOB:</p>
+                  <h6 class="text-muted ">{{dob}}</h6>
+                </div>
+              </div>
+
+              <div class="row">
+
+                <div class="col-sm-4">
+                  <p class="font-weight-bold mb-1">MOBILE-NUMBER:</p>
+                  <h6 class="text-muted">{{mobile_no}}</h6>
+                </div>
+
+                <div class="col-sm-6">
+                  <p class="font-weight-bold mb-1">AADHAR NO:</p>
+                  <h6 class="text-muted">{{adhaar}}</h6>
+                </div>
+              </div>
+              <p class=" text-center"style="font-size:1.5rem; margin-bottom:0rem !important;">Registration Fees </p>
+              <p class="text-center amount" style="font-size:2rem; margin-bottom:-1rem !important;">200/-</p>
+              <hr class="bg-primary mb-1">
+              <div class="d-flex justify-content-center">  
+                {% comment %} {% if payment %} {% endcomment %}
+                <a href="{% url 'member_qr' adminid %}"><button class="btn btn-warning badge rounded-pill text-dark" >QR Payment</button></a>
+                {% comment %} <a id="rzp-button1" ><button type="submit" class="btn btn-warning btn-lg rounded-pill ">Razorpay Payment</button></a> {% endcomment %}
+                {% comment %} {% endif %}  {% endcomment %}
+              </div>
+
+
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+    {% comment %} <form action='{% url 'success' %}' method="POST">
+        <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+        <script>
+           var options = {
+               "key": "rzp_test_czVP739sBN5blU", // Enter the Key ID generated from the Dashboard
+               "amount": "{{payment.amount}}", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+               "currency": "INR",
+               "name": "Ayodhya",
+               "description": "Transaction",
+               "order_id": "{{payment.id}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+               "callback_url": "http://127.0.0.1:8000/success/",
+               "notes": {
+                   "address": "Razorpay Corporate Office"
+               },
+               "theme": {
+                   "color": "#3399cc"
+               }
+           };
+           var rzp1 = new Razorpay(options);
+           document.getElementById('rzp-button1').onclick = function(e){
+               rzp1.open();
+               e.preventDefault();
+           }
+        </script> {% endcomment %}
+
+  </body>
+</html>

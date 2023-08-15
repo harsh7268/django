@@ -1,0 +1,153 @@
+{% extends 'BASE/base.html' %}
+{% load static %}
+{% block content %}
+<div class="slider-area">
+  <div class="single-slider section-overly slider-height2 d-flex align-items-center"
+    data-background="{% static 'assets/img/hero/about.jpg' %}">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="hero-cap text-center">
+            <h2><strong>Register</strong> For Training User's</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Hero Area End -->
+<!--================Blog Area =================-->
+<section class="blog_area section-padding">
+  <div class="container-fluid">
+    <div class="row justify-content-center mt-0">
+      <div class="col-11 col-sm-9 col-md-7 col-lg-6 text-center p-0 mt-3 mb-2">
+        <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+          <h2><strong>Register</strong> For Training User's</h2>
+          <p>Fill all form field to go to next step</p>
+          <div class="row">
+            <div class="col-md-12 mx-0">
+              <form id="msform" method="POST" action="{% url 'do_training_register' %}">
+                {% csrf_token %}
+                <input type="text" value="200" name="amount" hidden>
+                <!-- progressbar -->
+                <!-- <ul id="progressbar"> 
+                    <li class="active" id="account"><strong>User</strong></li> 
+                    <li id="payment"><strong>Payment</strong></li> 
+                    <li id="confirm"><strong>Finish</strong></li> 
+                  </ul> -->
+                <!-- fieldsets -->
+                <fieldset>
+                  <div class="form-card">
+                    <h2 class="fs-title">User Information</h2>
+                    <div class="form-group row">
+                      <div class="col">
+                        <input class="form-control" type="text" name="fname" placeholder="First Name" />
+                      </div>
+                      <div class="col">
+                        <input class="form-control" type="text" name="lname" placeholder="Last Name" />
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <div class="col">
+                        <input class="form-control" type="text" name="father_name" placeholder="Father's Name" />
+                      </div>
+                      <div class="col">
+                        <input class="form-control" type="text" name="username" placeholder="User Name" />
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <div class="col">
+                        <select class="form-select" aria-label="Default select example" name="gender">
+                          <option selected>---Gender---</option>
+                          <option value="1">Male</option>
+                          <option value="2">Female</option>
+                          <option value="3">Others</option>
+                        </select>
+                      </div>
+                      <div class="col">
+                        <input class="form-control" type="date" data-toggle="tooltip" title="DOB"
+                          data-placement="bottom" name="dob" placeholder="Date of Birth" />
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col">
+                        <input class="form-control" type="text" name="adhaar" placeholder="Adhaar No." />
+                      </div>
+                      <div class="col">
+                        <input class="form-control" type="text" name="pan_no" placeholder="PAN No." />
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <div class="col">
+                        <select class="form-select" aria-label="Default select example" name="caste">
+                          <option selected> ---Caste---</option>
+                          <option value="1">General</option>
+                          <option value="2">OBC</option>
+                          <option value="2">ST</option>
+                          <option value="2">Other</option>
+                        </select>
+                      </div>
+                      <div class="col">
+                        <select class="form-select" aria-label="Default select example" name="role">
+                          <option selected> ---Role---</option>
+                          {% for i in role %}
+                          <option value="{{i.id}}">{{i.role_name}}</option>
+                          {% endfor %}
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <textarea cols="3" rows="" class="form-control form-control-lg" name="address"
+                        placeholder="Address"></textarea>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col">
+                        <input class="form-control" type="text" name="city" placeholder="City" />
+                      </div>
+                      <div class="col">
+                        <input class="form-control" type="text" name="state" placeholder="state" />
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col">
+                        <input class="form-control" type="number" name="pin" placeholder="Pin Code" />
+                      </div>
+                      <div class="col">
+                        <input class="form-control" type="number" name="mobile_no" placeholder="Mobile Number" />
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col" id="show_hide_password">
+                        <input class="form-control" type="email" placeholder="email" name="email" />
+                      </div>
+                      <div class="col" id="show_hide_password">
+                        <input class="form-control" type="text" placeholder="Password(123456)" readonly />
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col" id="show_hide_password">
+                        <input class="form-control" type="text" placeholder="Training center" name="training_center" />
+                      </div>
+                      <div class="col" id="show_hide_password">
+                        <input class="form-control" type="text" placeholder="location" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="submit" class="btn head-btn1">
+                      Register
+                    </button>
+                  </div>
+                </fieldset>
+
+</section>
+
+
+
+
+
+
+{% endblock content %}

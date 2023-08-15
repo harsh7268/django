@@ -1,0 +1,104 @@
+{% extends 'HOD/includes/base.html' %}
+{% block content %}
+<div class="hk-wrapper hk-vertical-nav">
+<div class="hk-pg-wrapper">
+    <nav class="hk-breadcrumb" aria-label="breadcrumb">
+        <ol class="breadcrumb breadcrumb-light bg-transparent p-2 border-0">
+            <li class="breadcrumb-item d-none"><a class="text-white" href="#">Instructor</a></li>
+            <li class="breadcrumb-item active text-white d-none" aria-current="page">Add Instructor</li>
+        </ol>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+               
+              
+                
+                <section class="hk-sec-wrapper rounded-20">
+                    <div class="row justify-content-between">
+                        <a href="{% url 'add_instructor' %}" class="ml-3"><h5 class="hk-sec-title" style="border-bottom: 3px solid #ab26aa; font-weight: 700;">ADD INSTRUCTOR</h5></a>
+                        <a href="{% url 'manage_instructor' %}" class="btn btn-primary mr-3"><h6 class="hk-sec-title mb-0 fw-bolder text-white">MANAGE INSTRUCTOR</h6></a>
+                    </div>
+                    <hr>
+                    {% include 'HOD/includes/messages.html' %}
+                    <div class="row">
+                        <div class="col-sm">
+                            <form class="needs-validation" novalidate method="POST" action="">
+                                {% csrf_token %}
+                                <div class="form-row">
+                                    <div class="col-md-4 mb-15">
+                                        <label for="validationTooltip01">First name</label>
+                                        <input type="text" class="form-control" id="validationTooltip01" placeholder="First name" name="fname" required>
+                                        <div class="valid-tooltip">
+                                            Looks good!
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-15">
+                                        <label for="validationTooltip02">Last name</label>
+                                        <input type="text" class="form-control" id="validationTooltip02" placeholder="Last name" name="lname"  required>
+                                        <div class="valid-tooltip">
+                                            Looks good!
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-15">
+                                        <label for="validationTooltipUsername">Username</label>
+                                        <div class="input-group">
+                                            {% comment %} <div class="input-group-prepend">
+                                                <span class="input-group-text" id="validationTooltipUsernamePrepend">@</span>
+                                            </div> {% endcomment %}
+                                            <input type="text" class="form-control" id="validationTooltipUsername" placeholder="Username" aria-describedby="validationTooltipUsernamePrepend" name="username" required>
+                                            <div class="invalid-tooltip">
+                                                Please provie a unique and valid username.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-15">
+                                        <label for="validationTooltipUsername">Address</label>
+                                        <div class="input-group">
+                                            {% comment %} <div class="input-group-prepend">
+                                                <span class="input-group-text" id="validationTooltipUsernamePrepend">@</span>
+                                            </div> {% endcomment %}
+                                            <input type="text" class="form-control" id="validationTooltipUsername" placeholder="Address" aria-describedby="validationTooltipUsernamePrepend" name="address" required>
+                                            <div class="invalid-tooltip">
+                                               Fill is required
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-3 mb-15">
+                                        <label for="validationTooltipUsername">Email</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="validationTooltipUsernamePrepend">@</span>
+                                            </div>
+                                            <input type="email" class="form-control" id="validationTooltipUsername" placeholder="Email" aria-describedby="validationTooltipUsernamePrepend" name="email" required>
+                                            <div class="invalid-tooltip">
+                                                Please provide a unique and valid email Id.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 mb-15">
+                                        <label for="validationTooltip04">Password</label>
+                                        <input type="password" class="form-control" id="validationTooltip04" placeholder="Password" name="password" required>
+                                        <div class="invalid-tooltip">
+                                            Please provide a valid Password.
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <button class="btn btn-primary" type="submit">Add Instructor</button>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+{% endblock content %}

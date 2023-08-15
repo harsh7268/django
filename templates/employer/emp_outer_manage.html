@@ -1,0 +1,168 @@
+{% extends 'HOD/includes/base.html' %}
+
+{% block content %}
+{% block linkcss %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+{% endblock linkcss %}
+<style>
+    .border_color {
+        border: 2px solid #B6ADAD;
+    }
+
+    .col_width {
+        min-width: 8.5rem !important;
+    }
+</style>
+<div class="hk-pg-wrapper">
+    <nav class="hk-breadcrumb" aria-label="breadcrumb">
+        <ol class="breadcrumb breadcrumb-light bg-transparent">
+            <li class="breadcrumb-item"><a href="#">OUTER</a></li>
+            <li class="breadcrumb-item active" aria-current="page">EMPLOYER</li>
+        </ol>
+    </nav>
+    <div class="container">
+
+        <!-- Title -->
+        <div class="hk-pg-header">
+            <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i
+                            data-feather="database"></i></span></span>OUTER EMPLOYER</h4>
+        </div>
+        <!-- /Title -->
+        <!-- Row -->
+        <div class="row">
+            <div class="col-xl-12">
+                <section class="hk-sec-wrapper border border-danger">
+                    <h5 class="hk-sec-title">OUTER EMPLOYER</h5>
+                    {% include 'HOD/includes/messages.html' %}
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm">
+                            <div class="table-wrap" style="overflow: auto !important;">
+                                <table id="datable_1" class="table table-hover w-100 display pb-30 border_color">
+                                    <thead class="border_color">
+                                        <tr style="background-color: #e8ded4;">
+                                            <th class="border_color col_width">#No.</th>
+                                            <th class="border_color col_width">Work Start Date</th>
+                                            <th class="border_color">Skill</th>
+                                            <th class="border_color">Number of Workers.</th>
+                                            <th class="border_color">Department</th>
+                                            <th class="border_color">Contact Person</th>
+                                            <th class="border_color">Phone no</th>
+                                            <th class="border_color">Section</th>
+                                            <th class="border_color">City</th>
+                                            <th class="border_color">Pin for work location</th>
+                                            {% comment %} <th>Last Login</th>
+                                            <th>Date Joined</th> {% endcomment %}
+                                            {% comment %} <th class="border_color">Process request</th>
+                                            <th class="border_color">Process status</th> {% endcomment %}
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for i in outr %}
+                                        <tr class="border_color">
+                                            <th scope="row">{{forloop.counter}}</th>
+                                            <td class="border_color">{{i.work_start_Date}}</td>
+                                            <td class="border_color">{{i.services}}</td>
+                                            <td class="border_color">{{i.no_of_worker}}</td>
+                                            <td class="border_color">{{i.department}}</td>
+                                            <td class="border_color">{{i.name}}</td>
+                                            <td class="border_color">{{i.mob}}</td>
+                                            <td class="border_color">{{i.goverment}}</td>
+                                            <td class="border_color">{{i.city}}</td>
+                                            <td class="border_color">{{i.pin_code}}</td>
+                                            {% comment %} <td class="border_color">
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-warning badge rounded-pill text-dark" data-bs-toggle="modal"
+                                                    data-bs-target="#staticBackdrop" style="width: 7rem">
+                                                    workers list
+                                                </button>
+
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
+                                                    data-bs-keyboard="false" tabindex="-1"
+                                                    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-edit" style="max-width: 1000px; margin-top: 6.5rem;">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="staticBackdropLabel">
+                                                                    workers list
+                                                                </h5>
+                                                            </div>
+                                                            <div class="modal-body" style="overflow: auto !important;">
+                                                                <table class="table table-striped w-100"
+                                                                    style="min-width: 950px !important;">
+                                                                    <thead>
+                                                                        <tr class="bg-primary">
+                                                                            <th scope="col" class="text-white">#</th>
+                                                                            <th scope="col" class="text-white">Name</th>
+                                                                            <th scope="col" class="text-white">Phone No
+                                                                            </th>
+                                                                            <th scope="col" class="text-white">
+                                                                                Registration<br>date</th>
+                                                                            <th scope="col" class="text-white">Location
+                                                                            </th>
+                                                                            <th scope="col" class="text-white">Pin</th>
+                                                                            <th scope="col" class="text-white">Assign
+                                                                            </th>
+                                                                            <th scope="col"
+                                                                                class="text-center text-white">Accept
+                                                                            </th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <th scope="row">1</th>
+                                                                            <td>Mark</td>
+                                                                            <td>Otto</td>
+                                                                            <td>@mdo</td>
+                                                                            <td>Mark</td>
+                                                                            <td>Otto</td>
+                                                                            <td>@mdo</td>
+                                                                            <td class="text-center">
+                                                                                <button type="button"
+                                                                                    class="btn btn-success bg-opacity-50">Accepted</button>
+                                                                                <button type="button"
+                                                                                    class="btn btn-danger">Rejected</button>
+                                                                                <button type="button"
+                                                                                    class="btn btn-warning">Pending</button>
+                                                                            </td>
+                                                                        </tr>
+
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-primary"
+                                                                    data-bs-dismiss="modal"
+                                                                    style="width: 7rem">Close</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                open
+                                            </td> {% endcomment %}
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+        <!-- /Row -->
+
+    </div>
+
+</div>
+{% block linkjs %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+{% endblock linkjs %}
+{% endblock content %}

@@ -1,0 +1,94 @@
+{% extends 'HOD/includes/base.html' %} {% block content %}
+<div class="hk-wrapper hk-vertical-nav">
+  <div class="hk-pg-wrapper">
+    <nav class="hk-breadcrumb" aria-label="breadcrumb">
+      <ol class="breadcrumb breadcrumb-light bg-transparent p-2 border-0">
+        <li class="breadcrumb-item d-none"><a href="#">City</a></li>
+        <li class="breadcrumb-item active d-none" aria-current="page">
+          Add City
+        </li>
+      </ol>
+    </nav>
+    <div class="container">
+        <!-- create_course.html -->
+
+<form method="POST" action="{% url 'make_course' %}">
+    {% csrf_token %}
+  
+    <label for="id_name">Course Name:</label>
+    <input type="text" id="id_name" name="name" required><br><br>
+  
+    <div id="practical_fields">
+      <label for="id_practical">Practical Equipment:</label><br>
+      <input type="text" id="id_practical_1" name="practical_equip" required>
+      <br>
+    </div>
+  
+    <button type="button" onclick="addPracticalField()">Add Practical Equipment</button><br><br>
+  
+    <div id="theory_fields">
+      <label for="id_theory">Theory Equipment:</label><br>
+      <input type="text" id="id_theory_1" name="theory_equip" required>
+      <br>
+    </div>
+  
+    <button type="button" onclick="addTheoryField()">Add Theory Equipment</button><br><br>
+  
+    <div id="assessment_fields">
+      <label for="id_assessment">Assessment Equipment:</label><br>
+      <input type="text" id="id_assessment_1" name="assessment_equip" required>
+      <br>
+    </div>
+  
+    <button type="button" onclick="addAssessmentField()">Add Assessment Equipment</button><br><br>
+  
+    <input type="submit" value="Create Course">
+  </form>
+  
+  <script>
+    let practicalFieldCount = 1;
+    let theoryFieldCount = 1;
+    let assessmentFieldCount = 1;
+  
+    function addPracticalField() {
+      practicalFieldCount++;
+      let field = document.createElement("input");
+      field.type = "text";
+      field.id = "id_practical_" + practicalFieldCount;
+      field.name = "practical_equip";
+      field.required = true;
+      field.placeholder = "Practical Equipment";
+      document.getElementById("practical_fields").appendChild(field);
+      document.getElementById("practical_fields").appendChild(document.createElement("br"));
+    }
+  
+    function addTheoryField() {
+      theoryFieldCount++;
+      let field = document.createElement("input");
+      field.type = "text";
+      field.id = "id_theory_" + theoryFieldCount;
+      field.name = "theory_equip";
+      field.required = true;
+      field.placeholder = "Theory Equipment";
+      document.getElementById("theory_fields").appendChild(field);
+      document.getElementById("theory_fields").appendChild(document.createElement("br"));
+    }
+  
+    function addAssessmentField() {
+      assessmentFieldCount++;
+      let field = document.createElement("input");
+      field.type = "text";
+      field.id = "id_assessment_" + assessmentFieldCount;
+      field.name = "assessment_equip";
+      field.required = true;
+      field.placeholder = "Assessment Equipment";
+      document.getElementById("assessment_fields").appendChild(field);
+      document.getElementById("assessment_fields").appendChild(document.createElement("br"));
+    }
+  </script>
+  
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

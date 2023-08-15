@@ -1,0 +1,143 @@
+{% extends 'MEMBERS/includes/base.html' %}
+{% load static %}
+{% block content %}
+<div class="hk-wrapper hk-vertical-nav">
+    <!-- Main Content -->
+    <div class="hk-pg-wrapper">
+        <!-- Container -->
+        <div class="container-fluid">
+            <!-- Row -->
+            <div class="row">
+                <div class="col-xl-12 pa-0">
+                    <div class="profile-cover-wrap overlay-wrap">
+                        <div class="profile-cover-img" style="background-image:url('{% static 'assets/img/profile/bg.jpg' %}')"></div>
+                        <div class="bg-overlay bg-trans-dark-60"></div>
+                        <div class="container profile-cover-content py-50">
+                            <div class="hk-row">
+                                <div class="col-lg-6">
+                                    <div class="media align-items-center">
+                                        <div class="media-img-wrap  d-flex">
+                                            <div class="avatar">
+                                                
+                                                {% comment %} <a href="#"><img class="img-circle" src="/media/{{i.job_img}}" alt="" style="width:150px; height:100px;" /></a> {% endcomment %}
+                                                <img src="/media/{{user.profile_pic}}" alt="user"
+                                                {% comment %} <img src="{% static 'assets/img/profile/logo.webp' %}" alt="user" {% endcomment %}
+                                                    class="avatar-img rounded-circle">
+                                            </div>
+                                        </div>
+                                        <div class="media-body">
+                                            <div class="text-white text-capitalize display-6 mb-5 font-weight-400">
+                                                {{user.username}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 mb-3">
+                   <h1 class="h3 mb-2 mb-sm-0">Profile</h1>
+                </div>
+             </div>
+             <div class="row g-4">
+                <!-- Left side START -->
+                <div class="col-xl-3 shadow text-center mx-auto">
+                   <!-- Tab START -->
+                   <ul class="nav nav-pills nav-tabs-bg-light flex-column">
+                      <img class="avatar-img rounded-circle shadow mt-3"
+                         src="/media/{{request.user.profile_pic}}" alt="avatar" style="width:200px !important; height:150px !important;">                                                                 
+          
+                      
+                         {% comment %} <h5  class="" style="margin-left: 3rem;margin-top: 1rem;">
+                         &nbsp;
+                      </h5> {% endcomment %}
+                   </ul>
+                   <hr>
+                   
+                   <div class="row letter-spacing: 2px;">
+                     
+                      <div class="col text-center">
+                         <label for="" class="font-weight-bold "><strong>Username</strong></label>
+                         <p class="text-primary">{{user.username}}</p>
+                      </div>
+                      <br>
+                      
+                      <div class="col">
+                         <label for=""><strong>Full Name</strong></label>
+                         <p class="text-primary">{{user.first_name}} {{user.last_name}}</p>
+                      </div>
+                     
+                      
+                      <div class="col">
+                         <label for=""><strong>Email</strong></label>
+                         <p class="text-primary">{{user.email}}</p>
+                      </div>
+                      
+                   </div>
+                   
+                </div>
+                <!-- Left side END -->
+                <!-- MYCODE -->
+                <!-- ENDMYCODE -->
+                <!-- Right side START -->
+                <div class="col-xl-9">
+                   <!-- Tab Content START -->
+                   <div class="tab-content">
+                      <!-- Personal Information content START -->
+                      <div class="tab-pane show active" id="tab-1">
+                         <div class="card shadow">
+                            <!-- Card header -->
+                            <div class="card-header border-bottom">
+                               {% comment %} {% include 'includes/messages.html' %} {% endcomment %}
+                               <form action="" method="POST" enctype="multipart/form-data">
+                                  {% csrf_token %}
+                                  <div >
+                                     <div class="mb-3 cod-md-12 ">
+                                        <label class="form-label">Profile Pic</label>
+                                        <input type="file" name="profile_pic" accept="image/*" id="id_profile_pic">
+                                        <a href="{{user.profile_pic.url}}">/media/{{user.profile_pic}}</a>
+                                        {% comment %} <input type="file" class="form-control" name = "profile_pic" value="/media/{{user.profile_pic}}" > {% endcomment %}
+                                        <!-- <input type="text" class="form-control" name = "instructor_id" value = "{% for i  in instructor  %} {{i.admin.id}}{% endfor %}" hidden > -->
+                                        {% comment %} <input type="text" class="form-control" name = "instructor_id" value="{{request.user.id}}" > {% endcomment %}
+                                     </div>
+                                     <div class="mb-3 col-md-12">
+                                        <label class="form-label">First Name</label>
+                                        {% comment %} <p>{{user.username}}</p {% endcomment %}
+                                        <input type="text"  class="form-control" value= "{{user.first_name}}" name="first_name" required>
+                                     </div>
+                                     <div class="mb-3 col-md-12">
+                                        <label class="form-label">Last Name</label>
+                                        <input type="text"  class="form-control" value= "{{request.user.last_name}}" name = "last_name" required>
+                                     </div>
+                                  </div>
+                                  <div >
+                                     <div class="mb-3 col-md-12">
+                                        <label class="form-label"> Email</label>
+                                        <input type="email"  class="form-control" value = "{{request.user.email}}" name="email" required readonly >
+                                     </div>
+                                     <div class="mb-3 col-md-12">
+                                        <label class="form-label">Username</label>
+                                        <input type="text"  class="form-control" value = "{{request.user.username}}" name="username" required readonly>
+                                     </div>
+                                  </div>
+                                  <div class = "col-md-6">
+                                     <button type="submit" class= "btn btn-primary">Update Profile</button>
+                                  </div>
+                               </form>
+                            </div>
+                            <!-- MyCode -->
+                            <!-- EndMycode -->
+                         </div>
+                      </div>
+                   </div>
+                   <!-- Tab Content END -->
+                </div>
+                <!-- Right side END -->
+             </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

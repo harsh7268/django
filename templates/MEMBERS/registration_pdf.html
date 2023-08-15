@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Registration Details</title>
+    <style>
+      /* CSS styling for the PDF file */
+      /* ... */
+    </style>
+  </head>
+  <body>
+    <div class="logo">
+      <img src="{% static 'assets/img/logo/logo3.jpg' %}" alt="" />
+   </div>
+    <h1>Thank you for your registration!</h1>
+    <p>Here are your registration details:</p>
+    <table> 
+      <tr>
+        <td>Name:</td>
+        <td>hello</td>
+        {% comment %} <td>{{ registration_details.name }}</td> {% endcomment %}
+      </tr>
+      <tr>
+        <td>Email:</td>
+        <td> emaillll</td>
+        {% comment %} <td>{{ registration_details.email }}</td> {% endcomment %}
+      </tr>
+      <tr>
+        <td>Phone:</td>
+        {% comment %} <td>{{ registration_details.phone }}</td> {% endcomment %}
+        <td>phoneeeee</td>
+      </tr>
+      <tr>
+        <td>Address:</td>
+        <td>addressssss</td>
+        {% comment %} <td>{{ registration_details.address }}</td> {% endcomment %}
+      </tr>
+      <tr>
+        <td>Registration Date:</td>
+        {% comment %} <td>{{ registration_details.registration_date }}</td> {% endcomment %}
+        <td>Dateee</td>
+      </tr>
+      <!-- Add more registration details as desired -->
+    </table>
+  </body>
+</html>

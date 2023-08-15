@@ -1,0 +1,156 @@
+{% extends 'BASE/base.html' %}
+
+{% load static %}
+{% block linkcss %}
+
+<link href="{% static 'admin/dist/css/style.css' %}" rel="stylesheet" type="text/css">
+{% endblock linkcss %}
+{% block content %}
+
+<style>
+  /* Google Poppins Font CDN Link */
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  /* Variables */
+  :root {
+    --primary-font-family: 'Poppins', sans-serif;
+    --light-white: #f5f8fa;
+    --gray: #5e6278;
+    --gray-1: #e3e3e3;
+  }
+
+  body {
+    font-family: var(--primary-font-family);
+    font-size: 14px;
+  }
+
+  /* Main CSS */
+  .wrapper {
+    padding: 0 0 100px;
+    background-image: url('images/bg.png');
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-attachment: fixed;
+    background-size: contain;
+    min-height: 100%;
+  }
+
+  .wrapper .logo img {
+    max-width: 40%;
+  }
+
+  .wrapper input {
+    background-color: var(--light-white);
+    border-color: var(--light-white);
+    color: var(--gray);
+  }
+
+  .wrapper input:focus {
+    box-shadow: none;
+  }
+
+  .wrapper .submit_btn {
+    padding: 15px;
+    font-weight: 500;
+  }
+
+  .wrapper .login_with {
+    padding: 15px;
+    font-size: 15px;
+    font-weight: 500;
+    transition: 0.3s ease-in-out;
+  }
+
+  .wrapper .submit_btn:focus,
+  .wrapper .login_with:focus {
+    box-shadow: none;
+  }
+
+  .wrapper .login_with:hover {
+    background-color: var(--gray-1);
+    border-color: var(--gray-1);
+  }
+
+  .wrapper .login_with img {
+    max-width: 8%;
+  }
+  a{
+    text-decoration: none !important;
+  }
+</style>
+<!--================Blog Area =================-->
+<section class="wrapper mt-5">
+  {% for message in messages %}
+    {% if message.tags == 'error' %}
+    
+    <div class="alert alert-inv alert-inv-warning alert-wth-icon alert-dismissible fade show" role="alert">
+        <span class="alert-icon-wrap"><i class="zmdi zmdi-help"></i></span> {{message}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    {% endif %}
+
+    {% if message.tags == 'warning' %}
+        
+    <div class="alert alert-inv alert-inv-danger alert-wth-icon alert-dismissible fade show" role="alert">
+        <span class="alert-icon-wrap"><i class="zmdi zmdi-bug"></i></span> {{message}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    {% endif %}
+{% endfor %}
+ 
+  <div class="container pt-5">
+    <div class="col-sm-8 offset-sm-2 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4 text-center">
+      
+      <form method="post" action="{% url 'dologin' %}" class="rounded bg-white shadow py-3 px-4">
+        {% csrf_token %}
+        <div class="logo">
+          <img src="{% static 'assets/img/logo/fotter.jpg' %}" class="img-fluid" alt="Logo">
+        </div>
+        <h3 class="text-dark fw-bolder fs-4 mb-4">SIGN IN TO CLCUP</h3>
+        <div class="form-floating mb-3">
+          <input type="number" class="form-control" id="floatingInput" name="adhaarNo" placeholder="Aadhaar Card Number">
+          
+        </div>
+        <div class="form-floating">
+          <input type="text"  class="form-control" name="password" placeholder="Mobile Number">
+          
+        </div>
+        <button type="submit" class="btn btn-success submit_btn w-100 my-4">Login</button>
+        <div class="text-center text-muted text-uppercase mb-3 "></div>
+      </form>
+    </div>
+  </div>
+</section>
+<!--================Blog Area =================-->
+
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

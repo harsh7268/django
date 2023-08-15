@@ -1,0 +1,44 @@
+{% extends 'homepage/includes/base.html' %}
+{% load static %}
+{% block title %}Success{% endblock %}
+
+{% block content %}
+<div class="">
+{% comment %} <img src="{% static 'assets/img/img.png'  %}" alt="" class="img-fluid img-responsive" style="width: 200px;height: 200px;"> {% endcomment %}
+<h4 class="alert  bg-success mt-5" style="text-align:center;">Thank you! We will notify you in the Notification Bar once the employees accept your request.</h4>
+<u><h4 style="text-align:center;margin-bottom:20px;">Here are the further details for the selected Employees.</h4></u>
+<div class="container">
+    <div class="table-responsive">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Phone No.</th>
+            <th scope="col">Martial Status</th>
+            <th scope="col">DOB</th>
+            <th scope="col">Aadhar Card No.</th>
+            <th scope="col">Pancard No.</th>
+          </tr>
+        </thead>
+        <tbody>
+            {%for mem in members%}
+          <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td>{{mem.admin}}</td>
+            <td>{{mem.gender}}</td>
+            <td>{{mem.mobile_no}}</td>
+            <td>{{mem.marital_status}}</td>
+            <td>{{mem.dob}}</td>
+            <td>{{mem.adhaar}}</td>
+            <td>{{mem.pan_no}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+<div class="text-center">
+<a href="{% url 'dashboard' %}" class="btn btn-info">Go to your Dashboard</a>
+</div>
+{% endblock %}

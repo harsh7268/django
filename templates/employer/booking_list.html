@@ -1,0 +1,31 @@
+
+{% for movie  in booking_data %}
+<tr id="movie-{{ movie.pk }}" class="movie-row">
+    <td class="border_color">{{movie.work_start_Date}}</td>
+    <td class="border_color">{{movie.services}}</td>
+    <td class="border_color">{{movie.no_of_worker}}</td>
+    <td class="border_color">{{movie.department}}</td>
+    <td class="border_color">{{movie.employer_id.admin.username}}</td>
+    <td class="border_color">{{movie.employer_id.mob_no}}</td>
+    <td class="border_color">{{movie.pin_code}}</td>
+    <td class="border_color">{{movie.city}}</td>
+    <td class="border_color">{{movie.goverment}}</td>
+    {% comment %} {% if movie.goverment == 'Private' %}
+    <td class="border_color">{{movie.total_monthly}}</td>
+    {% endif %} {% endcomment %}
+    <td class="border_color">
+        <!-- Button trigger modal -->
+        {% comment %} <button class="btn btn-warning badge rounded-pill text-dark" hx-get="{% url 'worlker_list' movie.services.id %}" hx-target="#dialog">List Of Workers</button> {% endcomment %}
+        {% comment %} <button type="button" class="btn btn-warning badge rounded-pill text-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop" hx-get="{% url 'worlker_list' movie.services.id movie.id%}" hx-target="#dialog">
+            List Of Workers
+        </button> {% endcomment %}
+        <a href="{% url 'worlker_list' movie.services.id movie.id%}"><button class="btn btn-warning badge rounded-pill text-dark">List of Workers</button></a>
+        <!-- Modal -->
+        <!-- Model code is in demo.html (line No 6)-->
+    </td>
+    <td>
+        open
+    </td>
+</tr>
+
+{% endfor %}

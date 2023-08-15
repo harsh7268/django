@@ -1,0 +1,285 @@
+{% extends 'BASE/base.html' %}
+{% load static %}
+
+{% block linkcss %}
+<!-- Swiper CSS -->
+<link rel="stylesheet" href="{% static 'slider/css/swiper-bundle.min.css' %}">
+<!-- CSS -->
+<link rel="stylesheet" href="{% static 'slider/css/style.css' %}">
+{% endblock linkcss %}
+
+{% block content %}
+
+<main>
+  <section class="banner-main">
+    <div class="banner-wrap">
+      <div class="swiper-container swiper-1">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <div class="banner-silde-wrap" style="width:100%">
+              <img class="banner-img img-fluid" src="{% static 'assets/img/homepage/home_banner.png' %}" alt="" title="">
+              <div class="container banner-text-wrap hello">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="banner-text">
+                      <div class="ml-auto col-12 col-sm-12">
+
+                        <div class="text-right">
+                        </div>
+
+                        <div class="col-md-12 d-f-c">
+                          <a href="{% url 'register' %}" class="btn yellow-btn mr-md-4 mr-sm-2 ">कामगारो का <span>पंजीकरण </span></a>
+                          <a href="{% url 'emp_outer' %}" class="btn yellow-btn bg-primary"> कामगारो के सेवाएं  </a>
+                          
+
+                          
+                          {% comment %} <a href="Login.html" class="yellow-btn glow-btn flex-btn">Reg for house
+                            service onit</a>
+
+                          <a href="LoginSecondLoanTerm.html" class="yellow-btn glow-btn flex-btn "
+                           >Req service provide form</a> {% endcomment %}
+{% comment %} 
+                          <a href="Login.html" class="yellow-btn glow-btn flex-btn">Reg for house
+                            service onit</a>
+
+                          <a href="LoginSecondLoanTerm.html" class="yellow-btn glow-btn flex-btn "
+                           >Req service provide form</a>
+
+                          <a href="LoginThirdLoanTerm.html" class="yellow-btn glow-btn flex-btn "
+                            >Instant service provider</a>
+
+                          <a href="Login/EKYC.html" class="yellow-btn glow-btn flex-btn">Door
+                            step service provider</a>
+
+                          <a href="LORLogin.html" class="yellow-btn glow-btn  flex-btn">Reg for
+                            training Courses</a>
+                          <a href="LORLogin.html" class="yellow-btn glow-btn  flex-btn">Reg for
+                            job application</a>
+                          <a href="LORLogin.html" class="yellow-btn glow-btn  flex-btn color-btn">Employeer reg/login</a> {% endcomment %}
+                        </div>
+                        <div class="col-md-12 d-f-c mt-1">
+                          <a href="{% url 'register' %}" class="btn yellow-btn mr-md-4 mr-sm-2" style='background: #40E0D0 !important;'>सेवा प्रदाता का पंजीकरण</a>
+                          <a href="{% url 'instant_register' %}" class="btn yellow-btn bg-primary" style='background: #008080 !important;'>सेवा प्रदाताओं का खोज</a>
+                        </div>
+                        <div class="col-md-12 d-f-c mt-1">
+                          <a href="{% url 'register' %}" class=" btn yellow-btn bg-success mr-md-4 mr-sm-2">प्रशिक्षण के लिए आवेदन </a>
+                          <a href="{% url 'employer_register' %}" class=" btn yellow-btn bg-light">Employer  Login/Reg </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  {% comment %} button adding end {% endcomment %}
+ 
+  <div class="container-fluid mb-4 full">
+    <div class="news">
+      <marquee class="news-content">
+        <p>WELCOME TO CLC UP YOUR JOB/TRAINING PORTAL
+        </p>
+      </marquee>
+    </div>
+  </div>
+
+
+  {% comment %} <div class="our-services mt-2">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="section-tittle text-center">
+           
+            <h2>Browse Top Courses</h2>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row d-flex justify-contnet-center">
+
+        <div class="slide-container swiper">
+          <div class="slide-content">
+            <div class="card-wrapper swiper-wrapper">
+              {% for i in course %}
+              <div class="card swiper-slide">
+                <div class="image-content">
+                  <span class="overlay"></span>
+
+                  <div class="card-image">
+                    <img src="media/{{i.course_img}}" alt="" class="card-img">
+                  </div>
+                </div>
+
+                <div class="card-content">
+                  <h2 class="name">{{i.course_name}}</h2>
+                  <p class="description">{{i.course_desc}}</p>
+                </div>
+              </div>
+              {% endfor %}
+
+
+            </div>
+          </div>
+
+          <div class="swiper-button-next swiper-navBtn"></div>
+          <div class="swiper-button-prev swiper-navBtn"></div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="browse-btn2 text-center mt-50">
+            <a href="{% url 'course' %}" class="border-btn2">Browse All Courses</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div> {% endcomment %}
+
+  {% comment %} <section class="featured-job-area feature-padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="section-tittle text-center">
+            <span>Recent Job</span>
+            <h2>Featured Jobs</h2>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-xl-10">
+          {% for i in job %}
+
+          <div class="single-job-items mb-30">
+            <div class="job-items">
+              <div class="company-img">
+                <a href="#"><img class="img-circle" src="/media/{{i.job_img}}" alt=""
+                    style="width:150px; height:100px;" /></a>
+              </div>
+              <div class="job-tittle job-tittle2">
+                <a href="#">
+                  <h4>{{i.job_name}}</h4>
+                </a>
+                <ul>
+                  <li>{{i.company_name}}</li>
+                  <li>
+                    <i class="fas fa-map-marker-alt"></i>{{i.job_location}}
+                  </li>
+                  <li>Rs.{{i.min_sallery}} - Rs.{{i.max_sallery}}</li>
+                </ul>
+              </div>
+            </div>
+            <div class="items-link items-link2 f-right">
+              <a href="{% url 'jobdetails' i.id %}">Full Time</a>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section> {% endcomment %}
+
+  <div class="container">
+
+    <div class="row mb-3">
+      <div class="col-md-8 mb-1 paddingRight">
+        <img src="{% static 'clcup_img/p2.png' %}" class="rounded" alt="" style="width:100%; height:100%;">
+      </div>
+      <div class="col-6 col-md-4 mb-1 paddingRight">
+        <img src="{% static 'clcup_img/p1.png' %}" class="rounded" alt="" style="width:100%; height:100%;">
+      </div>
+
+      <div class="col-6 col-md-4 mb-1 paddingRight">
+        <img src="{% static 'clcup_img/p4.png' %}" class="rounded" alt="" style="width:100%; height:100%;">
+      </div>
+      <div class="col-md-8 mb-1 paddingRight">
+        <img src="{% static 'clcup_img/p3.png' %}" class="rounded" alt="" style="width:100%; height:100%;">
+      </div>
+    </div>
+
+
+
+    <div class="row mb-3 ">
+      <div class="col-md-6 paddingRight">
+        <img src="{% static 'clcup_img/p5.png' %}" class="rounded" alt="" style="width:100%; height:100%;">
+      </div>
+      <div class="col-md-6 paddingRight">
+        <img src="{% static 'clcup_img/p6.png' %}" class="rounded" alt="" style="width:100%; height:100%;">
+      </div>
+    </div>
+
+    <div class="row mb-3 ">
+      <div class="col-6 col-md-4 paddingRight">
+        <img src="{% static 'clcup_img/p8.png' %}" class="rounded" alt="" style="width:100%; height:100%;">
+      </div>
+      <div class="col-6 col-md-8 paddingRight">
+        <img src="{% static 'clcup_img/p9.png' %}" class="rounded" alt="" style="width:100%; height:100%;">
+      </div>
+    </div>
+
+    <div class="row mb-3 justify-content-between">
+      <div class="col paddingRight" style="max-width: 15rem !important">
+        <img src="{% static 'clcup_img/p16.jpg' %}" class="rounded" alt="" style="width:100%; height:100%;">
+      </div>
+      <div class="col paddingRight" style="max-width: 22rem !important">
+        <img src="{% static 'clcup_img/p17.jpg' %}" class="rounded" alt="" style="width:100%; height:100%;">
+      </div>
+      <div class="col paddingRight" style="max-width: 15rem !important">
+        <img src="{% static 'clcup_img/p20.jpg' %}" class="rounded" alt="" style="width:100%; height:100%;">
+      </div>
+      <div class="col paddingRight" style="max-width: 22rem !important">
+        <img src="{% static 'clcup_img/p15.jpg' %}" class="rounded" alt="" style="width:100%; height:100%;">
+      </div>
+    </div>
+
+    <div class="row mb-3  justify-content-center">
+      <div class="col-6 paddingRight">
+        <img src="{% static 'clcup_img/p12.png' %}" class="rounded" alt="" style="width:100%; height:100%;">
+      </div>
+      <div class="col-6 paddingRight">
+        <img src="{% static 'clcup_img/p12.png' %}" class="rounded" alt="" style="width:100%; height:100%;">
+      </div>
+    </div>
+
+    <div class="row mb-3 justify-content-between">
+      <div class="col paddingRight" style="max-width: 15rem !important">
+        <img src="{% static 'clcup_img/p10.png' %}" class="rounded" alt="" style="width:100%; height:100%;">
+      </div>
+      <div class="col paddingRight" style="max-width: 22rem !important">
+        <img src="{% static 'clcup_img/p11.png' %}" class="rounded" alt="" style="width:100%; height:100%;">
+      </div>
+      <div class="col paddingRight" style="max-width: 15rem !important">
+        <img src="{% static 'clcup_img/p13.png' %}" class="rounded" alt="" style="width:100%; height:100%;">
+      </div>
+      <div class="col paddingRight" style="max-width: 22rem !important">
+        <img src="{% static 'clcup_img/p14.png' %}" class="rounded" alt="" style="width:100%; height:100%;">
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+{% block linkjs %}
+<!-- Swiper JS -->
+<script src="{% static 'slider/js/swiper-bundle.min.js' %}"></script>
+
+<!-- JavaScript -->
+<script src="{% static 'slider/js/script.js' %}"></script>
+{% endblock linkjs %}
+
+
+{% endblock content %}

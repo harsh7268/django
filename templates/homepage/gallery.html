@@ -1,0 +1,47 @@
+{% extends 'BASE/base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 10px;
+    }
+  
+    /* Tablet size screens */
+    @media only screen and (max-width: 768px) {
+      .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  
+    /* Mobile size screens */
+    @media only screen and (max-width: 480px) {
+      .grid-container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+  <h1 class="text-center mt-5"><span style="border-bottom: 3px solid"> GALLERY </span></h1>
+
+
+{% comment %} gallery part start {% endcomment %}
+{% comment %} <div class="container my-3">
+    <div class="row g-2">
+        {% for i in galary %}
+        <div class="col-md-4 col-6 col-sm-6 mb-2 gallery_img_height">
+            <img src="{{i.galary_pic.url}}" class="img-fluid w-100 h-100" alt="..." >
+        </div>
+        {% endfor %}
+        
+    </div>
+</div> {% endcomment %}
+
+<div class="grid-container" style="padding:30px;">
+    {% for i in galary %}
+        <div class="grid-item gallery_img_height ">
+            <img src="{{i.galary_pic.url}}" class="img-fluid w-100 h-100" alt="..." >
+        </div>
+        {% endfor %}
+  </div>
+{% endblock content %}

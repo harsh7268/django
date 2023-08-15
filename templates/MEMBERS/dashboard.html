@@ -1,0 +1,104 @@
+{% extends 'MEMBERS/includes/base.html' %}
+{% load static %}
+{% block content %}
+<div class="hk-pg-wrapper">
+   <nav class="hk-breadcrumb" aria-label="breadcrumb">
+       <ol class="breadcrumb breadcrumb-light bg-transparent p-2 border-0">
+           <li class="breadcrumb-item d-none"><a href="#">Manage</a></li>
+           <li class="breadcrumb-item active d-none" aria-current="page">City</li>
+       </ol>
+   </nav>
+   <div class="container">
+       <!-- Row -->
+       <div class="row">
+           <div class="col-xl-12">
+               <section class="hk-sec-wrapper rounded-20">
+                   <div class="row justify-content-between">
+                       <a href="#" class="ml-3 "><h5 class="hk-sec-title d-inline-block" style="border-bottom: 3px solid #ab26aa; font-weight: 700;">Worker Dashboard</h5></a>
+                   </div>
+                   {% include 'HOD/includes/messages.html' %}
+                   <hr>
+                   <div class="row">
+                       <div class="col-sm">
+                           <div class="table-responsive">
+                               <table id="datable_1" class="table table-hover w-100 display pb-30">
+                                   <thead>
+                                       <tr style="background-color: #e8ded4">
+                                           <th>#No</th>
+                                           <th>Name</th>
+                                           <th>Regi Date</th>
+                                           <th>Amount Paid</th>
+                                           <th>Amount Id</th>
+                                           <th>Role</th>
+                                           <th>Employer Details</th>
+                                       </tr>
+                                   </thead>
+                                   <tbody>
+                                    <td>1</td>
+                                    <td>Rahul</td>
+                                    <td>2022-08-01</td>
+                                    <td>200</td>
+                                    <td>#256326</td>
+                                    <td>Driver</td>
+                                    <td>
+                                       <!--Model start-->
+                                      <button type="button" class="btn btn-warning badge rounded-pill text-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                       Employer Details
+                                     </button>
+
+                                      <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
+                                       <div class="modal-dialog">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <h5 class="modal-title" id="modal">
+                                              workers list
+                                            </h5>
+                                          </div>
+                                          <div class="modal-body">
+                                            <table class="table table-striped table-responsive">
+                                              <thead>
+                                                <tr class="bg-primary">
+                                                  <th scope="col" class="text-white">#</th>
+                                                  <th scope="col" class="text-white">Employer Name</th>
+                                                  <th scope="col" class="text-white">Joining Date</th>
+                                                  <th scope="col" class="text-white">Monthly Payout</th>
+                                                  <th scope="col" class="text-white">Work Location</th>
+                                                  <th scope="col" class="text-center text-white">Status</th>
+                                                </tr>
+                                              </thead>
+                                              <tbody>               
+                                                <tr>
+                                                  <th scope="row"></th>
+                                                  <td>Raju</td>
+                                                  <td>2022-08-10</td>
+                                                  <td>9000</td>
+                                                  <td>Noida, UP</td>
+                                                  <td class="text-center d-flex gap-2">
+                                                   <button type="button" class="btn btn-warning bg-opacity-50">Request</button>
+                                                    <button type="button" class="btn btn-success bg-opacity-50">Accepted</button>
+                                                  </td>
+                                                </tr>
+                                              </tbody>
+                                            </table>
+                                          </div>
+                                          <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" style="width: 7rem">Close</button>
+                                          </div>
+                                        </div>
+                                       </div>
+                                      </div>
+                                      <!--Model end-->
+                                    </td>
+                                   </tbody> 
+                               </table>
+                               <input type="submit" value="Update" class="btn btn-primary">
+                           </div>
+                       </div>
+                   </div>
+               </section>
+           </div>
+       </div>
+       <!-- /Row -->
+   </div>
+</div>
+{% endblock content %}

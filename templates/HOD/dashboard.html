@@ -1,0 +1,318 @@
+{% extends 'HOD/includes/base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="hk-pg-wrapper">
+   <!-- Container -->
+   <div class="container mt-xl-50 mt-sm-30 mt-15">
+      <!-- Title -->
+      {% comment %} <div class="hk-pg-header " > {% endcomment %}
+       
+            <h1 class="hk-pg-title font-weight-600 mb-10" style="text-align:center">Dashboard</h1>
+      {% comment %} </div> {% endcomment %}
+      <!-- /Title -->
+      <!-- Row -->
+      <h2 style="margin-bottom:30px;">Revenue Generated in Lakhs</h2>
+      <div class="row" style="margin-bottom:30px;">
+         <div class="col-sm-4">
+            <div>
+               <div>For Employee's Module</div>
+               <canvas id="doughnut-chart"></canvas>
+            </div>
+         </div>
+         <div class="col-sm-4">
+            <div>
+               <div>For Employer's Module</div>
+               <canvas id="doughnut-chart1"></canvas>
+
+            </div>
+         </div>
+         <div class="col-sm-4">
+            <div>
+               <div>Overall CLC</div>
+               <canvas id="doughnut-chart2"></canvas>
+ 
+            </div>
+         </div>
+      </div>
+      <h2 style="margin-top:10px; margin-bottom:20px;">Other Info</h2>
+      <div class="row">
+         <div class="col-xl-12">
+            <div class="hk-row">
+               <div class="col-lg-6">
+                  <div class="hk-row">
+                     <div class="col-sm-6">
+                        <div class="card card-sm bg-info text-white">
+                           <div class="card-body">
+                              <div class="d-flex justify-content-between mb-5">
+                                 <div>
+                                    <span
+                                       class="d-block font-weight-bold font_size"
+                                       >Total Members</span
+                                       >
+                                 </div>
+                                 
+                              </div>
+                              <div>
+                                 <span class="d-block display-5 mb-5 font-weight-bold"
+                                    >{{member_count}}</span
+                                    >
+                                    <a href="{% url 'manage_members' %}" class="small-box-footer text-white font-weight-bold">More info <i class="fas fa-arrow-circle-right"></i></a>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-sm-6">
+                        <div class="card card-sm bg-success text-white">
+                           <div class="card-body">
+                              <div class="d-flex justify-content-between mb-5">
+                                 <div>
+                                    <span
+                                       class="font-weight-bold font_size"
+                                       >Total Employer</span
+                                       >
+                                 </div>
+                                 
+                              </div>
+                              <div>
+                                 <span class="d-block display-5 mb-5 font-weight-bold"
+                                    >68</span
+                                    >
+                                    <a href="" class="small-box-footer text-white font-weight-bold">More info <i class="fas fa-arrow-circle-right"></i></a>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-sm-6">
+                        <div class="card card-sm bg-course text-white">
+                           <div class="card-body">
+                              <div class="d-flex justify-content-between mb-5">
+                                 <div>
+                                    <span
+                                       class="font-weight-bold font_size"
+                                       >Total Course</span
+                                       >
+                                 </div>
+                                
+                              </div>
+                              <div>
+                                 <span class="d-block display-5 mb-5 font-weight-bold"
+                                    >73</span
+                                    >
+                                    <a href="" class="small-box-footer text-white font-weight-bold">More info <i class="fas fa-arrow-circle-right"></i></a>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-sm-6">
+                        <div class="card card-sm bg-dark text-white">
+                           <div class="card-body">
+                              <div class="d-flex justify-content-between mb-5">
+                                 <div>
+                                    <span
+                                       class="font-weight-bold font_size"
+                                       >Total Category</span
+                                       >
+                                 </div>
+                                
+                              </div>
+                              <div>
+                                 <span class="d-block display-5 mb-5 font-weight-bold"
+                                    >73</span
+                                    >
+                                    <a href="" class="small-box-footer text-white font-weight-bold">More info <i class="fas fa-arrow-circle-right"></i></a>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     
+          
+                  </div>
+               </div>
+               <div class="col-lg-6">
+                  <div class="hk-row">
+                     <div class="col-sm-6">
+                        <div class="card card-sm bg-warning text-dark">
+                           <div class="card-body">
+                              <div class="d-flex justify-content-between mb-5">
+                                 <div>
+                                    <span
+                                       class="font-weight-bold font_size"
+                                       >Total Instructor</span
+                                       >
+                                 </div>
+                                 
+                              </div>
+                              <div>
+                                 <span class="d-block display-5 mb-5 font-weight-bold"
+                                    >{{instructor_count}}</span
+                                    >
+                                    <a href="{% url 'manage_instructor' %}" class="small-box-footer text-dark font-weight-bold">More info <i class="fas fa-arrow-circle-right"></i></a>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-sm-6">
+                        <div class="card card-sm bg-danger text-white">
+                           <div class="card-body">
+                              <div class="d-flex justify-content-between mb-5">
+                                 <div>
+                                    <span
+                                       class="font-weight-bold font_size"
+                                       >Total Role</span
+                                       >
+                                 </div>
+                                 
+                              </div>
+                              <div>
+                                 <span class="d-block display-5 mb-5 font-weight-bold"
+                                    >{{role_count}}</span
+                                    >
+                                    <a href="{% url 'manage_role' %}" class="small-box-footer text-white font-weight-bold">More info <i class="fas fa-arrow-circle-right"></i></a>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-sm-6">
+                        <div class="card card-sm bg-payment text-white ">
+                           <div class="card-body">
+                              <div class="d-flex justify-content-between mb-5">
+                                 <div>
+                                    <span
+                                       class="font-weight-bold font_size"
+                                       >Total Payment</span
+                                       >
+                                 </div>
+                                 
+                              </div>
+                              <div>
+                                 <span class="d-block display-5 mb-5 font-weight-bold"
+                                    >73</span
+                                    >
+                                    <a href="" class="small-box-footer text-white font-weight-bold">More info <i class="fas fa-arrow-circle-right"></i></a>
+                              </div>
+                              
+                           </div>
+                           
+                        </div>
+                     </div>
+                     
+                     {% comment %} <div class="col-sm-6">
+                        <div class="card card-sm">
+                           <div class="card-body">
+                              <div class="d-flex justify-content-between mb-5">
+                                 <div>
+                                    <span
+                                       class="d-block font-15 text-dark font-weight-500"
+                                       >Earnings</span
+                                       >
+                                 </div>
+                                 <div>
+                                    <span class="badge badge-warning badge-sm"
+                                       >+60%</span
+                                       >
+                                 </div>
+                              </div>
+                              <div>
+                                 <span class="d-block display-5 text-dark mb-5"
+                                    >$89M</span
+                                    >
+                                 <small class="d-block">$100M Targeted</small>
+                              </div>
+                           </div>
+                        </div>
+                     </div> {% endcomment %}
+                  </div>
+               </div>
+              
+              
+            </div>
+         </div>
+      </div>
+      <!-- /Row -->
+   </div>
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   <script>
+      var data = {{ data|safe }};
+      var chart = new Chart('doughnut-chart', {
+          type: 'bar',
+          data: {
+              datasets: [{
+                  data: data.values,
+                  backgroundColor: [
+                      'rgba(255, 99, 132, 0.6)',
+                      'rgba(54, 162, 235, 0.6)',
+                      'rgba(255, 206, 86, 0.6)'
+                  ]
+              }],
+              labels: data.labels
+          },
+          options: {
+            responsive: true,
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+      });
+      var chart = new Chart('doughnut-chart1', {
+         type: 'bar',
+         data: {
+             
+             datasets: [{
+
+                 backgroundColor: [
+                     'rgba(255, 99, 132, 0.6)',
+                     'rgba(225, 39, 245, 0.8)',
+                     'rgba(41, 39, 228, 0.8)'
+                 ],
+                 data: data.values
+             }],
+             labels: data.labels,
+         },
+         options: {
+            responsive: true,
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+     });
+     var chart = new Chart('doughnut-chart2', {
+      type: 'bar',
+      data: {
+          labels: data.labels,
+          datasets: [{
+              data: data.values,
+              backgroundColor: [
+                  'rgba(255, 99, 132, 0.6)',
+                  'rgba(234, 15, 13, 0.94)',
+                  'rgba(251, 191, 54, 0.8)'
+              ]
+          }]
+      },
+      options: {
+         responsive: true,
+         scales: {
+             yAxes: [{
+                 ticks: {
+                     beginAtZero: true
+                 }
+             }]
+         }
+     }
+  });
+  </script>
+   <!-- /Container -->
+   <!-- Footer -->
+   {% include 'HOD/includes/footer.html' %}
+   <!-- /Footer -->
+</div>
+{% endblock content %}

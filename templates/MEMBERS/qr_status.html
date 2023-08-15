@@ -1,0 +1,26 @@
+<!doctype html>
+{%load static%}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Payment</title>
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<!-- Google Fonts -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+<!-- Bootstrap core CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+  </head>
+  <body class="bg-light">
+    <div class="container">
+        <div class="text-center mt-5 pt-5">
+            <h2 class="alert  bg-success mt-5">Thank you! Our Team will notify you soon.</h2>
+            <p>Click <a href="{% url 'generate_pdf' %}?admin_id={{ id }}">here</a> to download a PDF copy of your registration details.</p>
+            <a href="/" class="btn btn-info">Go to your Home Page</a>
+            </div>
+    </div>
+  </body>
+</html>

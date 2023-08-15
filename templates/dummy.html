@@ -1,0 +1,17 @@
+{% extends 'dummy_base.html' %}
+
+
+{% block content %}
+<select id="select1">
+    <option value="">selected</option>
+    {% for i in city %}
+    <option value="{{i.id}}">{{i.city}}</option>
+    {% endfor %}
+</select>
+<select  id="select2">
+    <option value="">selected</option>
+    {% for role in role %}
+    <option value="{{role.city_id}}">{{role.role_name}}</option>
+    {% endfor %}
+</select>
+{% endblock content %}

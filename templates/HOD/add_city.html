@@ -1,0 +1,85 @@
+{% extends 'HOD/includes/base.html' %} {% block content %}
+<div class="hk-wrapper hk-vertical-nav">
+  <div class="hk-pg-wrapper">
+    <nav class="hk-breadcrumb" aria-label="breadcrumb">
+      <ol class="breadcrumb breadcrumb-light bg-transparent p-2 border-0">
+        <li class="breadcrumb-item d-none"><a href="#">City</a></li>
+        <li class="breadcrumb-item active d-none" aria-current="page">
+          Add City
+        </li>
+      </ol>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-12">
+          <section class="hk-sec-wrapper rounded-20">
+            <div class="row justify-content-between">
+              <a href="{% url 'add_city' %}" class="ml-3"
+                ><h5
+                  class="hk-sec-title"
+                  style="border-bottom: 3px solid #ab26aa; font-weight: 700"
+                >
+                  ADD CITY
+                </h5></a
+              >
+              <a href="{% url 'manage_city' %}" class="btn btn-primary mr-3"
+                ><h6 class="hk-sec-title fw-bolder mb-0 text-white">
+                  MANAGE CITY
+                </h6></a
+              >
+            </div>
+            {% include 'BASE/messages.html' %}
+            <hr />
+            {% include 'HOD/includes/messages.html' %}
+            <div class="row">
+              <div class="col-sm">
+                <form
+                  class="needs-validation"
+                  novalidate
+                  method="POST"
+                  action="">
+                  {% csrf_token %}
+                  <div class="form-row">
+                    <div class="col-md-4 mb-15">
+                      <label for="validationTooltipUsername">City Name</label>
+                      <div class="input-group">
+                        {% comment %}
+                        <div class="input-group-prepend">
+                          <span
+                            class="input-group-text"
+                            id="validationTooltipUsernamePrepend"
+                            >@</span
+                          >
+                        </div>
+                        {% endcomment %}
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="validationTooltipUsername"
+                          placeholder="City"
+                          aria-describedby="validationTooltipUsernamePrepend"
+                          name="city"
+                          required
+                        />
+                        <div class="invalid-tooltip">
+                          Please provie a unique and valid City Name.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-row"></div>
+
+                  <button class="btn btn-primary" type="submit">
+                    Add City
+                  </button>
+                </form>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
